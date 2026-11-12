@@ -13,15 +13,15 @@ export const pages = {
     "Explore architectural rendering, 3D visualisation and BIM coordination services for projects across the UAE, GCC and India.",
   ],
   "/about": [
-    "About Empire Design Consultancy | Dubai",
+    "About Our Dubai Design Consultancy",
     "Meet the Dubai-based design consultancy supporting architects, engineers and contractors on projects across the UAE, GCC and India.",
   ],
   "/process": [
-    "Our Design & Drafting Process | Empire",
+    "Our Design & Drafting Process",
     "See how Empire Design Consultancy takes a project brief through scope, technical drawing production, review and handover.",
   ],
   "/contact": [
-    "Contact Empire Design Consultancy | Dubai",
+    "Contact Our Dubai Team",
     "Contact our Dubai team about CAD drafting, BIM coordination, shop drawings, 3D visualisation and estimating projects in the UAE, GCC and India.",
   ],
   "/services/cad-drafting": [
