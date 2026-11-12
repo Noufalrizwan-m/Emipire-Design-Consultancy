@@ -28,27 +28,11 @@ const ContactForm = React.lazy(() => import("./ContactForm"));
 import { serviceProjects, arabicProjectDescriptions } from "./serviceProjects";
 import { metadata } from "../seo.mjs";
 gsap.registerPlugin(ScrollTrigger);
-// Reloads begin at the top; direct links to page sections continue to work.
+// Reloads start at the top; section links keep their target.
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 const navigationEntry = performance.getEntriesByType("navigation")[0];
 if (navigationEntry?.type === "reload" && !location.hash) {
-  const resetScroll = () => {
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    window.scrollTo(0, 0);
-  };
-  resetScroll();
-  window.addEventListener(
-    "load",
-    () => {
-      resetScroll();
-      requestAnimationFrame(() => {
-        resetScroll();
-        requestAnimationFrame(resetScroll);
-      });
-    },
-    { once: true },
-  );
+  window.scrollTo(0, 0);
 }
 
 const services = [

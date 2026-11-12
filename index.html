@@ -2,7 +2,7 @@
 .site-loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden}
 .site-loader::before{content:"";position:absolute;inset:0;background:#faeadb;transition:opacity 1.2s ease}
 .site-loader::after{content:"";position:absolute;inset:0;background:url("/loader-architecture.jpg") center/cover no-repeat;opacity:.36;transition:opacity 1.2s ease;pointer-events:none}.site-loader.is-moving::before,.site-loader.is-moving::after{opacity:0}.site-loader.is-moving{pointer-events:none}
-.loader-logo{position:fixed;left:50%;top:45%;width:min(180px,42vw);height:150px;object-fit:contain;transform:translate(-50%,-50%);z-index:1}
+.loader-logo{position:fixed;left:50%;top:45%;width:min(180px,42vw);height:150px;object-fit:contain;transform:translate(-50%,-50%);will-change:transform;z-index:1}
 @media(max-aspect-ratio:4/5){.site-loader::before{background:linear-gradient(#85aee6 0%,#85aee6 65%,#574f49 85%,#574f49 100%)}}
 html.logo-intro-active .site-header .brand img{visibility:hidden}
 @media(prefers-reduced-motion:reduce){.site-loader::before,.site-loader::after{transition:none}}
@@ -31,9 +31,12 @@ html.logo-intro-active .site-header .brand img{visibility:hidden}
       if(!destination||reduced.matches){finish();return}
       var from=logo.getBoundingClientRect(),to=destination.getBoundingClientRect();
       loader.classList.add('is-moving');
+      var dx=to.left+to.width/2-(from.left+from.width/2);
+      var dy=to.top+to.height/2-(from.top+from.height/2);
+      var scale=Math.min(to.width/(from.height*85/120),to.height/from.height);
       animation=logo.animate([
-        {left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px',transform:'none'},
-        {left:to.left+'px',top:to.top+'px',width:to.width+'px',height:to.height+'px',transform:'none'}
+        {transform:'translate(-50%, -50%)'},
+        {transform:'translate(calc(-50% + '+dx+'px), calc(-50% + '+dy+'px)) scale('+scale+')'}
       ],{duration:1200,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
       animation.finished.then(finish).catch(finish);
       setTimeout(finish,1400);
