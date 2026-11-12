@@ -67,7 +67,7 @@ function pageMetadata() {
           const arUrl = `${siteUrl}/ar${path}`;
           const preload =
             path === "/"
-              ? '<link rel="preload" as="image" href="/empire-completed-ivory.jpg" imagesrcset="/mobile/empire-completed-ivory.jpg 960w, /empire-completed-ivory.jpg 1672w" imagesizes="100vw" fetchpriority="high"/>'
+              ? '<link rel="preload" as="image" href="/empire-completed-ivory.webp" imagesrcset="/mobile/empire-completed-ivory.webp 960w, /empire-completed-ivory.webp 1672w" imagesizes="100vw" fetchpriority="high"/>'
               : "";
           const html = template
             .replace(

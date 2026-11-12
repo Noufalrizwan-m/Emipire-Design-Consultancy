@@ -232,7 +232,7 @@ export default function ProjectGallery({ arabic = false }) {
             return (
               <figure key={image + (clone ? "-clone" : "")} aria-hidden={clone || undefined}>
                 <img
-                  src={"/project-gallery/" + image + ".jpg"}
+                  src={"/project-gallery/" + image + ".webp"}
                   alt={clone ? "" : arabic ? arabicCaptions[i] : alt}
                   loading="lazy"
                   draggable="false"
