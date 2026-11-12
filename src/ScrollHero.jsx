@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ResponsiveImage from "./ResponsiveImage";
 
 export default function ScrollHero({ arabic = false }) {
@@ -7,6 +7,16 @@ export default function ScrollHero({ arabic = false }) {
   );
   const [active, setActive] = useState(false);
   const hero = useRef(null);
+  // Follow window resizes and device rotation: the phone/touch view shows the systems artwork without a toggle.
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 700px), (hover: none)");
+    const sync = () => {
+      setShowAll(query.matches);
+      setActive(false);
+    };
+    query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, []);
   const move = (e) => {
     if (e.pointerType !== "mouse" || showAll) return;
     const rect = hero.current.querySelector(".hero-technical").getBoundingClientRect();
