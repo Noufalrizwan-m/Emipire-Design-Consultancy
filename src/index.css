@@ -1928,7 +1928,7 @@ main.service-detail,
 footer {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
-    url("/architectural-sketch-bg.jpg");
+    url("/architectural-sketch-bg.webp");
   background-size:
     auto,
     min(100%, 1024px) auto;
@@ -1944,7 +1944,7 @@ main > section.contact,
 footer {
   background-image:
     linear-gradient(rgba(16, 34, 61, 0.72), rgba(16, 34, 61, 0.72)),
-    url("/architectural-sketch-bg.jpg");
+    url("/architectural-sketch-bg.webp");
   background-blend-mode: normal, soft-light;
 }
 @media (max-width: 700px) {
@@ -1961,7 +1961,7 @@ main.service-detail,
 footer {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
-    url("/architectural-sketch-bg.jpg") !important;
+    url("/architectural-sketch-bg.webp") !important;
   background-size:
     auto,
     min(100%, 1024px) auto !important;
@@ -1973,7 +1973,7 @@ main > section.contact,
 footer {
   background-image:
     linear-gradient(rgba(16, 34, 61, 0.62), rgba(16, 34, 61, 0.62)),
-    url("/architectural-sketch-bg.jpg") !important;
+    url("/architectural-sketch-bg.webp") !important;
   background-blend-mode: normal, soft-light !important;
 }
 
@@ -2189,7 +2189,7 @@ main > section.contact,
 footer {
   background-color: #14243a !important;
   background-image:
-    linear-gradient(#14243a70, #14243a70), url("/navy-blueprint.jpg") !important;
+    linear-gradient(#14243a70, #14243a70), url("/navy-blueprint.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -2359,7 +2359,7 @@ body[data-page="visualisation"] .visual-content {
 main > section.clients,
 main > section.engagement {
   background-image:
-    linear-gradient(#14243a75, #14243a75), url("/navy-blueprint.jpg") !important;
+    linear-gradient(#14243a75, #14243a75), url("/navy-blueprint.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -3011,7 +3011,7 @@ main
     .visualisation
   ):not(.contact):not(.clients):not(.engagement) {
   background-image:
-    linear-gradient(#f4f1ebb8, #f4f1ebb8), url("/services-hand-sketch.png") !important;
+    linear-gradient(#f4f1ebb8, #f4f1ebb8), url("/services-hand-sketch.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -4270,7 +4270,7 @@ main.service-redesign {
   position: relative;
   min-height: 190px;
   padding: 24px;
-  background: #c1d6ee90;
+  background: #14243a0d;
   border: 1px solid #14243a2d;
   display: flex;
   flex-direction: column;
@@ -5123,7 +5123,7 @@ main.about-page > .about-highlights {
   align-items: center;
 }
 .about-story-grid > div:first-child {
-  background: #d9e5f3;
+  background: #14243a0d;
   border-radius: 24px;
   padding: clamp(30px, 4vw, 60px);
   min-height: 330px;
@@ -5156,7 +5156,7 @@ main.about-page > .about-highlights {
   padding: 28px;
   border: 1px solid #14243a24;
   border-radius: 20px;
-  background: #e7eff8a8;
+  background: #14243a0d;
   transition:
     transform 0.25s ease,
     background 0.25s ease;
@@ -5183,7 +5183,7 @@ main.about-page > .about-highlights {
   padding: clamp(28px, 4vw, 55px);
 }
 .about-sectors span {
-  background: #dbe7f4;
+  background: #14243a14;
   border: 0;
   color: #14243a;
   font-weight: 600;
@@ -5604,7 +5604,7 @@ body[data-page="contact"]
   height: 320px;
   border: 0;
   border-radius: 18px;
-  background: #dbe7f4;
+  background: #14243a14;
 }
 @media (max-width: 700px) {
   .location-map {
@@ -7081,7 +7081,7 @@ html {
     line-height: 1.45;
   }
   .about-cover .about-cover-image img {
-    content: url("/about-architectural-bg.png");
+    content: url("/about-architectural-bg.webp");
     object-position: center;
   }
 }
@@ -8818,9 +8818,9 @@ body[data-page] .site-header.menu-open .language-switch {
 }
 /* A consistent card color with readable text. */
 .industry-grid article {
-  background: #d7e6f5 !important;
+  background: #14243a0d !important;
   color: #14243a !important;
-  border-color: #c0d1e2;
+  border-color: #14243a2d;
 }
 .industry-grid article h3,
 .industry-grid article p {
@@ -9157,7 +9157,7 @@ body[data-page="contact"] .location-section.location-full {
 /* Hero backdrop matches the artwork's own sky colour so no band shows behind the nav. */
 @media (min-width: 701px) {
   .still-hero.reveal-hero {
-    background: #fdedd9;
+    background: #faeadb;
   }
 }
 
@@ -9398,7 +9398,7 @@ main.service-detail,
 footer {
   background-image:
     linear-gradient(rgba(250, 234, 219, 0.38), rgba(250, 234, 219, 0.5)),
-    url("/loader-architecture.jpg") !important;
+    url("/loader-architecture.webp") !important;
   background-position: center, center center !important;
   background-size: auto, cover !important;
   background-repeat: no-repeat !important;
@@ -9412,7 +9412,7 @@ main.service-detail > section.service-output,
 footer {
   background-image:
     linear-gradient(rgba(20, 36, 58, 0.88), rgba(20, 36, 58, 0.88)),
-    url("/navy-blueprint.jpg") !important;
+    url("/navy-blueprint.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9431,7 +9431,7 @@ body[data-page] .site-header.header-on-dark .brand img {
 /* Service detail sections: keep the blueprint visible beneath the content. */
 main.service-redesign > section.service-scope:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.9)), url("/architectural-sketch-bg.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.9)), url("/architectural-sketch-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9439,7 +9439,7 @@ main.service-redesign > section.service-scope:not(.still-hero):not(.story-hero):
 
 main.service-redesign > section.service-output:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #14243a !important;
-  background-image: linear-gradient(rgba(20, 36, 58, 0.9), rgba(20, 36, 58, 0.92)), url("/navy-blueprint.jpg") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, 0.9), rgba(20, 36, 58, 0.92)), url("/navy-blueprint.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9464,7 +9464,7 @@ main.service-redesign > section.service-related:not(.still-hero):not(.story-hero
 /* Page-specific architectural artwork: one unique background per page, used once. */
 main.process-page > section.process-journey {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, 0.86), rgba(250, 234, 219, 0.9)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, 0.86), rgba(250, 234, 219, 0.9)), url("/process-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9472,7 +9472,7 @@ main.process-page > section.process-journey {
 
 main.about-page > section.about-story {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.92)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.92)), url("/about-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9480,7 +9480,7 @@ main.about-page > section.about-story {
 
 body[data-page="contact"] main#home > section#enquiry.enquiry-section {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.92)), url("/brief-architecture-bg.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.92)), url("/brief-architecture-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9489,7 +9489,7 @@ body[data-page="contact"] main#home > section#enquiry.enquiry-section {
 /* Dedicated page artwork wins over the shared flat-section reset above. */
 main.process-page > section.process-journey:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, 0.86), rgba(250, 234, 219, 0.9)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, 0.86), rgba(250, 234, 219, 0.9)), url("/process-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9497,7 +9497,7 @@ main.process-page > section.process-journey:not(.still-hero):not(.story-hero):no
 
 main.about-page > section.about-story:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.92)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.92)), url("/about-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9505,7 +9505,7 @@ main.about-page > section.about-story:not(.still-hero):not(.story-hero):not(.abo
 
 body[data-page="contact"] main#home > section#enquiry.enquiry-section {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.92)), url("/brief-architecture-bg.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.92)), url("/brief-architecture-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9539,7 +9539,7 @@ body[data-page] .site-header .nav-drop-trigger.nav-on-dark:hover {
 
 /* Make the dedicated page artwork visible on the live Process and About layouts. */
 main.process-page > section.process-journey:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
-  background-image: linear-gradient(rgba(250, 234, 219, .82), rgba(250, 234, 219, .84)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .82), rgba(250, 234, 219, .84)), url("/process-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9548,13 +9548,13 @@ main.process-page .journey-step { position: relative !important; top: auto !impo
 main.process-page .journey-step:nth-child(even) { background: rgba(183, 131, 82, .64) !important; }
 
 main.about-page > section:not(.about-cover):not(.about-contact) {
-  background-image: linear-gradient(rgba(250, 234, 219, .84), rgba(250, 234, 219, .86)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .84), rgba(250, 234, 219, .86)), url("/about-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
 }
 main.about-page > .about-contact {
-  background-image: linear-gradient(rgba(20, 36, 58, .84), rgba(20, 36, 58, .86)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .84), rgba(20, 36, 58, .86)), url("/about-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9569,13 +9569,13 @@ main.about-page > .about-contact {
 
 /* Process page artwork should continue through the blue and ivory content bands. */
 main.process-page > section.process-collaboration {
-  background-image: linear-gradient(rgba(20, 36, 58, .76), rgba(20, 36, 58, .8)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .76), rgba(20, 36, 58, .8)), url("/process-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
 }
 main.process-page > section.process-contact {
-  background-image: linear-gradient(rgba(250, 234, 219, .78), rgba(250, 234, 219, .82)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .78), rgba(250, 234, 219, .82)), url("/process-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9608,11 +9608,11 @@ main.visual-page .visual-artwork {
   background-repeat: no-repeat;
 }
 main.visual-page .visual-artwork-light {
-  background-image: url("/visualisation-architecture-bg.png");
+  background-image: url("/visualisation-architecture-bg.webp");
   opacity: .09;
 }
 main.visual-page .visual-artwork-dark {
-  background-image: url("/visualisation-blueprint-bg.png");
+  background-image: url("/visualisation-blueprint-bg.webp");
   opacity: .12;
 }
 main.visual-page > section.visual-approach > .container,
@@ -9634,35 +9634,35 @@ main.visual-page > section.visual-finish p {
 
 /* Keep the dedicated page drawings visible without washing out their copy. */
 main.process-page > section.process-journey {
-  background-image: linear-gradient(rgba(250, 234, 219, .62), rgba(250, 234, 219, .68)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .62), rgba(250, 234, 219, .68)), url("/process-architectural-bg.webp") !important;
   background-position: center;
   background-size: cover;
 }
 main.process-page > section.process-collaboration {
-  background-image: linear-gradient(rgba(20, 36, 58, .34), rgba(20, 36, 58, .42)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .34), rgba(20, 36, 58, .42)), url("/process-architectural-bg.webp") !important;
   background-position: center;
   background-size: cover;
 }
 main.process-page > section.process-contact {
-  background-image: linear-gradient(rgba(250, 234, 219, .58), rgba(250, 234, 219, .64)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .58), rgba(250, 234, 219, .64)), url("/process-architectural-bg.webp") !important;
   background-position: center;
   background-size: cover;
 }
 main.about-page > section:not(.about-cover) {
-  background-image: linear-gradient(rgba(250, 234, 219, .62), rgba(250, 234, 219, .68)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .62), rgba(250, 234, 219, .68)), url("/about-architectural-bg.webp") !important;
   background-position: center;
   background-size: cover;
 }
 main.about-page > section.about-contact {
-  background-image: linear-gradient(rgba(20, 36, 58, .38), rgba(20, 36, 58, .44)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .38), rgba(20, 36, 58, .44)), url("/about-architectural-bg.webp") !important;
 }
 body[data-page="contact"] main#home > section#enquiry.enquiry-section {
-  background-image: linear-gradient(rgba(250, 234, 219, .4), rgba(250, 234, 219, .46)), url("/brief-architecture-bg.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .4), rgba(250, 234, 219, .46)), url("/brief-architecture-bg.webp") !important;
   background-position: center;
   background-size: cover;
 }
 body[data-page="contact"] main#home > section#contact.contact {
-  background-image: linear-gradient(rgba(20, 36, 58, .54), rgba(20, 36, 58, .6)), url("/brief-architecture-bg.jpg") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .54), rgba(20, 36, 58, .6)), url("/brief-architecture-bg.webp") !important;
   background-position: center;
   background-size: cover;
 }
@@ -9670,14 +9670,14 @@ body[data-page="contact"] main#home > section#contact.contact {
 /* Stronger drawing visibility for the Process bands and About content shown in the preview. */
 main.process-page > .process-collaboration {
   background-color: #14243a !important;
-  background-image: linear-gradient(rgba(20, 36, 58, .52), rgba(20, 36, 58, .58)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .52), rgba(20, 36, 58, .58)), url("/process-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
 }
 main.process-page > .process-contact {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, .38), rgba(250, 234, 219, .44)), url("/process-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .38), rgba(250, 234, 219, .44)), url("/process-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9686,7 +9686,7 @@ main.about-page > .about-highlights,
 main.about-page > .about-purpose,
 main.about-page > .about-contact {
   background-color: #14243a !important;
-  background-image: linear-gradient(rgba(20, 36, 58, .56), rgba(20, 36, 58, .62)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .56), rgba(20, 36, 58, .62)), url("/about-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9695,7 +9695,7 @@ main.about-page > .about-story,
 main.about-page > .about-values,
 main.about-page > .about-reach {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, .38), rgba(250, 234, 219, .44)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .38), rgba(250, 234, 219, .44)), url("/about-architectural-bg.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9718,7 +9718,7 @@ main.visual-page > section.visual-finish h2 em { color: #b78352 !important; }
   main.process-page .journey-step {
     position: sticky !important;
     top: clamp(75px, 12vh, 120px) !important;
-    min-height: min(65svh, 560px) !important;
+    min-height: min(52svh, 420px) !important;
     align-content: center;
     padding: clamp(32px, 5vw, 70px) clamp(22px, 4vw, 60px) !important;
     background: rgba(250, 234, 219, .78) !important;
@@ -9732,8 +9732,8 @@ main.visual-page > section.visual-finish h2 em { color: #b78352 !important; }
 @media (max-width: 700px) and (min-height: 600px) and (prefers-reduced-motion: no-preference) {
   main.process-page .journey-step {
     top: 90px !important;
-    min-height: 60svh !important;
-    padding: 32px 22px !important;
+    min-height: 48svh !important;
+    padding: 28px 22px !important;
     grid-template-columns: 42px 1fr;
     gap: 15px;
   }
@@ -9747,7 +9747,7 @@ main.process-page > section.process-collaboration {
   background-color: #14243a !important;
   background-image:
     linear-gradient(rgba(20, 36, 58, .52), rgba(20, 36, 58, .6)),
-    url("/process-architectural-bg.png") !important;
+    url("/process-architectural-bg.webp") !important;
   background-position: center, right center !important;
   background-size: cover, 145% auto !important;
   background-repeat: no-repeat !important;
@@ -9777,13 +9777,13 @@ main.about-page > section.about-highlights:not(.still-hero):not(.story-hero):not
 main.about-page > section.about-purpose:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement),
 main.about-page > section.about-contact:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #14243a !important;
-  background-image: linear-gradient(rgba(20, 36, 58, .68), rgba(20, 36, 58, .72)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .68), rgba(20, 36, 58, .72)), url("/about-architectural-bg.webp") !important;
 }
 main.about-page > section.about-story:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement),
 main.about-page > section.about-values:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement),
 main.about-page > section.about-reach:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, .5), rgba(250, 234, 219, .56)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .5), rgba(250, 234, 219, .56)), url("/about-architectural-bg.webp") !important;
 }
 
 /* Match the deep navy + visible blueprint treatment, while keeping each page's own drawing. */
@@ -9824,16 +9824,16 @@ body[data-page="contact"] main#home > section#contact.contact::before {
   mix-blend-mode: screen;
 }
 main.process-page > section.process-collaboration::before {
-  background-image: url("/process-architectural-bg.png");
+  background-image: url("/process-architectural-bg.webp");
   background-position: 72% center;
 }
 main.about-page > section.about-highlights::before,
 main.about-page > section.about-purpose::before,
 main.about-page > section.about-contact::before {
-  background-image: url("/about-architectural-bg.png");
+  background-image: url("/about-architectural-bg.webp");
 }
 body[data-page="contact"] main#home > section#contact.contact::before {
-  background-image: url("/brief-architecture-bg.jpg");
+  background-image: url("/brief-architecture-bg.webp");
 }
 main.process-page > section.process-collaboration > .container,
 main.about-page > section.about-highlights > .container,
@@ -9854,17 +9854,17 @@ body[data-page="contact"] main#home > section#contact.contact > .container {
 }
 
 /* Use a different architectural drawing for every About content section. */
-main.about-page > section.about-highlights::before { background-image: url("/about-architectural-bg.png") !important; }
-main.about-page > section.about-purpose::before { background-image: url("/about-architecture-bg.jpg") !important; }
-main.about-page > section.about-contact::before { background-image: url("/architectural-sketch-bg.png") !important; }
+main.about-page > section.about-highlights::before { background-image: url("/about-architectural-bg.webp") !important; }
+main.about-page > section.about-purpose::before { background-image: url("/about-architecture-bg.webp") !important; }
+main.about-page > section.about-contact::before { background-image: url("/architectural-sketch-bg.webp") !important; }
 main.about-page > section.about-story:not(.about-cover):not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
-  background-image: linear-gradient(rgba(250, 234, 219, .5), rgba(250, 234, 219, .56)), url("/services-hand-sketch.png") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .5), rgba(250, 234, 219, .56)), url("/services-hand-sketch.webp") !important;
 }
 main.about-page > section.about-values:not(.about-cover):not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
-  background-image: linear-gradient(rgba(250, 234, 219, .5), rgba(250, 234, 219, .56)), url("/architectural-sketch-bg.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .5), rgba(250, 234, 219, .56)), url("/architectural-sketch-bg.webp") !important;
 }
 main.about-page > section.about-reach:not(.about-cover):not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
-  background-image: linear-gradient(rgba(250, 234, 219, .5), rgba(250, 234, 219, .56)), url("/process-architecture-bg.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .5), rgba(250, 234, 219, .56)), url("/process-architecture-bg.webp") !important;
 }
 
 /* Soften About artwork and leave only a subtle navy-blue tint. */
@@ -9881,9 +9881,9 @@ main.about-page > section.about-reach:not(.about-cover):not(.still-hero):not(.st
     linear-gradient(rgba(250, 234, 219, .68), rgba(250, 234, 219, .72)),
     var(--about-section-artwork) !important;
 }
-main.about-page > section.about-story { --about-section-artwork: url("/services-hand-sketch.png"); }
-main.about-page > section.about-values { --about-section-artwork: url("/architectural-sketch-bg.jpg"); }
-main.about-page > section.about-reach { --about-section-artwork: url("/process-architecture-bg.jpg"); }
+main.about-page > section.about-story { --about-section-artwork: url("/services-hand-sketch.webp"); }
+main.about-page > section.about-values { --about-section-artwork: url("/architectural-sketch-bg.webp"); }
+main.about-page > section.about-reach { --about-section-artwork: url("/process-architecture-bg.webp"); }
 
 /* Match the About dark sections to the deeper navy in the Process reference. */
 main.about-page > section.about-highlights,
@@ -9907,13 +9907,13 @@ main.about-page > section.about-contact:not(.still-hero):not(.story-hero):not(.a
   background-repeat: no-repeat !important;
 }
 main.about-page > section.about-highlights:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
-  background-image: linear-gradient(rgba(20, 36, 58, .88), rgba(20, 36, 58, .9)), url("/about-architectural-bg.png") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .88), rgba(20, 36, 58, .9)), url("/about-architectural-bg.webp") !important;
 }
 main.about-page > section.about-purpose:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
-  background-image: linear-gradient(rgba(20, 36, 58, .88), rgba(20, 36, 58, .9)), url("/about-architecture-bg.jpg") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .88), rgba(20, 36, 58, .9)), url("/about-architecture-bg.webp") !important;
 }
 main.about-page > section.about-contact:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
-  background-image: linear-gradient(rgba(20, 36, 58, .88), rgba(20, 36, 58, .9)), url("/architectural-sketch-bg.png") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .88), rgba(20, 36, 58, .9)), url("/architectural-sketch-bg.webp") !important;
 }
 main.about-page > section.about-highlights::before,
 main.about-page > section.about-purpose::before,
@@ -9924,7 +9924,7 @@ main.about-page > section.about-contact::before {
 /* Process closing section: continue the navy architectural treatment to the page end. */
 main.process-page > section.process-contact:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #14243a !important;
-  background-image: linear-gradient(rgba(20, 36, 58, .84), rgba(20, 36, 58, .88)), url("/process-architecture-bg.jpg") !important;
+  background-image: linear-gradient(rgba(20, 36, 58, .84), rgba(20, 36, 58, .88)), url("/process-architecture-bg.webp") !important;
   background-position: center center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9945,7 +9945,7 @@ main.process-page > section.process-contact:not(.still-hero):not(.story-hero):no
 /* Put the warm cream architectural wash behind the Services cards, not the hero. */
 body[data-page="services"] main#home > section#services.services {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, .74), rgba(250, 234, 219, .78)), url("/loader-architecture.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .74), rgba(250, 234, 219, .78)), url("/loader-architecture.webp") !important;
   background-position: center center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9954,7 +9954,7 @@ body[data-page="services"] main#home > section#services.services {
 /* Process closing CTA should be cream, matching the adjacent light section. */
 main.process-page > section.process-contact:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, .68), rgba(250, 234, 219, .72)), url("/process-architecture-bg.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, .68), rgba(250, 234, 219, .72)), url("/process-architecture-bg.webp") !important;
   background-position: center center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9978,4 +9978,30 @@ main.process-page > section.process-contact:not(.still-hero):not(.story-hero):no
   line-height: 1.1;
   letter-spacing: -.035em;
   text-align: center;
+}
+
+/* Soften the Process closing artwork so the copy remains the focus. */
+main.process-page > section.process-contact:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
+  background-image: linear-gradient(rgba(250, 234, 219, .82), rgba(250, 234, 219, .86)), url("/process-architecture-bg.webp") !important;
+}
+
+/* Keep the footer action buttons the same size and center their label/icon pair. */
+.site-footer .footer-actions > button,
+.site-footer .footer-actions > a {
+  display: inline-flex;
+  width: 256px;
+  min-height: 78px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 24px;
+  line-height: 1;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .site-footer .footer-actions > button,
+  .site-footer .footer-actions > a {
+    width: min(100%, 256px);
+  }
 }
