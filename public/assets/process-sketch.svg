@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none"><g stroke="#0d1a33" stroke-width="1.6" opacity=".18" stroke-linecap="round" stroke-linejoin="round">
+<!-- Drawing sheets and plans -->
+<path d="M-30 95l310-40 35 270-310 40z M-15 109l280-36 30 240-280 36z M30 150l110-14 11 90-110 14z M45 165l80-10 8 60-80 10z M165 130l75-10 8 60-75 10z M177 215l74-9 M180 229l74-9 M184 243l74-9 M188 257l74-9"/><path d="M50 275l80-10 M52 288l110-14 M55 301l90-11"/>
+<!-- Drawing tools -->
+<path d="M1335 65l78 43-150 267-78-43z M1347 87l41 23-126 225-41-23z M1305 160l19 11 M1292 184l12 7 M1278 208l19 11 M1265 232l12 7 M1251 256l19 11 M1238 280l12 7"/>
+<!-- review loupe over detail -->
+<circle cx="1390" cy="615" r="98"/><circle cx="1390" cy="615" r="88"/><path d="M1320 615h140 M1390 545v140 M1342 575h96v80h-96z M1355 588h30v26h-30z M1398 588h27v26h-27z M1355 628h70 M1455 685l96 95 M1467 673l96 95 M1551 780l12-12"/>
+<!-- file stack -->
+<path d="M100 640h250l35 35v165H100z M350 640v35h35 M118 620h250l35 35v165h-18 M136 600h250l35 35v165h-18 M125 705h210 M125 725h185 M125 745h200 M125 780h75"/>
+<!-- dimension guides -->
+
+</g><g stroke="#6b7280" stroke-width="2" opacity=".28"><path d="M40 400h150 M40 392v16 M190 392v16 M1150 475v140 M1142 475h16 M1142 615h16"/><circle cx="190" cy="400" r="5"/><circle cx="1150" cy="615" r="5"/></g></svg>

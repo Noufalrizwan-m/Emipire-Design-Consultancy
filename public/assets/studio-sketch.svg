@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none"><g stroke="#0d1a33" stroke-width="1.4" opacity=".17" stroke-linecap="round" stroke-linejoin="round">
+<!-- elevation -->
+<path d="M-20 670h570 M20 670V530l145-85 155 85v140 M38 670V540l127-73 137 73v130 M165 467v203 M38 575h264 M38 625h264 M80 516v154 M120 490v180 M215 496v174 M260 522v148"/>
+<!-- building model -->
+<path d="M1130 150l160-80 160 80-160 85z M1130 150v165l160 85V235 M1450 150v165l-160 85 M1182 124l160 85 M1235 97l160 85 M1182 178v165 M1235 205v165 M1342 207v165 M1395 179v165 M1130 205l160 85 160-85 M1130 260l160 85 160-85"/>
+<!-- drafting sheet -->
+<path d="M1110 600l280-35 22 175-280 35z M1125 612l250-31 18 145-250 31z M1150 642l75-9 7 55-75 9z M1245 630l102-13 M1248 647l102-13 M1251 664l75-10 M1159 718l145-18"/>
+<!-- construction guides -->
+<circle cx="785" cy="175" r="28"/><circle cx="785" cy="175" r="4"/>
+</g></svg>

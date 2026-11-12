@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941">
+<defs><filter id="soft" x="-20%" y="-80%" width="140%" height="260%"><feGaussianBlur stdDeviation="5"/></filter><linearGradient id="cloud-tone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#e1d5c7"/><stop offset="1" stop-color="#9c948d"/></linearGradient></defs>
+<g fill="url(#cloud-tone)" filter="url(#soft)" opacity=".8">
+<path d="M160 193 Q245 180 302 173 Q350 150 401 162 Q440 145 474 157 Q511 157 548 178 Q480 174 433 183 Q356 193 293 189 Q212 204 160 193Z"/>
+<path d="M1120 212 Q1170 196 1208 202 Q1253 176 1295 187 Q1342 170 1382 191 Q1437 186 1514 212 Q1412 211 1350 220 Q1263 217 1210 222Z"/>
+<path d="M343 301 Q401 285 441 290 Q483 276 521 287 L545 299 Q455 312 343 301Z" opacity=".58"/>
+<path d="M1115 327 Q1178 307 1230 318 Q1282 303 1321 319 L1405 333 Q1310 339 1241 334 Q1174 340 1115 327Z" opacity=".45"/>
+</g></svg>

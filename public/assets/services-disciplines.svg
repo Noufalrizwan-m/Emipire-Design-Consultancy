@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+<g stroke="#0d1a33" stroke-width="1.5" opacity=".17" stroke-linecap="round" stroke-linejoin="round">
+<!-- architectural plan -->
+<path d="M1140 80h300v230h-300z M1152 92h276v206h-276z M1260 92v80h-108 M1260 191v107 M1350 92v65h78 M1350 176v122 M1152 225h55 M1227 225h33"/><path d="M1207 225a20 20 0 0 1 20-20 M1260 172a19 19 0 0 1 19 19 M1350 157a19 19 0 0 1 19 19"/>
+<!-- BIM isometric volume -->
+<path d="M55 615l180-95 180 95-180 98z M55 615v175l180 98V713 M415 615v175l-180 98 M115 583l180 96 M175 551l180 96 M115 647v175 M175 680v175 M295 680v175 M355 647v175 M55 673l180 98 180-98 M55 732l180 98 180-98"/>
+<!-- engineering services piping detail -->
+<path d="M1150 600h85q26 0 26 26v48q0 26 26 26h95 M1150 609h76q26 0 26 26v48q0 26 26 26h104 M1150 618h67q26 0 26 26v48q0 26 26 26h113"/><circle cx="1388" cy="709" r="18"/><path d="M1388 698v22 M1377 709h22"/>
+<!-- estimating schedule -->
+<path d="M685 680h190v130H685z M685 708h190 M685 735h190 M685 762h190 M735 680v130 M805 680v130"/><path d="M700 695h20 M750 695h40 M820 695h35 M700 722h20 M750 722h40 M820 722h35 M700 749h20 M750 749h40 M820 749h35 M700 776h20 M750 776h40 M820 776h35"/>
+<!-- visualisation perspective guides -->
+
+</g><g stroke="#ff6a2b" stroke-width="1.4" opacity=".2"><path d="M45 840h390 M45 832v16 M435 832v16 M1125 345h330 M1125 337v16 M1455 337v16"/><circle cx="45" cy="840" r="4"/><circle cx="1455" cy="345" r="4"/></g></svg>

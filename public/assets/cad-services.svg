@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+<g stroke="#0d1a33" opacity=".18" stroke-width="1.4">
+<!-- plan in the upper right -->
+<path d="M1130 90h345v250h-345z M1142 102h321v226h-321z M1265 102v104h-123 M1265 224v104 M1350 102v80h113 M1350 200v128 M1142 245h70 M1234 245h31 M1370 240h93"/><path d="M1212 245a22 22 0 0 1 22-22 M1265 206a18 18 0 0 1 18 18 M1350 182a18 18 0 0 1 18 18"/><circle cx="1185" cy="155" r="22"/><path d="M1163 155h44 M1185 133v44 M1390 270h45v38h-45z M1400 280h25v18h-25z"/>
+<!-- elevation along bottom left -->
+<path d="M-30 800H600 M20 800V615L205 520l200 95v185 M45 800V630l160-82 175 82v170 M205 548v252 M45 685h335 M45 740h335 M85 635v165 M150 602v198 M260 575v225 M325 605v195"/>
+<!-- detail and registration marks -->
+<path d="M1135 630h210v170h-210z M1150 645h180v140h-180z M1150 680h180 M1190 645v140 M1285 645v140 M1110 605h260 M1110 600v10 M1370 600v10"/><circle cx="1240" cy="730" r="24"/><circle cx="1240" cy="730" r="12"/><path d="M1205 730h70 M1240 695v70" stroke-width="1"/>
+</g><g stroke="#6b7280" opacity=".24" stroke-width="1.3"><path d="M1110 365h385 M1110 357v16 M1495 357v16 M5 850h420 M5 844v12 M425 844v12"/><circle cx="1109" cy="365" r="4"/><circle cx="1495" cy="365" r="4"/></g></svg>
