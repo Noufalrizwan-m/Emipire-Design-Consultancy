@@ -8,32 +8,22 @@ export default function ProjectGallery({ arabic = false }) {
     if (!track) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let visible = false;
-    let hovering = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
         visible = entry.isIntersecting;
       },
-      { threshold: 0.35 },
+      { threshold: 0.15 },
     );
     observer.observe(track);
     const pause = () => {
       pausedUntil.current = Date.now() + 8000;
     };
-    const enter = () => {
-      hovering = true;
-    };
-    const leave = () => {
-      hovering = false;
-      pause();
-    };
-    track.addEventListener("pointerenter", enter);
-    track.addEventListener("pointerleave", leave);
     track.addEventListener("pointerdown", pause);
     track.addEventListener("keydown", pause);
+    track.addEventListener("wheel", pause, { passive: true });
     const timer = window.setInterval(() => {
       if (
         !visible ||
-        hovering ||
         document.hidden ||
         reducedMotion.matches ||
         Date.now() < pausedUntil.current ||
@@ -48,14 +38,13 @@ export default function ProjectGallery({ arabic = false }) {
       const next =
         position >= max - 2 ? 0 : Math.min(max, position + step + 16);
       track.scrollTo({ left: arabic ? -next : next, behavior: "smooth" });
-    }, 5500);
+    }, 4000);
     return () => {
       clearInterval(timer);
       observer.disconnect();
-      track.removeEventListener("pointerenter", enter);
-      track.removeEventListener("pointerleave", leave);
       track.removeEventListener("pointerdown", pause);
       track.removeEventListener("keydown", pause);
+      track.removeEventListener("wheel", pause);
     };
   }, [arabic]);
   const photos = [

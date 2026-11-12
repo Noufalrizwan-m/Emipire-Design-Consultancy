@@ -9,7 +9,7 @@ export default function ScrollHero({ arabic = false }) {
   const hero = useRef(null);
   const move = (e) => {
     if (e.pointerType !== "mouse" || showAll) return;
-    const rect = hero.current.getBoundingClientRect();
+    const rect = hero.current.querySelector(".hero-technical").getBoundingClientRect();
     hero.current.style.setProperty("--lens-x", `${e.clientX - rect.left}px`);
     hero.current.style.setProperty("--lens-y", `${e.clientY - rect.top}px`);
     setActive(true);
