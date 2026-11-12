@@ -34,6 +34,7 @@ const imageWidths = {
   "/services-hand-sketch.png": [960, 1774],
   "/empire-completed-ivory.png": [960, 1672],
   "/services/cad-drafting.png": [960, 1672],
+  "/services/authority-approval-drawings.png": [960, 1672],
   "/services/bim-coordination.png": [960, 1672],
   "/services/3d-visualisation.png": [960, 1672],
   "/services/estimating-takeoff.png": [960, 1672],
@@ -43,6 +44,8 @@ const imageWidths = {
 // Portrait compositions are selected by viewport rather than image resolution.
 const portraitImages = {
   "/services/cad-drafting.png": "/mobile/portrait/cad-drafting.png",
+  "/services/authority-approval-drawings.png":
+    "/mobile/portrait/authority-approval-drawings.png",
   "/services/bim-coordination.png": "/mobile/portrait/bim-coordination.png",
   "/services/shop-drawings.png": "/mobile/portrait/shop-drawings.png",
   "/services/3d-visualisation.png": "/mobile/portrait/3d-visualisation.png",

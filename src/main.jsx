@@ -17,6 +17,7 @@ import {
   PenTool,
   Ruler,
   Calculator,
+  FileCheck,
   Check,
   Mail,
   Phone,
@@ -66,6 +67,12 @@ const services = [
     "Estimating & takeoff",
     "Quantity takeoffs, material estimates, BOQs and cost analysis for planning and tender preparation.",
     Calculator,
+  ],
+  [
+    "06",
+    "Authority submission drawings",
+    "Drawing packages prepared in the formats Dubai Municipality, DDA, DMCC and Trakhees submissions call for.",
+    FileCheck,
   ],
 ];
 const clients = [
@@ -148,6 +155,21 @@ const serviceDetails = {
     outputs:
       "Still renders, models or walkthroughs, according to the project brief.",
   },
+  "authority-approval-drawings": {
+    title: "Authority submission drawings",
+    tag: "06 / SUBMISSION PACKAGES",
+    intro:
+      "Drawing packages prepared in the formats Dubai authority submissions call for, so your registered consultant or contractor can submit without redrawing anything.",
+    scope: [
+      "Existing and proposed layouts for fit-out submissions",
+      "Ceiling, partition and MEP layouts",
+      "Demolition and construction plans",
+      "Authority-format sheets in DWG and PDF",
+      "Drawing revisions after authority comments",
+    ],
+    outputs:
+      "Submission-ready drawing sets in DWG and PDF at the sheet sizes each authority expects.",
+  },
   "estimating-takeoff": {
     title: "Estimating & takeoff",
     tag: "05 / QUANTITY & COST",
@@ -182,6 +204,10 @@ const arabicServices = [
   [
     "تقدير التكاليف وحصر الكميات",
     "حصر الكميات وتقدير المواد وجداول الكميات وتحليل التكاليف للتخطيط وإعداد المناقصات.",
+  ],
+  [
+    "رسومات تقديم الجهات المختصة",
+    "حزم رسومات تُعد بالصيغ التي تتطلبها معاملات بلدية دبي وسلطة دبي للتطوير وDMCC وتراخيص.",
   ],
 ];
 // Each popup heading shows the matching sections of the services copy, word for word.
@@ -250,6 +276,21 @@ const arabicDetails = {
       "دعم الرسم والنمذجة ثلاثية الأبعاد",
     ],
     outputs: "صور أو نماذج أو جولات افتراضية وفق متطلبات المشروع.",
+  },
+  "authority-approval-drawings": {
+    title: arabicServices[5][0],
+    tag: "06 / حزم التقديم",
+    intro:
+      "حزم رسومات تُعد بالصيغ التي تتطلبها معاملات الجهات المختصة في دبي، ليتمكن الاستشاري أو المقاول المسجل لديكم من تقديمها دون إعادة رسم.",
+    scope: [
+      "مخططات الوضع القائم والمقترح لمعاملات التجهيز الداخلي",
+      "مخططات الأسقف والقواطع والأعمال الميكانيكية والكهربائية والصحية",
+      "مخططات الهدم والإنشاء",
+      "لوحات بصيغة الجهة المختصة بصيغتي DWG وPDF",
+      "تعديل الرسومات بعد ملاحظات الجهة المختصة",
+    ],
+    outputs:
+      "مجموعات رسومات جاهزة للتقديم بصيغتي DWG وPDF وبمقاسات اللوحات التي تطلبها كل جهة.",
   },
   "estimating-takeoff": {
     title: arabicServices[4][0],
@@ -406,6 +447,13 @@ const storyScenes = [
     copy: "Help stakeholders understand a space before it is built.",
     image: "/services/3d-visualisation.png",
     href: "/services/3d-visualisation",
+  },
+  {
+    title: "Authority submission drawings",
+    link: "Explore authority submission drawings",
+    copy: "Get the drawing package into the format the submission needs.",
+    image: "/services/authority-approval-drawings.png",
+    href: "/services/authority-approval-drawings",
   },
   {
     title: "Estimating & takeoff",

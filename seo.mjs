@@ -44,6 +44,10 @@ export const pages = {
     "Estimating & Quantity Takeoff | UAE",
     "Quantity takeoffs, material estimates, bills of quantities and tender support for projects in the UAE, GCC and India.",
   ],
+  "/services/authority-approval-drawings": [
+    "Authority Submission Drawings | Dubai",
+    "Fit-out and modification drawing packages prepared in Dubai Municipality, DDA, DMCC and Trakhees submission formats, for your registered consultant or contractor to submit.",
+  ],
 };
 export function metadata(path) {
   const [heading, description] = pages[path] || pages["/"];
@@ -96,6 +100,10 @@ export const arabicPages = {
   "/services/estimating-takeoff": [
     "حصر الكميات وتقدير تكاليف البناء في الإمارات",
     "حصر كميات الأعمال والمواد وجداول الكميات ودعم المناقصات لمشاريع الإمارات والخليج.",
+  ],
+  "/services/authority-approval-drawings": [
+    "رسومات تقديم الجهات المختصة في دبي",
+    "حزم رسومات التجهيز الداخلي والتعديلات بصيغ بلدية دبي وسلطة دبي للتطوير وDMCC وتراخيص، ليقدمها الاستشاري أو المقاول المسجل لديكم.",
   ],
 };
 
@@ -161,6 +169,14 @@ export const pageContent = {
     sections: [
       ["What we can help with", "Quantity takeoffs. Material takeoffs. Bills of quantities. Construction estimates. Cost analysis and bid documentation."],
       ["What you receive", "Measured quantities and supporting documentation your planning or tender team can work from."],
+    ],
+  },
+  "/services/authority-approval-drawings": {
+    lead: "Fit-out and modification drawing packages prepared in the formats Dubai authority submissions call for, so your registered consultant or contractor can submit without redrawing anything. Empire Design Consultancy is a licensed Dubai company based at Burjuman Business Tower, Mankhool.",
+    sections: [
+      ["What we prepare", "Existing and proposed layouts for fit-out submissions. Ceiling, partition and MEP layouts covering HVAC, electrical, plumbing and fire fighting. Demolition and construction plans. Authority-format sheets in AutoCAD DWG and PDF at the sheet sizes each authority expects. Drawing revisions after authority comments."],
+      ["Which authority your unit falls under", "Dubai mainland units are handled by Dubai Municipality through the Build in Dubai platform. TECOM communities such as Dubai Internet City, Dubai Media City, Dubai Knowledge Park and Dubai Design District fall under the Dubai Development Authority, whose drawings follow DDA Circular 400 format. JLT units fall under DMCC, Jebel Ali and Palm Jumeirah under Trakhees, and DIFC under its own authority. Each route has its own portal, drawing format and sheet size."],
+      ["How we work with your submission", "We prepare the drawings; the submission itself is made by the registered consultant or contractor your authority requires as the requester. We work to their mark-ups and to the authority's format, and turn around revisions when comments come back, so the package does not have to be rebuilt between review rounds."],
     ],
   },
   "/visualisation": {
