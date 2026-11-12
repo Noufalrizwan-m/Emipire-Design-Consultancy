@@ -47,7 +47,7 @@ export const pages = {
 };
 export function metadata(path) {
   const [heading, description] = pages[path] || pages["/"];
-  const title = `${heading} | Empire Design`;
+  const title = `Empire Design | ${heading}`;
   const url = `${siteUrl}${path === "/" ? "/" : path}`;
   return { title, description, url };
 }

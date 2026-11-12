@@ -366,7 +366,7 @@ document.title = !knownPath
     ? "الصفحة غير موجودة | إمباير للاستشارات التصميمية"
     : "Page not found | Empire Design Consultancy"
   : arabic
-    ? `${arabicTitle} | إمباير للاستشارات التصميمية`
+    ? `إمباير للتصميم | ${arabicTitle}`
     : pageMetadata.title;
 document
   .querySelector('meta[name="description"]')
@@ -2043,21 +2043,23 @@ function App() {
             scrub: true,
           },
         });
-      if (document.querySelector(".process-line-fill"))
-        gsap.fromTo(
-          ".process-line-fill",
-          { scaleY: 0 },
-          {
-            scaleY: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".process-timeline",
-              start: "top 80%",
-              end: "bottom 50%",
-              scrub: true,
-            },
+      const processLayout = document.querySelector(".process-layout");
+      if (processLayout) {
+        const steps = Array.from(processLayout.querySelectorAll(".process-timeline li"));
+        const line = processLayout.querySelector(".process-line-fill");
+        ScrollTrigger.create({
+          trigger: processLayout,
+          start: "top 70%",
+          end: "bottom 70%",
+          scrub: true,
+          onUpdate: ({ progress }) => {
+            const active = Math.min(steps.length - 1, Math.floor(progress * steps.length));
+            steps.forEach((step, index) => step.classList.toggle("is-active", index === active));
+            if (line) line.style.transform = `scaleY(${progress})`;
           },
-        );
+        });
+        steps[0]?.classList.add("is-active");
+      }
       if (page === "home" && document.querySelector(".home-intro-image")) {
         gsap.fromTo(
           ".home-intro-image img",
@@ -2643,11 +2645,6 @@ function App() {
                         <h3>{t(stepTitle)}</h3>
                         <p>{t(d)}</p>
                       </div>
-                      <ArrowUpRight
-                        className="process-arrow"
-                        size={19}
-                        aria-hidden="true"
-                      />
                     </li>
                   ))}
                 </ol>
@@ -3123,12 +3120,13 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
-requestAnimationFrame(() =>
-  requestAnimationFrame(() => {
-    const loader = document.getElementById("site-loader");
-    if (loader) {
-      loader.classList.add("is-ready");
-      setTimeout(() => loader.remove(), 300);
-    }
-  }),
-);
+requestAnimationFrame(() => {
+  const hero = document.querySelector(".hero-finished");
+  const ready = () => window.empireSiteReady?.();
+  if (hero && !hero.complete) {
+    hero.addEventListener("load", ready, { once: true });
+    hero.addEventListener("error", ready, { once: true });
+  } else {
+    ready();
+  }
+});

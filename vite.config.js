@@ -15,7 +15,7 @@ function pageMetadata() {
           const route = isArabic ? "/ar" + (path === "/" ? "/" : path) : path;
           const entry = isArabic ? arabicPages[path] : pages[path];
           const title = isArabic
-            ? `${entry[0]} | إمباير للاستشارات التصميمية`
+            ? `إمباير للتصميم | ${entry[0]}`
             : metadata(path).title;
           const description = entry[1];
           const url = `${siteUrl}${route}`;

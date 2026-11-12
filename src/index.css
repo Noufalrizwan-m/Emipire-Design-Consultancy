@@ -8873,3 +8873,12 @@ html[dir="rtl"] p,
 html[dir="rtl"] li {
   line-height: 1.8;
 }
+
+/* Process steps remain visible while the introduction scrolls past. */
+@media (min-width: 1025px) {
+  body[data-page="home"] .process-layout { min-height: 155vh; }
+  body[data-page="home"] .process-timeline-wrap { position: sticky; top: 120px; }
+}
+.process-timeline li { grid-template-columns: 52px minmax(0, 1fr); }
+.process-timeline li.is-active .process-number { background: #14243a; color: #fff; }
+@media (max-width: 760px) { .process-timeline li { grid-template-columns: 44px minmax(0, 1fr); } }
