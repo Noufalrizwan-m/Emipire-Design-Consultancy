@@ -787,6 +787,7 @@ function VisualisationPage() {
         </div>
       </section>
       <section id="visual-services" className="visual-approach">
+        <div className="visual-artwork visual-artwork-light" aria-hidden="true" />
         <div className="container">
           <div className="visual-section-heading">
             <p>{t("DESIGN IN THREE DIMENSIONS")}</p>
@@ -835,6 +836,7 @@ function VisualisationPage() {
         </div>
       </section>
       <section className="visual-finish">
+        <div className="visual-artwork visual-artwork-dark" aria-hidden="true" />
         <div className="container">
           <h2>
             {t("Make the next")}
@@ -1587,6 +1589,7 @@ function AboutPage() {
         aria-label={t("Empire at a glance")}
       >
         <div className="container">
+          <h2 className="about-highlights-title">{t("Empire at a glance")}</h2>
           <div className="about-highlights-card">
             {[
               ["16+", "Years group experience"],
@@ -1854,8 +1857,9 @@ function useNavigationContrast() {
               break;
             }
           }
-          control.classList.toggle("nav-on-dark", tone ?? Boolean(dark));
-          control.classList.toggle("nav-on-light", !(tone ?? Boolean(dark)));
+          const resolvedTone = photoCover ? true : (tone ?? Boolean(dark));
+          control.classList.toggle("nav-on-dark", resolvedTone);
+          control.classList.toggle("nav-on-light", !resolvedTone);
         });
     };
     let lastRun = 0;
