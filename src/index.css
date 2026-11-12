@@ -9052,3 +9052,111 @@ html[dir="rtl"] li {
 .deliverable-items > .reveal > span,
 .footer-columns h3 { font-size: 12px !important; }
 .footer-bottom small { font-size: 12px !important; }
+
+/* Full-width location map with floating info card. */
+body[data-page="contact"] .location-section.location-full {
+  padding: 0 !important;
+  background: #faeadb !important;
+}
+.location-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(460px, 68vh, 720px);
+}
+.location-stage .location-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+.location-stage .location-overlay {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: clamp(20px, 5vw, 80px);
+  transform: translateY(-50%);
+  display: block;
+  width: min(380px, calc(100% - 40px));
+  padding: clamp(22px, 3vw, 34px);
+  border-radius: 20px;
+  background: #faeadb !important;
+  box-shadow: 0 18px 50px rgba(20, 36, 58, 0.28);
+  z-index: 2;
+}
+.location-stage .location-overlay h2 {
+  font-size: clamp(30px, 3.2vw, 44px);
+  margin-top: 12px;
+}
+.location-stage .location-overlay p:not(.about-label) {
+  margin-top: 16px;
+}
+.location-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+.location-actions a {
+  margin-top: 18px;
+  font-size: 14px;
+}
+@media (max-width: 700px) {
+  .location-stage {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .location-stage .location-map {
+    position: static;
+    height: 360px;
+    order: 2;
+  }
+  .location-stage .location-overlay {
+    position: static;
+    transform: none;
+    width: auto;
+    order: 1;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 36px 22px 28px;
+  }
+}
+
+/* Map as the section background: taller stage, glass info card. */
+.location-stage {
+  height: clamp(520px, 82vh, 820px);
+}
+.location-stage .location-overlay {
+  background: rgba(250, 234, 219, 0.88) !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+@media (max-width: 700px) {
+  .location-stage {
+    height: 82vh;
+    min-height: 520px;
+    display: block;
+  }
+  .location-stage .location-map {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+  .location-stage .location-overlay {
+    position: absolute;
+    top: auto;
+    bottom: 20px;
+    inset-inline: 16px;
+    width: auto;
+    transform: none;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 12px 36px rgba(20, 36, 58, 0.3);
+  }
+}
+
+/* Hero backdrop matches the artwork's own sky colour so no band shows behind the nav. */
+@media (min-width: 701px) {
+  .still-hero.reveal-hero {
+    background: #fdedd9;
+  }
+}

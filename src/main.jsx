@@ -1917,7 +1917,20 @@ function App() {
   }, []);
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ lerp: 0.085, anchors: true });
+    const lenis = new Lenis({
+      lerp: 0.085,
+      anchors: true,
+      smoothWheel: true,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.2,
+    });
+    if (!location.hash) lenis.scrollTo(0, { immediate: true, force: true });
+    const settle = () => {
+      lenis.resize();
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("load", settle, { once: true });
+    document.fonts?.ready.then(settle);
     const tick = (t) => lenis.raf(t * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
@@ -2091,6 +2104,7 @@ function App() {
       }
     });
     return () => {
+      window.removeEventListener("load", settle);
       ctx.revert();
       lenis.destroy();
       gsap.ticker.remove(tick);
@@ -2856,36 +2870,45 @@ function App() {
             </section>
           )}
           {page === "contact" && (
-            <section className="location-section">
-              <div className="container location-card">
-                <div>
+            <section className="location-section location-full">
+              <div className="location-stage">
+                <iframe
+                  className="location-map"
+                  title={t("Map of Burjuman Business Tower, Dubai")}
+                  src={`https://maps.google.com/maps?q=Burjuman%20Business%20Tower%20Mankhool%20Dubai&z=16&hl=${arabic ? "ar" : "en"}&output=embed`}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="location-card location-overlay">
                   <p className="about-label">{t("VISIT OUR STUDIO")}</p>
                   <h2>
-                    {t("Find us")}
-                    <br />
-                    <em>{t("in Dubai.")}</em>
+                    {t("Find us")} <em>{t("in Dubai.")}</em>
                   </h2>
                   <p>
                     {t("Burjuman Business Tower")}
                     <br />
                     {t("Mankhool, Dubai, UAE")}
                   </p>
-                  <a
-                    href="https://www.google.com/maps/search/?api=1&query=Burjuman+Business+Tower+Mankhool+Dubai"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {t("Open in Google Maps")}
-                    <ArrowUpRight size={17} />
-                  </a>
+                  <div className="location-actions">
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=Burjuman+Business+Tower+Mankhool+Dubai"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {t("Get directions")}
+                      <ArrowUpRight size={17} />
+                    </a>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=Burjuman+Business+Tower+Mankhool+Dubai"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {t("Open in Google Maps")}
+                      <ArrowUpRight size={17} />
+                    </a>
+                  </div>
                 </div>
-                <iframe
-                  className="location-map"
-                  title={t("Map of Burjuman Business Tower, Dubai")}
-                  src="https://maps.google.com/maps?q=Burjuman%20Business%20Tower%20Mankhool%20Dubai&output=embed"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
               </div>
             </section>
           )}
@@ -3118,13 +3141,33 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+// Reveal the site only once fonts, hero artwork and the page itself are loaded.
+const waitForImage = (img) =>
+  !img || img.complete
+    ? Promise.resolve()
+    : new Promise((resolve) => {
+        img.addEventListener("load", resolve, { once: true });
+        img.addEventListener("error", resolve, { once: true });
+      });
 requestAnimationFrame(() => {
-  const hero = document.querySelector(".hero-finished");
-  const ready = () => window.empireSiteReady?.();
-  if (hero && !hero.complete) {
-    hero.addEventListener("load", ready, { once: true });
-    hero.addEventListener("error", ready, { once: true });
-  } else {
-    ready();
-  }
+  const heroImages = [
+    ...document.querySelectorAll(".hero-finished, .hero-technical"),
+  ];
+  const pageLoaded =
+    document.readyState === "complete"
+      ? Promise.resolve()
+      : new Promise((resolve) =>
+          window.addEventListener("load", resolve, { once: true }),
+        );
+  Promise.race([
+    Promise.all([
+      document.fonts?.ready,
+      pageLoaded,
+      ...heroImages.map(waitForImage),
+    ]),
+    new Promise((resolve) => setTimeout(resolve, 5000)),
+  ]).then(() => {
+    ScrollTrigger.refresh();
+    window.empireSiteReady?.();
+  });
 });

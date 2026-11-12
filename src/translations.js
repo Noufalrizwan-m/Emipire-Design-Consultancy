@@ -176,6 +176,7 @@ export const arabicTranslations = {
   "Burjuman Business Tower": "برج برجمان للأعمال",
   "Mankhool, Dubai, UAE": "المنخول، دبي، الإمارات العربية المتحدة",
   "Open in Google Maps": "افتح في خرائط جوجل",
+  "Get directions": "احصل على الاتجاهات",
   "Have a project": "هل لديك مشروع",
   "in mind?": "تفكر فيه؟",
   "Have drawings to update, a model to coordinate or a package to prepare? Tell us your priorities and project stage.":

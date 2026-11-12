@@ -4,9 +4,10 @@
 .site-loader::after{content:"";position:absolute;inset:0;background:url("/loader-architecture.jpg") center/cover no-repeat;opacity:.36;transition:opacity 1.2s ease;pointer-events:none}.site-loader.is-moving::before,.site-loader.is-moving::after{opacity:0}.site-loader.is-moving{pointer-events:none}
 .loader-logo{position:fixed;left:50%;top:45%;width:min(180px,42vw);height:150px;object-fit:contain;transform:translate(-50%,-50%);will-change:transform;z-index:1}
 @media(max-aspect-ratio:4/5){.site-loader::before{background:linear-gradient(#85aee6 0%,#85aee6 65%,#574f49 85%,#574f49 100%)}}
+.loader-meta{position:fixed;left:50%;top:calc(45% + 92px);transform:translateX(-50%);z-index:1;width:min(300px,78vw);text-align:center;color:#14243a;transition:opacity .35s ease}.loader-tagline{font:600 12px/1.5 "DM Sans",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px}.loader-bar{height:2px;background:rgba(20,36,58,.16);border-radius:2px;overflow:hidden}.loader-bar span{display:block;height:100%;background:#b78352;transform:scaleX(0);transform-origin:left}[dir=rtl] .loader-bar span{transform-origin:right}.loader-count{font:600 12px/1 "DM Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.08em;margin:10px 0 0}.site-loader.is-moving .loader-meta{opacity:0}
 html.logo-intro-active .site-header .brand img{visibility:hidden}
 @media(prefers-reduced-motion:reduce){.site-loader::before,.site-loader::after{transition:none}}
-</style></head><body><div id="site-loader" class="site-loader" role="status" aria-label="Loading website"><img class="loader-logo" src="/logo.png" alt=""/></div><noscript><style>.site-loader{display:none}</style></noscript><script>
+</style></head><body><div id="site-loader" class="site-loader" role="status" aria-label="Loading website"><img class="loader-logo" src="/logo.png" alt=""/><div class="loader-meta"><p class="loader-tagline">CAD, BIM &amp; Engineering Design &middot; UAE</p><div class="loader-bar"><span></span></div><p class="loader-count">0%</p></div></div><noscript><style>.site-loader{display:none}</style></noscript><script>
 (function(){
   var loader=document.getElementById('site-loader');
   var logo=loader.querySelector('.loader-logo');
@@ -17,31 +18,43 @@ html.logo-intro-active .site-header .brand img{visibility:hidden}
     if(finished)return;
     finished=true;
     document.documentElement.classList.remove('logo-intro-active');
-    loader.remove();document.removeEventListener('keydown',skip);
+    clearInterval(meter);loader.remove();document.removeEventListener('keydown',skip);
   }
   function skip(event){if(event.key==='Escape')finish()}
   document.addEventListener('keydown',skip);
-  window.empireSiteReady=function(){
-    if(ready||finished)return;
-    ready=true;
-    var delay=reduced.matches?0:Math.max(0,1700-(Date.now()-start));
-    setTimeout(function(){
-      if(finished)return;
-      var destination=document.querySelector('.site-header .brand img');
-      if(!destination||reduced.matches){finish();return}
-      var from=logo.getBoundingClientRect(),to=destination.getBoundingClientRect();
-      loader.classList.add('is-moving');
-      var dx=to.left+to.width/2-(from.left+from.width/2);
-      var dy=to.top+to.height/2-(from.top+from.height/2);
-      var scale=Math.min(to.width/(from.height*85/120),to.height/from.height);
-      animation=logo.animate([
-        {transform:'translate(-50%, -50%)'},
-        {transform:'translate(calc(-50% + '+dx+'px), calc(-50% + '+dy+'px)) scale('+scale+')'}
-      ],{duration:1200,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
-      animation.finished.then(finish).catch(finish);
-      setTimeout(finish,1400);
-    },delay);
-  };
+  var bar=loader.querySelector('.loader-bar span'),count=loader.querySelector('.loader-count'),tag=loader.querySelector('.loader-tagline');
+  if(/^\/ar(\/|$)/.test(location.pathname)){tag.textContent='\u062a\u0635\u0645\u064a\u0645 CAD \u0648 BIM \u0648\u0627\u0644\u0647\u0646\u062f\u0633\u0629 \u00b7 \u0627\u0644\u0625\u0645\u0627\u0631\u0627\u062a';tag.style.letterSpacing='0';tag.style.textTransform='none';loader.dir='rtl'}
+  var shown=0,flying=false;
+  var meter=setInterval(function(){
+    var elapsed=Date.now()-start;
+    var target=ready?100:Math.min(92,elapsed/40);
+    shown+=(target-shown)*0.1+(ready?0.7:0.04);
+    if(shown>target)shown=target;
+    bar.style.transform='scaleX('+(shown/100)+')';
+    count.textContent=Math.round(shown)+'%';
+    if(ready&&shown>=99.5&&!flying){
+      flying=true;clearInterval(meter);
+      bar.style.transform='scaleX(1)';count.textContent='100%';
+      setTimeout(fly,350);
+    }
+  },30);
+  function fly(){
+    if(finished)return;
+    var destination=document.querySelector('.site-header .brand img');
+    if(!destination||reduced.matches){finish();return}
+    var from=logo.getBoundingClientRect(),to=destination.getBoundingClientRect();
+    loader.classList.add('is-moving');
+    var dx=to.left+to.width/2-(from.left+from.width/2);
+    var dy=to.top+to.height/2-(from.top+from.height/2);
+    var scale=Math.min(to.width/(from.height*85/120),to.height/from.height);
+    animation=logo.animate([
+      {transform:'translate(-50%, -50%)'},
+      {transform:'translate(calc(-50% + '+dx+'px), calc(-50% + '+dy+'px)) scale('+scale+')'}
+    ],{duration:1200,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
+    animation.finished.then(finish).catch(finish);
+    setTimeout(finish,1400);
+  }
+  window.empireSiteReady=function(){ready=true};
   setTimeout(window.empireSiteReady,6000);
 })();
 </script><div id="root"><!--SEO_CONTENT--></div><script type="module" src="/src/main.jsx"></script></body></html>
