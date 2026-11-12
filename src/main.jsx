@@ -39,7 +39,7 @@ if (navigationEntry?.type === "reload" && !location.hash) {
 const services = [
   [
     "01",
-    "Engineer design and CAD Draft",
+    "Engineering & CAD drafting",
     "Architectural, structural, interior, MEP and civil drawings, including redlines, as-builts and CAD conversion.",
     PenTool,
   ],
@@ -89,7 +89,7 @@ const links = [
 ];
 const serviceDetails = {
   "cad-drafting": {
-    title: "Engineer design and CAD Draft",
+    title: "Engineering & CAD drafting",
     tag: "01 / TECHNICAL DRAWINGS",
     intro:
       "Architectural, structural, MEP, interior and civil drawings developed from your project information for review, coordination and construction.",
@@ -380,8 +380,8 @@ if (arabic)
   });
 const storyScenes = [
   {
-    title: "Engineer design and CAD Draft",
-    link: "Explore Engineer design and CAD Draft",
+    title: "Engineering & CAD drafting",
+    link: "Explore Engineering & CAD drafting",
     copy: "Turn project information into drawings teams can review and use.",
     image: "/services/cad-drafting.png",
     href: "/services/cad-drafting",
