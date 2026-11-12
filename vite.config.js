@@ -9,31 +9,28 @@ import {
   arabicPages,
   siteUrl,
   pageContent,
+  arabicPageContent,
 } from "./seo.mjs";
 
 const escapeHtml = (value) =>
   value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
 // Full page copy for crawlers and no-JS visitors. React replaces this on mount.
+const SECTORS_HEADING = {
+  en: "Sectors we support",
+  ar: "القطاعات التي نخدمها",
+};
+
 function crawlableBody(path, isArabic) {
-  if (isArabic) return "";
-  const entry = pageContent[path];
+  const entry = (isArabic ? arabicPageContent : pageContent)[path];
   if (!entry) return "";
-  const sections = entry.sections
-    .map(
-      ([heading, body]) =>
-        `<section><h2>${escapeHtml(heading)}</h2><p>${escapeHtml(body)}</p></section>`,
-    )
-    .join("");
+  const block = ([heading, body]) =>
+    `<section><h2>${escapeHtml(heading)}</h2><p>${escapeHtml(body)}</p></section>`;
+  const sections = entry.sections.map(block).join("");
   const sectors = entry.sectors
-    ? `<section><h2>Sectors we support</h2><p>${escapeHtml(entry.sectors)}</p></section>`
+    ? block([SECTORS_HEADING[isArabic ? "ar" : "en"], entry.sectors])
     : "";
-  const extra = (entry.extra || [])
-    .map(
-      ([heading, body]) =>
-        `<section><h2>${escapeHtml(heading)}</h2><p>${escapeHtml(body)}</p></section>`,
-    )
-    .join("");
+  const extra = (entry.extra || []).map(block).join("");
   return `<p>${escapeHtml(entry.lead)}</p>${sections}${sectors}${extra}`;
 }
 
