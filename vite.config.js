@@ -3,7 +3,39 @@ import reactTailwind from "@tailwindcss/vite";
 import { mkdir, readFile, writeFile, rm } from "node:fs/promises";
 import optimizedImages from "./src/optimizedImages.json" with { type: "json" };
 import { join } from "node:path";
-import { pages, metadata, arabicPages, siteUrl } from "./seo.mjs";
+import {
+  pages,
+  metadata,
+  arabicPages,
+  siteUrl,
+  pageContent,
+} from "./seo.mjs";
+
+const escapeHtml = (value) =>
+  value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+
+// Full page copy for crawlers and no-JS visitors. React replaces this on mount.
+function crawlableBody(path, isArabic) {
+  if (isArabic) return "";
+  const entry = pageContent[path];
+  if (!entry) return "";
+  const sections = entry.sections
+    .map(
+      ([heading, body]) =>
+        `<section><h2>${escapeHtml(heading)}</h2><p>${escapeHtml(body)}</p></section>`,
+    )
+    .join("");
+  const sectors = entry.sectors
+    ? `<section><h2>Sectors we support</h2><p>${escapeHtml(entry.sectors)}</p></section>`
+    : "";
+  const extra = (entry.extra || [])
+    .map(
+      ([heading, body]) =>
+        `<section><h2>${escapeHtml(heading)}</h2><p>${escapeHtml(body)}</p></section>`,
+    )
+    .join("");
+  return `<p>${escapeHtml(entry.lead)}</p>${sections}${sectors}${extra}`;
+}
 
 function pageMetadata() {
   return {
@@ -30,7 +62,7 @@ function pageMetadata() {
                 `<li><a href="${isArabic ? "/ar" + (p === "/" ? "/" : p) : p}">${data[0]}</a></li>`,
             )
             .join("");
-          const content = `<main><h1>${entry[0]}</h1><p>${description}</p><p>Dubai, UAE · <a href="tel:+971544348797">+971 54 434 8797</a> · <a href="mailto:support@empiredesignae.com">support@empiredesignae.com</a></p><nav aria-label="${isArabic ? "الخدمات والصفحات" : "Services and pages"}"><ul>${links}</ul></nav></main>`;
+          const content = `<main><h1>${entry[0]}</h1><p>${description}</p>${crawlableBody(path, isArabic)}<p>Dubai, UAE · <a href="tel:+971544348797">+971 54 434 8797</a> · <a href="mailto:support@empiredesignae.com">support@empiredesignae.com</a></p><nav aria-label="${isArabic ? "الخدمات والصفحات" : "Services and pages"}"><ul>${links}</ul></nav></main>`;
           const enUrl = `${siteUrl}${path}`;
           const arUrl = `${siteUrl}/ar${path}`;
           const preload =
