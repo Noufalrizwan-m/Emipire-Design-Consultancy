@@ -2110,6 +2110,20 @@ function App() {
           : location.pathname === "/" + name.toLowerCase();
   return (
     <>
+      <a
+        className="skip-link"
+        href="#main-content"
+        onClick={(event) => {
+          event.preventDefault();
+          const main = document.querySelector("main");
+          if (main) {
+            main.setAttribute("tabindex", "-1");
+            main.focus({ preventScroll: false });
+          }
+        }}
+      >
+        {t("Skip to content")}
+      </a>
       <header className={"site-header" + (menu ? " menu-open" : "")}>
         <nav className="nav-shell" aria-label={t("Main navigation")}>
           <a className="brand" href="/">

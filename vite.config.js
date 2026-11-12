@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import reactTailwind from "@tailwindcss/vite";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile, rm } from "node:fs/promises";
+import optimizedImages from "./src/optimizedImages.json" with { type: "json" };
 import { join } from "node:path";
 import { pages, metadata, arabicPages, siteUrl } from "./seo.mjs";
 
@@ -9,6 +10,9 @@ function pageMetadata() {
     name: "page-metadata",
     apply: "build",
     async closeBundle() {
+      // Ship JPG only: drop PNG originals the app never requests, and the PHP mailer (replaced by /api/contact).
+      for (const png of optimizedImages) await rm(join("dist", png), { force: true });
+      await rm("dist/contact.php", { force: true });
       const template = await readFile("dist/index.html", "utf8");
       for (const path of Object.keys(pages)) {
         for (const isArabic of [false, true]) {
@@ -41,6 +45,12 @@ function pageMetadata() {
                 : '<html lang="en" dir="ltr">',
             )
             .replace("<!--SEO_CONTENT-->", content)
+            .replace(
+              'aria-label="Loading website"',
+              isArabic
+                ? 'aria-label="جارٍ تحميل الموقع"'
+                : 'aria-label="Loading website"',
+            )
             .replace(
               /<title>.*?<\/title>/,
               `<title>${title.replaceAll("&", "&amp;")}</title>`,

@@ -1,4 +1,5 @@
 export const arabicTranslations = {
+  "Skip to content": "انتقل إلى المحتوى",
   "3D VISUALISATION & BIM": "التصور ثلاثي الأبعاد ونمذجة معلومات المباني",
   "See the vision.": "شاهد الرؤية.",
   "Understand the detail.": "افهم التفاصيل.",

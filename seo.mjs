@@ -5,11 +5,11 @@ export const pages = {
     "Empire Design Consultancy provides CAD drafting, BIM coordination, shop drawings, 3D visualisation and estimating for projects across the UAE, GCC and India.",
   ],
   "/services": [
-    "Engineering Design & CAD Services | UAE, GCC & India",
+    "CAD & Engineering Design Services | UAE",
     "Explore architectural, structural, MEP and civil CAD drafting, shop drawings and estimating services for project teams across the UAE, GCC and India.",
   ],
   "/visualisation": [
-    "3D Visualisation & BIM Services | UAE, GCC & India",
+    "3D Visualisation & BIM Services | UAE",
     "Explore architectural rendering, 3D visualisation and BIM coordination services for projects across the UAE, GCC and India.",
   ],
   "/about": [
@@ -25,11 +25,11 @@ export const pages = {
     "Contact our Dubai team about CAD drafting, BIM coordination, shop drawings, 3D visualisation and estimating projects in the UAE, GCC and India.",
   ],
   "/services/cad-drafting": [
-    "CAD Drafting & Engineering Design | Dubai & UAE",
+    "CAD Drafting & Engineering Design | UAE",
     "Architectural, structural, civil and MEP CAD drafting, drawing updates and CAD conversion for project teams in the UAE, GCC and India.",
   ],
   "/services/bim-coordination": [
-    "BIM Modelling & Coordination | Dubai & UAE",
+    "BIM Modelling & Coordination | UAE",
     "Architectural, structural and MEP BIM modelling, model coordination and clash review for construction projects in the UAE, GCC and India.",
   ],
   "/services/shop-drawings": [
@@ -37,11 +37,11 @@ export const pages = {
     "Construction and fabrication shop drawings for steel, interiors, façades and building services for projects in the UAE, GCC and India.",
   ],
   "/services/3d-visualisation": [
-    "Architectural 3D Visualisation & Rendering | UAE",
+    "3D Visualisation & Rendering | UAE",
     "Interior and exterior renders, 3D floor plans and architectural walkthroughs for design teams across the UAE, GCC and India.",
   ],
   "/services/estimating-takeoff": [
-    "Construction Estimating & Quantity Takeoff | UAE",
+    "Estimating & Quantity Takeoff | UAE",
     "Quantity takeoffs, material estimates, bills of quantities and tender support for projects in the UAE, GCC and India.",
   ],
 };

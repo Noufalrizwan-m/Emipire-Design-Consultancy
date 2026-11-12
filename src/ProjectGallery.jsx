@@ -7,44 +7,141 @@ export default function ProjectGallery({ arabic = false }) {
     const track = gallery.current;
     if (!track) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const dir = arabic ? -1 : 1; // RTL scrollLeft runs negative
+    const SPEED = 0.045; // px per ms (~45px/s)
     let visible = false;
+    let hovering = false;
+    let dragging = false;
+    let touching = false;
+    let loopWidth = 0;
+    let pos = 0; // float position, scrollLeft can only hold rounded values
+    let lastSet = 0;
+    let lastTime = 0;
+    let raf = 0;
+
+    const measure = () => {
+      const figures = track.querySelectorAll("figure");
+      const half = figures.length / 2;
+      if (half < 1) return;
+      loopWidth = Math.abs(
+        figures[half].getBoundingClientRect().left -
+          figures[0].getBoundingClientRect().left,
+      );
+    };
+    const current = () => Math.abs(track.scrollLeft);
+    const write = (value) => {
+      if (loopWidth > 0) value = ((value % loopWidth) + loopWidth) % loopWidth;
+      pos = value;
+      track.scrollLeft = dir * value;
+      lastSet = current();
+    };
+    const pause = (ms = 2500) => {
+      pausedUntil.current = Math.max(pausedUntil.current, Date.now() + ms);
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         visible = entry.isIntersecting;
       },
-      { threshold: 0.15 },
+      { threshold: 0.1 },
     );
     observer.observe(track);
-    const pause = () => {
-      pausedUntil.current = Date.now() + 8000;
+
+    const tick = (time) => {
+      const dt = Math.min(time - (lastTime || time), 64);
+      lastTime = time;
+      const idle =
+        visible &&
+        !document.hidden &&
+        !reducedMotion.matches &&
+        !hovering &&
+        !dragging &&
+        !touching &&
+        Date.now() >= pausedUntil.current &&
+        !track.contains(document.activeElement);
+      // Someone scrolled it (touch, wheel, keys, arrows): adopt that position.
+      if (Math.abs(current() - lastSet) > 1.5) {
+        pos = current();
+        lastSet = pos;
+      }
+      if (idle && loopWidth > 0) write(pos + SPEED * dt);
+      else if (loopWidth > 0 && (pos >= loopWidth || current() >= loopWidth))
+        write(current());
+      raf = requestAnimationFrame(tick);
     };
-    track.addEventListener("pointerdown", pause);
-    track.addEventListener("keydown", pause);
-    track.addEventListener("wheel", pause, { passive: true });
-    const timer = window.setInterval(() => {
-      if (
-        !visible ||
-        document.hidden ||
-        reducedMotion.matches ||
-        Date.now() < pausedUntil.current ||
-        track.contains(document.activeElement)
-      )
-        return;
-      const step =
-        track.querySelector("figure")?.getBoundingClientRect().width ||
-        track.clientWidth;
-      const max = track.scrollWidth - track.clientWidth;
-      const position = Math.abs(track.scrollLeft);
-      const next =
-        position >= max - 2 ? 0 : Math.min(max, position + step + 16);
-      track.scrollTo({ left: arabic ? -next : next, behavior: "smooth" });
-    }, 4000);
+
+    // Mouse drag (touch uses native swipe).
+    let lastX = 0;
+    const onPointerDown = (event) => {
+      pause(2500);
+      if (event.pointerType !== "mouse" || event.button !== 0) return;
+      dragging = true;
+      lastX = event.clientX;
+      track.classList.add("is-dragging");
+      track.setPointerCapture?.(event.pointerId);
+    };
+    const onPointerMove = (event) => {
+      if (!dragging) return;
+      const dx = event.clientX - lastX;
+      lastX = event.clientX;
+      write(current() - dx * dir);
+    };
+    const endDrag = (event) => {
+      if (!dragging) return;
+      dragging = false;
+      track.classList.remove("is-dragging");
+      track.releasePointerCapture?.(event.pointerId);
+      pause(1500);
+    };
+    const onTouchStart = () => {
+      touching = true;
+    };
+    const onTouchEnd = () => {
+      touching = false;
+      pause(2000);
+    };
+    const onEnter = (event) => {
+      if (event.pointerType === "mouse") hovering = true;
+    };
+    const onLeave = () => {
+      hovering = false;
+    };
+    const onWheel = () => pause(2500);
+    const onKey = () => pause(6000);
+    const onResize = () => measure();
+
+    measure();
+    window.addEventListener("resize", onResize);
+    track.addEventListener("pointerdown", onPointerDown);
+    track.addEventListener("pointermove", onPointerMove);
+    track.addEventListener("pointerup", endDrag);
+    track.addEventListener("pointercancel", endDrag);
+    track.addEventListener("pointerenter", onEnter);
+    track.addEventListener("pointerleave", onLeave);
+    track.addEventListener("touchstart", onTouchStart, { passive: true });
+    track.addEventListener("touchend", onTouchEnd, { passive: true });
+    track.addEventListener("touchcancel", onTouchEnd, { passive: true });
+    track.addEventListener("wheel", onWheel, { passive: true });
+    track.addEventListener("keydown", onKey);
+    // Figure widths change as images/fonts load, so re-measure shortly after mount.
+    const remeasure = window.setTimeout(measure, 800);
+    raf = requestAnimationFrame(tick);
     return () => {
-      clearInterval(timer);
+      cancelAnimationFrame(raf);
+      clearTimeout(remeasure);
       observer.disconnect();
-      track.removeEventListener("pointerdown", pause);
-      track.removeEventListener("keydown", pause);
-      track.removeEventListener("wheel", pause);
+      window.removeEventListener("resize", onResize);
+      track.removeEventListener("pointerdown", onPointerDown);
+      track.removeEventListener("pointermove", onPointerMove);
+      track.removeEventListener("pointerup", endDrag);
+      track.removeEventListener("pointercancel", endDrag);
+      track.removeEventListener("pointerenter", onEnter);
+      track.removeEventListener("pointerleave", onLeave);
+      track.removeEventListener("touchstart", onTouchStart);
+      track.removeEventListener("touchend", onTouchEnd);
+      track.removeEventListener("touchcancel", onTouchEnd);
+      track.removeEventListener("wheel", onWheel);
+      track.removeEventListener("keydown", onKey);
     };
   }, [arabic]);
   const photos = [
@@ -68,7 +165,7 @@ export default function ProjectGallery({ arabic = false }) {
     "مسبح خارجي وتنسيق حدائق",
   ];
   const move = (direction) => {
-    pausedUntil.current = Date.now() + 8000;
+    pausedUntil.current = Date.now() + 4000;
     gallery.current?.scrollBy({
       left: direction * (arabic ? -1 : 1) * gallery.current.clientWidth * 0.75,
       behavior: "smooth",
@@ -120,34 +217,39 @@ export default function ProjectGallery({ arabic = false }) {
         <div
           className="project-gallery-track"
           ref={gallery}
+          data-lenis-prevent
           tabIndex={0}
           aria-label={arabic ? "معرض صور من المشاريع" : "Project image gallery"}
         >
-          {photos.map(([image, alt], i) => (
-            <figure key={image}>
-              <img
-                src={"/project-gallery/" + image + ".jpg"}
-                alt={arabic ? arabicCaptions[i] : alt}
-                loading="lazy"
-                draggable="false"
-              />
-              <figcaption>
-                <span>
-                  {arabic
-                    ? new Intl.NumberFormat("ar-EG", {
-                        minimumIntegerDigits: 2,
-                      }).format(i + 1)
-                    : String(i + 1).padStart(2, "0")}
-                </span>
-                {arabic ? arabicCaptions[i] : alt}
-              </figcaption>
-            </figure>
-          ))}
+          {[...photos, ...photos].map(([image, alt], index) => {
+            const i = index % photos.length;
+            const clone = index >= photos.length;
+            return (
+              <figure key={image + (clone ? "-clone" : "")} aria-hidden={clone || undefined}>
+                <img
+                  src={"/project-gallery/" + image + ".jpg"}
+                  alt={clone ? "" : arabic ? arabicCaptions[i] : alt}
+                  loading="lazy"
+                  draggable="false"
+                />
+                <figcaption>
+                  <span>
+                    {arabic
+                      ? new Intl.NumberFormat("ar-EG", {
+                          minimumIntegerDigits: 2,
+                        }).format(i + 1)
+                      : String(i + 1).padStart(2, "0")}
+                  </span>
+                  {arabic ? arabicCaptions[i] : alt}
+                </figcaption>
+              </figure>
+            );
+          })}
         </div>
         <p className="project-gallery-hint">
           {arabic
             ? "اسحب أو استخدم الأسهم لتصفح الصور"
-            : "Swipe or use the arrows to explore"}{" "}
+            : "Drag, swipe or use the arrows to explore"}{" "}
           <span>→</span>
         </p>
       </div>

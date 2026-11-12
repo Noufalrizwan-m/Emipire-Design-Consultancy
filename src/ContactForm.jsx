@@ -121,7 +121,7 @@ export default function ContactForm({ arabic = false }) {
     setSending(true);
     setSendError(false);
     try {
-      const response = await fetch("/contact.php", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
