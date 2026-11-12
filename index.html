@@ -1,24 +1,21 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="icon" type="image/png" href="/logo.png"/><link rel="apple-touch-icon" href="/logo.png"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="preconnect" href="https://elfsightcdn.com" crossorigin/><meta name="theme-color" content="#8fb4e3"/><meta name="description" content="CAD drafting, BIM and engineering design services across the UAE."/><title>Empire Design Consultancy | CAD, BIM & Engineering</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Empire Design Consultancy LLC","url":"https://empiredesignae.com/","telephone":"+971544348797","email":"support@empiredesignae.com","address":{"@type":"PostalAddress","streetAddress":"Burjuman Business Tower, Mankhool","addressLocality":"Dubai","addressCountry":"AE"},"areaServed":["United Arab Emirates","Saudi Arabia","Bahrain","Kuwait","Oman","Qatar","India"],"sameAs":["https://www.linkedin.com/company/empire-design-consultancy-llc/","https://www.instagram.com/empire_design_consultancy/"]}</script><style>
 .site-loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden}
-.site-loader::before{content:"";position:absolute;inset:0;background:#f6eee5;transition:opacity 1.2s ease}
+.site-loader::before{content:"";position:absolute;inset:0;background:#faeadb;transition:opacity 1.2s ease}
 .site-loader.is-moving::before{opacity:0}.site-loader.is-moving{pointer-events:none}
 .loader-logo{position:fixed;left:50%;top:45%;width:min(180px,42vw);height:150px;object-fit:contain;transform:translate(-50%,-50%);z-index:1}
-.loader-progress{position:absolute;top:calc(45% + 95px);font:600 13px system-ui,sans-serif;letter-spacing:.12em;color:#14243a;transition:opacity .5s,transform .5s}
-.site-loader.is-moving .loader-progress{opacity:0;transform:translateY(8px)}
+@media(max-aspect-ratio:4/5){.site-loader::before{background:linear-gradient(#85aee6 0%,#85aee6 65%,#574f49 85%,#574f49 100%)}}
 html.logo-intro-active .site-header .brand img{visibility:hidden}
-@media(prefers-reduced-motion:reduce){.site-loader::before,.loader-progress{transition:none}}
-</style></head><body><div id="site-loader" class="site-loader" role="status" aria-label="Loading website"><img class="loader-logo" src="/logo.png" alt=""/><span class="loader-progress" aria-hidden="true">0%</span></div><noscript><style>.site-loader{display:none}</style></noscript><script>
+@media(prefers-reduced-motion:reduce){.site-loader::before{transition:none}}
+</style></head><body><div id="site-loader" class="site-loader" role="status" aria-label="Loading website"><img class="loader-logo" src="/logo.png" alt=""/></div><noscript><style>.site-loader{display:none}</style></noscript><script>
 (function(){
   var loader=document.getElementById('site-loader');
-  var label=loader.querySelector('.loader-progress');
   var logo=loader.querySelector('.loader-logo');
   var start=Date.now(), finished=false, ready=false, animation;
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
   document.documentElement.classList.add('logo-intro-active');
-  var progress=setInterval(function(){var n=parseInt(label.textContent,10);if(n<85)label.textContent=Math.min(85,n+5)+'%';},100);
   function finish(){
     if(finished)return;
-    finished=true;clearInterval(progress);
+    finished=true;
     document.documentElement.classList.remove('logo-intro-active');
     loader.remove();document.removeEventListener('keydown',skip);
   }
@@ -26,7 +23,7 @@ html.logo-intro-active .site-header .brand img{visibility:hidden}
   document.addEventListener('keydown',skip);
   window.empireSiteReady=function(){
     if(ready||finished)return;
-    ready=true;clearInterval(progress);label.textContent='100%';
+    ready=true;
     var delay=reduced.matches?0:Math.max(0,1700-(Date.now()-start));
     setTimeout(function(){
       if(finished)return;
