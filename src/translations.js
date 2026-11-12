@@ -74,7 +74,7 @@ export const arabicTranslations = {
   "Practical outcomes.": "نتائج عملية.",
   "Empire Design Consultancy is a Dubai-based multidisciplinary team working alongside architects, consultants, contractors and engineers.":
     "إمباير للاستشارات التصميمية فريق متعدد التخصصات مقره دبي يعمل إلى جانب المعماريين والاستشاريين والمقاولين والمهندسين.",
-  "Drawing on years of experience, we help project teams develop, coordinate and communicate their work—from early design information through to the documents needed for the next stage.":
+  "Drawing on years of experience, we help project teams develop, coordinate and communicate their work from early design information through to the documents needed for the next stage.":
     "بخبرة تمتد لسنوات، نساعد فرق المشاريع على تطوير أعمالها وتنسيقها وعرضها، من معلومات التصميم الأولية إلى مستندات المرحلة التالية.",
   "Our support can be shaped around a defined package or the additional capacity your team needs.":
     "نصمم دعمنا وفق حزمة محددة أو القدرة الإضافية التي يحتاجها فريقك.",
