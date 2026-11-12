@@ -1,21 +1,46 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="icon" type="image/png" href="/logo.png"/><link rel="apple-touch-icon" href="/logo.png"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="preconnect" href="https://elfsightcdn.com" crossorigin/><meta name="theme-color" content="#8fb4e3"/><meta name="description" content="CAD drafting, BIM and engineering design services across the UAE."/><title>Empire Design Consultancy | CAD, BIM & Engineering</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Empire Design Consultancy LLC","url":"https://empiredesignae.com/","telephone":"+971544348797","email":"support@empiredesignae.com","address":{"@type":"PostalAddress","streetAddress":"Burjuman Business Tower, Mankhool","addressLocality":"Dubai","addressCountry":"AE"},"areaServed":["United Arab Emirates","Saudi Arabia","Bahrain","Kuwait","Oman","Qatar","India"],"sameAs":["https://www.linkedin.com/company/empire-design-consultancy-llc/","https://www.instagram.com/empire_design_consultancy/"]}</script><style>
-.site-loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#f6eee5;transition:opacity .35s ease}.site-loader.is-ready{opacity:0;pointer-events:none}.loader-logo{width:100px;height:110px;object-fit:contain;position:fixed;left:50%;top:50%;transform:translate(-50%,-60%);transition:transform .65s cubic-bezier(.6,0,.25,1),width .65s,height .65s;will-change:transform}.loader-progress{position:absolute;top:calc(50% + 75px);font:600 13px system-ui,sans-serif;letter-spacing:.12em;color:#14243a}.site-loader.is-moving{background:transparent;pointer-events:none}.site-loader.is-moving .loader-progress{opacity:0}.site-loader.is-moving .loader-logo{width:var(--logo-width,38px);height:var(--logo-height,46px);transform:translate(calc(-50% + var(--logo-x,0px)),calc(-60% + var(--logo-y,0px)))}@media(prefers-reduced-motion:reduce){.loader-logo,.site-loader{transition:none}}
+.site-loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden}
+.site-loader::before{content:"";position:absolute;inset:0;background:#f6eee5;transition:opacity 1.2s ease}
+.site-loader.is-moving::before{opacity:0}.site-loader.is-moving{pointer-events:none}
+.loader-logo{position:fixed;left:50%;top:45%;width:min(180px,42vw);height:150px;object-fit:contain;transform:translate(-50%,-50%);z-index:1}
+.loader-progress{position:absolute;top:calc(45% + 95px);font:600 13px system-ui,sans-serif;letter-spacing:.12em;color:#14243a;transition:opacity .5s,transform .5s}
+.site-loader.is-moving .loader-progress{opacity:0;transform:translateY(8px)}
+html.logo-intro-active .site-header .brand img{visibility:hidden}
+@media(prefers-reduced-motion:reduce){.site-loader::before,.loader-progress{transition:none}}
 </style></head><body><div id="site-loader" class="site-loader" role="status" aria-label="Loading website"><img class="loader-logo" src="/logo.png" alt=""/><span class="loader-progress" aria-hidden="true">0%</span></div><noscript><style>.site-loader{display:none}</style></noscript><script>
 (function(){
-  var loader=document.getElementById('site-loader'), label=loader.querySelector('.loader-progress'), finished=false;
-  var timer=setInterval(function(){var value=parseInt(label.textContent,10); if(value<85) label.textContent=Math.min(85,value+5)+'%';},120);
+  var loader=document.getElementById('site-loader');
+  var label=loader.querySelector('.loader-progress');
+  var logo=loader.querySelector('.loader-logo');
+  var start=Date.now(), finished=false, ready=false, animation;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+  document.documentElement.classList.add('logo-intro-active');
+  var progress=setInterval(function(){var n=parseInt(label.textContent,10);if(n<85)label.textContent=Math.min(85,n+5)+'%';},100);
+  function finish(){
+    if(finished)return;
+    finished=true;clearInterval(progress);
+    document.documentElement.classList.remove('logo-intro-active');
+    loader.remove();document.removeEventListener('keydown',skip);
+  }
+  function skip(event){if(event.key==='Escape')finish()}
+  document.addEventListener('keydown',skip);
   window.empireSiteReady=function(){
-    if(finished)return; finished=true; clearInterval(timer); label.textContent='100%';
+    if(ready||finished)return;
+    ready=true;clearInterval(progress);label.textContent='100%';
+    var delay=reduced.matches?0:Math.max(0,1700-(Date.now()-start));
     setTimeout(function(){
-      var destination=document.querySelector('.site-header .brand img'), logo=loader.querySelector('.loader-logo');
-      if(destination && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-        var from=logo.getBoundingClientRect(), to=destination.getBoundingClientRect();
-        loader.style.setProperty('--logo-x',(to.left+to.width/2-from.left-from.width/2)+'px');
-        loader.style.setProperty('--logo-y',(to.top+to.height/2-from.top-from.height/2)+'px');
-        loader.style.setProperty('--logo-width',to.width+'px'); loader.style.setProperty('--logo-height',to.height+'px');
-        loader.classList.add('is-moving'); setTimeout(function(){loader.classList.add('is-ready');setTimeout(function(){loader.remove()},350)},650);
-      }else{loader.classList.add('is-ready');setTimeout(function(){loader.remove()},350)}
-    },150);
+      if(finished)return;
+      var destination=document.querySelector('.site-header .brand img');
+      if(!destination||reduced.matches){finish();return}
+      var from=logo.getBoundingClientRect(),to=destination.getBoundingClientRect();
+      loader.classList.add('is-moving');
+      animation=logo.animate([
+        {left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px',transform:'none'},
+        {left:to.left+'px',top:to.top+'px',width:to.width+'px',height:to.height+'px',transform:'none'}
+      ],{duration:1200,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
+      animation.finished.then(finish).catch(finish);
+      setTimeout(finish,1400);
+    },delay);
   };
   setTimeout(window.empireSiteReady,6000);
 })();
