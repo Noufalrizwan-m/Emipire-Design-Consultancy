@@ -222,7 +222,7 @@ export default function ProjectGallery({ arabic = false }) {
         <div
           className="project-gallery-track"
           ref={gallery}
-          data-lenis-prevent
+          data-lenis-prevent-horizontal
           tabIndex={0}
           aria-label={arabic ? "معرض صور من المشاريع" : "Project image gallery"}
         >

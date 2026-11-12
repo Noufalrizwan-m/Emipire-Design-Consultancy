@@ -1986,10 +1986,10 @@ function App() {
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({
-      lerp: 0.12,
+      lerp: 0.09,
       anchors: true,
       smoothWheel: true,
-      wheelMultiplier: 1.45,
+      wheelMultiplier: 1,
       touchMultiplier: 1.2,
     });
     if (!location.hash) lenis.scrollTo(0, { immediate: true, force: true });
