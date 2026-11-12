@@ -78,7 +78,7 @@ const clients = [
   ["GULFDRUG", "gulfdrug"],
   ["RTA Roads & Transport Authority", "rta"],
   ["Danube Properties", "danube"],
-  ["AZIZI Developments", "azizi", "#000f2c"],
+  ["AZIZI Developments", "azizi", "svg"],
 ];
 const links = [
   ["Home", "/"],
@@ -1858,8 +1858,17 @@ function useNavigationContrast() {
           control.classList.toggle("nav-on-light", !(tone ?? Boolean(dark)));
         });
     };
+    let lastRun = 0;
     const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(update);
+      if (frame) return;
+      // Sampling the DOM is costly; run it at most ~every 110ms while scrolling.
+      const wait = Math.max(0, 110 - (performance.now() - lastRun));
+      frame = window.setTimeout(() => {
+        frame = requestAnimationFrame(() => {
+          lastRun = performance.now();
+          update();
+        });
+      }, wait);
     };
     schedule();
     window.addEventListener("scroll", schedule, { passive: true });
@@ -1867,6 +1876,7 @@ function useNavigationContrast() {
     return () => {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
+      clearTimeout(frame);
       cancelAnimationFrame(frame);
     };
   }, []);
@@ -1989,6 +1999,23 @@ function App() {
     };
     window.addEventListener("load", settle, { once: true });
     document.fonts?.ready.then(settle);
+    // Warm lazy images (fetch + decode) just before they scroll into view,
+    // so they never pop in or stall a frame mid-scroll.
+    const warm = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const img = entry.target;
+          warm.unobserve(img);
+          img.loading = "eager";
+          img.decode?.().catch(() => {});
+        }),
+      { rootMargin: "1800px 0px" },
+    );
+    const warmTimer = setTimeout(
+      () => document.querySelectorAll("img[loading='lazy']").forEach((i) => warm.observe(i)),
+      600,
+    );
     const tick = (t) => lenis.raf(t * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
@@ -2007,13 +2034,13 @@ function App() {
         .forEach((el) =>
           gsap.fromTo(
             el,
-            { y: 18, opacity: 0.65 },
+            { y: 12, opacity: 0.8 },
             {
               y: 0,
               opacity: 1,
               duration: 0.7,
               ease: "power2.out",
-              scrollTrigger: { trigger: el, start: "top 92%", once: true },
+              scrollTrigger: { trigger: el, start: "top 118%", once: true },
             },
           ),
         );
@@ -2062,7 +2089,7 @@ function App() {
               autoAlpha: 1,
               duration: 0.85,
               ease: "power3.out",
-              scrollTrigger: { trigger: el, start: "top 91%", once: true },
+              scrollTrigger: { trigger: el, start: "top 115%", once: true },
             },
           ),
         );
@@ -2165,6 +2192,8 @@ function App() {
       window.removeEventListener("load", settle);
       ctx.revert();
       lenis.destroy();
+      clearTimeout(warmTimer);
+      warm.disconnect();
       gsap.ticker.remove(tick);
     };
   }, []);
@@ -2866,14 +2895,10 @@ function App() {
                     key={t(copy)}
                     aria-hidden={copy === 1}
                   >
-                    {clients.map(([name, file, fill]) => (
-                      <span
-                        className={"client-logo" + (fill ? " is-filled" : "")}
-                        style={fill ? { background: fill } : undefined}
-                        key={file}
-                      >
+                    {clients.map(([name, file, ext]) => (
+                      <span className="client-logo" key={file}>
                         <ResponsiveImage
-                          src={"/clients/logo_" + file + ".png"}
+                          src={"/clients/logo_" + file + "." + (ext || "png")}
                           alt={name}
                           loading="lazy"
                         />

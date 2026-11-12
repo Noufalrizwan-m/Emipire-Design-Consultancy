@@ -1,5 +1,9 @@
 import React, { useEffect, useRef } from "react";
 
+// Auto-drift made the gallery cut images at the edges and glitch while scrolling the page.
+// Manual drag, swipe, wheel and arrow navigation stay on.
+const AUTO_SCROLL = false;
+
 export default function ProjectGallery({ arabic = false }) {
   const gallery = useRef(null);
   const pausedUntil = useRef(0);
@@ -51,6 +55,7 @@ export default function ProjectGallery({ arabic = false }) {
       const dt = Math.min(time - (lastTime || time), 64);
       lastTime = time;
       const idle =
+        AUTO_SCROLL &&
         visible &&
         !document.hidden &&
         !reducedMotion.matches &&

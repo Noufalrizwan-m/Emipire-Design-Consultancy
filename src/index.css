@@ -9382,3 +9382,27 @@ html:not([dir="rtl"]) .scope-dialog h2 {
 main :is(h1, h2) + p {
   margin-top: 24px;
 }
+
+/* Smooth scrolling through the gallery: isolate its paint/layout from the page,
+   keep images on their own GPU layers so auto-scroll never repaints the section. */
+.project-gallery-section {
+  contain: paint;
+}
+.project-gallery-track {
+  contain: layout paint;
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+.project-gallery-track figure,
+.project-gallery-track img {
+  backface-visibility: hidden;
+}
+.project-gallery-track img {
+  background: #1d3350;
+}
+
+/* Soft fade at the gallery edges so images never look sliced. */
+.project-gallery-track {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+}
