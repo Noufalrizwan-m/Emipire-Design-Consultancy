@@ -2,6 +2,7 @@ import { arabicTranslations } from "./translations";
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Lenis from "lenis";
+import { catalogueIntro, catalogueServices } from "./servicesCatalogue.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -76,6 +77,8 @@ const clients = [
   ["Dutco Construction", "dutco"],
   ["GULFDRUG", "gulfdrug"],
   ["RTA Roads & Transport Authority", "rta"],
+  ["Danube Properties", "danube"],
+  ["AZIZI Developments", "azizi", "#000f2c"],
 ];
 const links = [
   ["Home", "/"],
@@ -181,6 +184,15 @@ const arabicServices = [
     "حصر الكميات وتقدير المواد وجداول الكميات وتحليل التكاليف للتخطيط وإعداد المناقصات.",
   ],
 ];
+// Each popup heading shows the matching sections of the services copy, word for word.
+const scopeSections = {
+  "cad-drafting:0": [0, 1, 3],
+  "cad-drafting:1": [2],
+  "cad-drafting:2": [6],
+  "bim-coordination:0": [4],
+  "3d-visualisation:0": [5],
+};
+
 const arabicDetails = {
   "cad-drafting": {
     title: arabicServices[0][0],
@@ -909,6 +921,7 @@ function ServiceDetail() {
           <div className="service-section-head reveal">
             <h2>
               {t("What we can")}
+              {" "}
               <em>{t("help with.")}</em>
             </h2>
             <p>
@@ -938,6 +951,7 @@ function ServiceDetail() {
           <div className="reveal">
             <h2>
               {t("Made for your")}
+              {" "}
               <em>{t("next step.")}</em>
             </h2>
             <p>{servicePage.outputs}</p>
@@ -959,6 +973,7 @@ function ServiceDetail() {
           <div className="service-section-head reveal">
             <h2>
               {t("Support that")}
+              {" "}
               <em>{t("fits your team.")}</em>
             </h2>
             <p>
@@ -998,6 +1013,7 @@ function ServiceDetail() {
           <div className="service-section-head reveal">
             <h2>
               {t("Explore more")}
+              {" "}
               <em>{t("services.")}</em>
             </h2>
           </div>
@@ -1025,6 +1041,7 @@ function ServiceDetail() {
       <dialog
         ref={dialogRef}
         className="scope-dialog"
+        data-lenis-prevent
         onClose={closeScope}
         onClick={(event) => {
           if (event.target === event.currentTarget) closeScope();
@@ -1043,13 +1060,47 @@ function ServiceDetail() {
             </button>
             <p className="scope-kicker">{servicePage.title}</p>
             <h2 id="scope-dialog-title">{servicePage.scope[activeScope]}</h2>
-            {project?.description && (
+            {scopeSections[`${serviceSlug}:${activeScope}`] ? (
+              <div className="scope-sections">
+                {scopeSections[`${serviceSlug}:${activeScope}`].map((index) => {
+                  const L = arabic ? 1 : 0;
+                  const section = catalogueServices[index];
+                  return (
+                    <section key={section.title[0]}>
+                      {index !==
+                        scopeSections[`${serviceSlug}:${activeScope}`][0] && (
+                        <h3>{section.title[L]}</h3>
+                      )}
+                      <p>{section.intro[L]}</p>
+                      <p className="scope-sections-label">
+                        {catalogueIntro.includeLabel[L]}
+                      </p>
+                      {section.groups.map((group, g) => (
+                        <div key={g}>
+                          {group.label && <h4>{group.label[L]}</h4>}
+                          <ul>
+                            {group.items.map((item) => (
+                              <li key={item[0]}>{item[L]}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                      <p className="scope-sections-focus">
+                        <strong>{catalogueIntro.focusLabel[L]}</strong>{" "}
+                        {section.focus[L]}
+                      </p>
+                    </section>
+                  );
+                })}
+              </div>
+            ) : (
+              project?.description && (
               <p className="scope-description">
                 {arabic
                   ? arabicProjectDescriptions[serviceSlug]?.[activeScope]
                   : project.description}
               </p>
-            )}
+            ))}
             {project?.images?.length > 0 && (
               <>
                 <div className="scope-gallery-heading">
@@ -1569,7 +1620,7 @@ function AboutPage() {
             </p>
             <p>
               {t(
-                "Drawing on years of experience, we help project teams develop, coordinate and communicate their work—from early design information through to the documents needed for the next stage.",
+                "Drawing on years of experience, we help project teams develop, coordinate and communicate their work from early design information through to the documents needed for the next stage.",
               )}
             </p>
             <p>
@@ -1824,6 +1875,13 @@ function useNavigationContrast() {
 function App() {
   useNavigationContrast();
   const [menu, setMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   const [dropdown, setDropdown] = useState(null);
   const [contactOpen, setContactOpen] = useState(false);
   const contactDialog = useRef(null);
@@ -2138,7 +2196,13 @@ function App() {
       >
         {t("Skip to content")}
       </a>
-      <header className={"site-header" + (menu ? " menu-open" : "")}>
+      <header
+        className={
+          "site-header" +
+          (menu ? " menu-open" : "") +
+          (scrolled ? " is-scrolled" : "")
+        }
+      >
         <nav className="nav-shell" aria-label={t("Main navigation")}>
           <a className="brand" href="/">
             <ResponsiveImage src="/logo.png" alt="" />
@@ -2299,33 +2363,40 @@ function App() {
             aria-label={t(menu ? "Close menu" : "Open menu")}
             onClick={() => setMenu(!menu)}
           >
-            {menu ? <X /> : <Menu />}
+            <span className={"menu-icon" + (menu ? " is-open" : "")}>
+              <Menu />
+              <X />
+            </span>
           </button>
         </nav>
-        {menu && (
-          <div className="mobile-menu">
-            <div className="mobile-menu-links">
-              {[...links, ["Contact", "/contact"]].map(([name, url]) => (
-                <a
-                  key={name}
-                  onClick={() => setMenu(false)}
-                  href={url}
-                  aria-current={isCurrentNav(name) ? "page" : undefined}
-                >
-                  {navLabel(name)}
-                </a>
-              ))}
+        <div
+          className={"mobile-menu" + (menu ? " is-open" : "")}
+          aria-hidden={!menu}
+          inert={!menu}
+        >
+          <div className="mobile-menu-links">
+            {[...links, ["Contact", "/contact"]].map(([name, url], index) => (
               <a
-                className="mobile-menu-cta"
-                href="/contact"
+                key={name}
+                style={{ "--i": index }}
                 onClick={() => setMenu(false)}
+                href={url}
+                aria-current={isCurrentNav(name) ? "page" : undefined}
               >
-                {arabic ? "أرسل تفاصيل مشروعك" : "Send your brief"}{" "}
-                <ArrowUpRight size={18} />
+                {navLabel(name)}
               </a>
-            </div>
+            ))}
+            <a
+              className="mobile-menu-cta"
+              style={{ "--i": links.length + 1 }}
+              href="/contact"
+              onClick={() => setMenu(false)}
+            >
+              {arabic ? "أرسل تفاصيل مشروعك" : "Send your brief"}{" "}
+              <ArrowUpRight size={18} />
+            </a>
           </div>
-        )}
+        </div>
       </header>
       {!knownPath ? (
         <main className="not-found">
@@ -2795,8 +2866,12 @@ function App() {
                     key={t(copy)}
                     aria-hidden={copy === 1}
                   >
-                    {clients.map(([name, file]) => (
-                      <span className="client-logo" key={file}>
+                    {clients.map(([name, file, fill]) => (
+                      <span
+                        className={"client-logo" + (fill ? " is-filled" : "")}
+                        style={fill ? { background: fill } : undefined}
+                        key={file}
+                      >
                         <ResponsiveImage
                           src={"/clients/logo_" + file + ".png"}
                           alt={name}
@@ -3035,6 +3110,7 @@ function App() {
             <div>
               <h2>
                 {t("Ideas made")}
+                {" "}
                 <em>{t("buildable.")}</em>
               </h2>
               <p>
