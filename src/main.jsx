@@ -163,7 +163,7 @@ const serviceDetails = {
     title: "Authority submission drawings",
     tag: "06 / UAE AUTHORITY SUBMISSIONS",
     intro:
-      "Empire Design Consultancy LLC prepares coordinated architectural, structural, civil and MEP authority submission drawings for building permits and regulatory reviews across the UAE. We support consultants, contractors, developers and property owners with editable AutoCAD packages prepared to project specifications and the relevant authority’s stated requirements. Where required, the registered consultant or contractor makes the formal submission.",
+      "Architectural, structural, civil and MEP drawings prepared for building permits and authority review across the UAE.",
     scope: [
       "Municipality & Building Permit Drawings",
       "Civil Defence & Utility Authority Drawings",
@@ -172,7 +172,7 @@ const serviceDetails = {
       "Drawing Revisions After Authority Comments",
     ],
     outputs:
-      "Coordinated, editable DWG and PDF drawing sets formatted for the agreed review or submission stage, with revisions prepared from authority comments and project mark-ups.",
+      "Coordinated, editable DWG and PDF sets formatted for the agreed review or submission stage, with revisions prepared from authority comments. Where a registered consultant or contractor must submit, they make the formal submission.",
   },
   "estimating-takeoff": {
     title: "Estimating & takeoff",
