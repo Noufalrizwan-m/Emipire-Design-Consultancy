@@ -26,7 +26,7 @@ export const pages = {
   ],
   "/services/cad-drafting": [
     "CAD Drafting & Engineering Design | UAE",
-    "Architectural, structural, civil and MEP CAD drafting, drawing updates and CAD conversion for project teams in the UAE, GCC and India.",
+    "Architectural, structural, civil and MEP CAD drafting, plus PDF to DWG, image and paper to CAD conversion in DWG and DXF for project teams in the UAE, GCC and India.",
   ],
   "/services/bim-coordination": [
     "BIM Modelling & Coordination | UAE",
@@ -45,8 +45,8 @@ export const pages = {
     "Quantity takeoffs, material estimates, bills of quantities and tender support for projects in the UAE, GCC and India.",
   ],
   "/services/authority-approval-drawings": [
-    "Authority Submission Drawings | Dubai",
-    "Fit-out and modification drawing packages prepared in Dubai Municipality, DDA, DMCC and Trakhees submission formats, for your registered consultant or contractor to submit.",
+    "Authority Submission Drawing Services Across the UAE",
+    "Architectural, structural, civil and MEP authority submission drawings for UAE building permits, municipality and Civil Defence approvals, utility authorities, DDA, Trakhees, developers, fit-outs and revisions after authority comments.",
   ],
 };
 export function metadata(path) {
@@ -83,7 +83,7 @@ export const arabicPages = {
   ],
   "/services/cad-drafting": [
     "الرسم الهندسي وخدمات CAD في دبي",
-    "رسومات معمارية وإنشائية ومدنية وكهربائية وميكانيكية وتحويل الملفات وتحديث الرسومات في دبي والإمارات والخليج.",
+    "رسومات معمارية وإنشائية ومدنية وكهربائية وميكانيكية، وتحويل ملفات PDF والصور والورق إلى CAD بصيغتي DWG وDXF في دبي والإمارات والخليج.",
   ],
   "/services/bim-coordination": [
     "نمذجة معلومات المباني والتنسيق في دبي",
@@ -102,8 +102,8 @@ export const arabicPages = {
     "حصر كميات الأعمال والمواد وجداول الكميات ودعم المناقصات لمشاريع الإمارات والخليج.",
   ],
   "/services/authority-approval-drawings": [
-    "رسومات تقديم الجهات المختصة في دبي",
-    "حزم رسومات التجهيز الداخلي والتعديلات بصيغ بلدية دبي وسلطة دبي للتطوير وDMCC وتراخيص، ليقدمها الاستشاري أو المقاول المسجل لديكم.",
+    "خدمات رسومات التقديم للجهات المختصة في الإمارات",
+    "رسومات معمارية وإنشائية ومدنية وMEP لتصاريح البناء واعتمادات البلديات والدفاع المدني والجهات المزودة للخدمات وDDA وتراخيص والمطورين، مع تحديثات بعد ملاحظات الجهات المختصة.",
   ],
 };
 
@@ -139,7 +139,7 @@ export const pageContent = {
   "/services/cad-drafting": {
     lead: "Architectural, structural, MEP, interior and civil CAD drafting in AutoCAD, developed from your project information for review, coordination and construction in Dubai and across the UAE.",
     sections: [
-      ["What we can help with", "Architectural, structural and interior drawings. Mechanical, electrical and plumbing layouts. Civil and infrastructure drawings. PDF, DWG, image and paper to CAD conversion. As-built records and redline updates."],
+      ["What we can help with", "Architectural, structural and interior drawings. Mechanical, electrical and plumbing layouts. Civil and infrastructure drawings. PDF to DWG, image, scanned and paper to CAD conversion in DWG and DXF. As-built records and redline updates."],
       ["What you receive", "Plans, elevations, sections, details and drawing updates in the file formats your team works in."],
     ],
   },
@@ -172,11 +172,12 @@ export const pageContent = {
     ],
   },
   "/services/authority-approval-drawings": {
-    lead: "Fit-out and modification drawing packages prepared in the formats Dubai authority submissions call for, so your registered consultant or contractor can submit without redrawing anything. Empire Design Consultancy is a licensed Dubai company based at Burjuman Business Tower, Mankhool.",
+    lead: "Empire Design Consultancy LLC prepares coordinated architectural, structural, civil and MEP authority submission drawings for building permits and regulatory reviews across the UAE, to project specifications and the relevant authority’s stated requirements.",
     sections: [
-      ["What we prepare", "Existing and proposed layouts for fit-out submissions. Ceiling, partition and MEP layouts covering HVAC, electrical, plumbing and fire fighting. Demolition and construction plans. Authority-format sheets in AutoCAD DWG and PDF at the sheet sizes each authority expects. Drawing revisions after authority comments."],
-      ["Which authority your unit falls under", "Dubai mainland units are handled by Dubai Municipality through the Build in Dubai platform. TECOM communities such as Dubai Internet City, Dubai Media City, Dubai Knowledge Park and Dubai Design District fall under the Dubai Development Authority, whose drawings follow DDA Circular 400 format. JLT units fall under DMCC, Jebel Ali and Palm Jumeirah under Trakhees, and DIFC under its own authority. Each route has its own portal, drawing format and sheet size."],
-      ["How we work with your submission", "We prepare the drawings; the submission itself is made by the registered consultant or contractor your authority requires as the requester. We work to their mark-ups and to the authority's format, and turn around revisions when comments come back, so the package does not have to be rebuilt between review rounds."],
+      ["Our Authority Submission Drawing Services", "Municipality and building permit drawings; Civil Defence fire and life safety; DEWA, TAQA Distribution (formerly ADDC/AADC), SEWA and EtihadWE (formerly FEWA) utility drawings; DDA, Trakhees, developer and master community approvals; architectural, structural, civil and MEP submissions; HVAC, fire-fighting, electrical, plumbing, interior fit-out, restaurant and commercial shop drawings; and as-built submission drawings."],
+      ["Drawing Revisions After Authority Comments in UAE", "We review authority comments and technical observations, then update architectural, structural, civil and MEP AutoCAD drawings with coordinated revisions, redline mark-ups, revision clouds, notes and updated drawing references for the resubmission package."],
+      ["Our Revision Services Include", "Dubai Municipality and Civil Defence amendments; utility drawing updates; architectural and structural modifications; MEP, HVAC, electrical, plumbing and fire-fighting revisions; interior fit-out and shop drawing amendments; compliance updates based on comments; PDF and DWG updates; and resubmission package preparation."],
+      ["Submission Coordination", "We prepare editable, coordinated drawing packages in the agreed formats. Where an authority requires a registered consultant or contractor to submit, that professional completes the formal filing; we coordinate the drawing set and revisions with their team."],
     ],
   },
   "/visualisation": {
@@ -277,11 +278,12 @@ export const arabicPageContent = {
     ],
   },
   "/services/authority-approval-drawings": {
-    lead: "حزم رسومات التجهيز الداخلي والتعديلات تُعد بالصيغ التي تتطلبها معاملات الجهات المختصة في دبي، ليتمكن الاستشاري أو المقاول المسجل لديكم من التقديم دون إعادة رسم. إمباير للاستشارات التصميمية شركة مرخصة في دبي، مقرها برج برجمان التجاري بالمنخول.",
+    lead: "تُعد إمباير للاستشارات التصميمية رسومات معمارية وإنشائية ومدنية وMEP منسقة لمعاملات تصاريح البناء ومراجعات الجهات المختصة في الإمارات، وفق متطلبات المشروع وصيغة الجهة المعنية.",
     sections: [
-      ["ما نُعده", "مخططات الوضع القائم والمقترح لمعاملات التجهيز الداخلي. مخططات الأسقف والقواطع والأعمال الميكانيكية والكهربائية والصحية، بما يشمل التكييف والكهرباء والسباكة ومكافحة الحريق. مخططات الهدم والإنشاء. لوحات بصيغة الجهة المختصة على AutoCAD بصيغتي DWG وPDF وبمقاسات اللوحات المطلوبة. تعديل الرسومات بعد ملاحظات الجهة المختصة."],
-      ["الجهة المختصة بوحدتكم", "الوحدات في بر دبي الرئيسي تتبع بلدية دبي عبر منصة Build in Dubai. مجتمعات TECOM مثل مدينة دبي للإنترنت ومدينة دبي للإعلام ومجمع دبي للمعرفة وحي دبي للتصميم تتبع سلطة دبي للتطوير DDA، وتتبع رسوماتها صيغة التعميم رقم 400. وحدات أبراج بحيرات جميرا تتبع DMCC، وجبل علي ونخلة جميرا تتبعان تراخيص، ومركز دبي المالي العالمي يتبع جهته الخاصة. لكل مسار بوابته الإلكترونية وصيغة رسوماته ومقاسات لوحاته."],
-      ["كيف نعمل مع معاملتكم", "نحن نُعد الرسومات، أما التقديم نفسه فيتم عبر الاستشاري أو المقاول المسجل الذي تشترط الجهة المختصة أن يكون هو مقدم الطلب. نعمل وفق ملاحظاتهم ووفق صيغة الجهة المختصة، وننجز التعديلات فور ورود الملاحظات، حتى لا تُعاد الحزمة من الصفر بين جولات المراجعة."],
+      ["خدمات رسومات التقديم للجهات المختصة", "رسومات البلديات وتصاريح البناء؛ الدفاع المدني والسلامة من الحريق؛ رسومات DEWA وTAQA Distribution (سابقاً ADDC/AADC) وSEWA وEtihadWE (سابقاً FEWA)؛ اعتمادات DDA وتراخيص والمطورين والمجتمعات الرئيسية؛ التقديمات المعمارية والإنشائية والمدنية وMEP؛ ورسومات التكييف ومكافحة الحريق والكهرباء والسباكة والتجهيز الداخلي والمطاعم والمحلات التجارية ورسومات التنفيذ الفعلي للتقديم."],
+      ["تعديلات الرسومات بعد ملاحظات الجهات المختصة في الإمارات", "نراجع ملاحظات الجهة المختصة والملاحظات الفنية، ثم نحدّث رسومات AutoCAD المعمارية والإنشائية والمدنية وMEP بتعديلات منسقة وملاحظات مؤشرة وسحب المراجعة والمراجع المحدّثة لدعم إعادة التقديم."],
+      ["يشمل دعم التعديلات", "تعديلات بلدية دبي والدفاع المدني؛ تحديثات رسومات الجهات المزودة للخدمات؛ تعديلات معمارية وإنشائية؛ مراجعات MEP والتكييف والكهرباء والسباكة ومكافحة الحريق؛ تعديلات التجهيز الداخلي والمحلات؛ تحديثات المطابقة وفق الملاحظات؛ تحديث ملفات PDF وDWG وإعداد حزم إعادة التقديم."],
+      ["تنسيق التقديم", "نجهز حزم رسومات قابلة للتحرير ومنسقة بالصيغ المتفق عليها. وعندما تشترط الجهة المختصة تقديم المعاملة عبر استشاري أو مقاول مسجل، يتولى المختص تقديمها رسمياً، ونتعاون معه في إعداد الرسومات وتحديثها."],
     ],
   },
   "/visualisation": {
