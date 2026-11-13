@@ -1431,7 +1431,7 @@ body[data-page="home"] main:not(.service-detail)::after {
   inset: -45px;
   background:
     linear-gradient(#1020358c, #102035b3),
-    url("/empire-scroll-poster.jpg") center/cover no-repeat;
+    url("/empire-scroll-poster.webp") center/cover no-repeat;
   filter: blur(28px);
   transform: scale(1.04);
 }
@@ -1809,7 +1809,7 @@ body[data-page="home"]:not(:has(.service-detail)) .nav-shell {
     right: 0;
     bottom: 0;
     height: 24%;
-    background: url("/empire-completed.jpg") center bottom / auto 1300px
+    background: url("/empire-completed.webp") center bottom / auto 1300px
       no-repeat;
     mask-image: linear-gradient(transparent 0%, #000 18%);
     pointer-events: none;
@@ -1822,7 +1822,7 @@ body[data-page="home"]:not(:has(.service-detail)) .nav-shell {
 /* A single portrait image keeps the mobile systems view and soil continuous. */
 @media (max-aspect-ratio: 4/5) {
   .show-systems .hero-technical {
-    content: url("/empire-mobile-systems-red.jpg");
+    content: url("/empire-mobile-systems-red.webp");
     inset: 0;
     width: 100%;
     height: 100%;
@@ -2494,7 +2494,7 @@ main.service-detail {
     mask-image: none;
   }
   .reveal-hero .hero-technical {
-    content: url("/empire-mobile-systems-red.jpg");
+    content: url("/empire-mobile-systems-red.webp");
     inset: 0;
     width: 100%;
     height: 100%;
@@ -7055,7 +7055,7 @@ html {
   .reveal-hero .hero-technical,
   .reveal-hero.show-systems .hero-technical {
     display: block;
-    content: url("/mobile/hero-structural-portrait.jpg");
+    content: url("/mobile/hero-structural-portrait.webp");
     inset: 0;
     top: 0;
     width: 100%;
@@ -8907,7 +8907,7 @@ html[dir="rtl"] li {
   .reveal-hero .hero-technical,
   .reveal-hero.show-systems .hero-technical {
     display: block;
-    content: url('/mobile/hero-structural-portrait.jpg');
+    content: url('/mobile/hero-structural-portrait.webp');
     inset: 0;
     width: 100%;
     height: 100%;
@@ -9022,7 +9022,7 @@ html[dir="rtl"] li {
   .reveal-hero .hero-technical,
   .reveal-hero.show-systems .hero-technical {
     display: block;
-    content: url("/mobile/hero-structural-portrait.jpg");
+    content: url("/mobile/hero-structural-portrait.webp");
     inset: 0;
     width: 100%;
     height: 100%;
@@ -9453,7 +9453,7 @@ main.service-redesign > section.service-output:not(.still-hero):not(.story-hero)
 
 main.service-redesign > section.service-working:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.9)), url("/design-to-detail.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.9)), url("/design-to-detail.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -9461,7 +9461,7 @@ main.service-redesign > section.service-working:not(.still-hero):not(.story-hero
 
 main.service-redesign > section.service-related:not(.still-hero):not(.story-hero):not(.about):not(.visualisation):not(.contact):not(.clients):not(.engagement) {
   background-color: #faeadb !important;
-  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.9)), url("/engineering-disciplines.jpg") !important;
+  background-image: linear-gradient(rgba(250, 234, 219, 0.88), rgba(250, 234, 219, 0.9)), url("/engineering-disciplines.webp") !important;
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
