@@ -387,6 +387,26 @@ const page =
             ? "contact"
             : "home";
 document.body.dataset.page = page;
+
+// Every contact CTA opens the one modal. Kept as real /contact links
+// so they still work without JS, keep their styling, and honour middle- or
+// cmd-click; the click handler just intercepts the plain left-click.
+const CONTACT_EVENT = "empire:open-contact";
+const openContactDialog = (event) => {
+  if (
+    event &&
+    (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+  )
+    return;
+  event?.preventDefault();
+  if (page === "contact") {
+    document
+      .getElementById("enquiry")
+      ?.scrollIntoView({ behavior: "smooth" });
+    return;
+  }
+  window.dispatchEvent(new CustomEvent(CONTACT_EVENT));
+};
 const pageMetadata = metadata(path);
 const arabicTitle =
   servicePage?.title ||
@@ -896,7 +916,7 @@ function VisualisationPage() {
               "Tell us about your project and the views or models your team needs.",
             )}
           </p>
-          <a href="/contact">
+          <a href="/contact" onClick={openContactDialog}>
             {t("Discuss your project")}
             <ArrowUpRight size={18} />
           </a>
@@ -959,7 +979,11 @@ function ServiceDetail() {
           </h1>
           <p>{servicePage.intro}</p>
           <div className="service-cover-actions">
-            <a href="/contact" className="service-action">
+            <a
+              href="/contact"
+              className="service-action"
+              onClick={openContactDialog}
+            >
               {t("Discuss your project")}
               <ArrowUpRight size={18} />
             </a>
@@ -1011,7 +1035,7 @@ function ServiceDetail() {
             <p>
               {t("Share your existing files and tell us what your team needs.")}
             </p>
-            <a href="/contact">
+            <a href="/contact" onClick={openContactDialog}>
               {arabic ? "أرسل تفاصيل مشروعك" : "Send your brief"}{" "}
               <ArrowUpRight size={17} />
             </a>
@@ -1208,7 +1232,14 @@ function ServiceDetail() {
                 </div>
               </>
             )}
-            <a className="scope-contact" href="/contact">
+            <a
+              className="scope-contact"
+              href="/contact"
+              onClick={(event) => {
+                dialogRef.current?.close();
+                openContactDialog(event);
+              }}
+            >
               {t("Discuss your project")}
               <ArrowUpRight size={17} />
             </a>
@@ -1349,7 +1380,7 @@ function ProcessPage() {
                 "Tell us the project stage, the work required and any files available for review.",
               )}
             </p>
-            <a href="/contact">
+            <a href="/contact" onClick={openContactDialog}>
               {arabic ? "أرسل تفاصيل مشروعك" : "Send your brief"}{" "}
               <ArrowUpRight size={18} />
             </a>
@@ -1820,7 +1851,7 @@ function AboutPage() {
                 "Tell us about your project, your team and where you need technical support.",
               )}
             </p>
-            <a href="/contact">
+            <a href="/contact" onClick={openContactDialog}>
               {arabic ? "أرسل تفاصيل مشروعك" : "Send your brief"}{" "}
               <ArrowUpRight size={18} />
             </a>
@@ -1951,6 +1982,11 @@ function App() {
     if (contactOpen && contactDialog.current && !contactDialog.current.open)
       contactDialog.current.showModal();
   }, [contactOpen]);
+  useEffect(() => {
+    const open = () => setContactOpen(true);
+    window.addEventListener(CONTACT_EVENT, open);
+    return () => window.removeEventListener(CONTACT_EVENT, open);
+  }, []);
   useEffect(() => {
     if (!menu) return;
     const previous = document.body.style.overflow;
@@ -2434,6 +2470,7 @@ function App() {
             className="nav-cta"
             href="/contact"
             aria-current={isCurrentNav("Contact") ? "page" : undefined}
+            onClick={openContactDialog}
           >
             {arabic ? "أرسل تفاصيل مشروعك" : "Send your brief"}{" "}
             <ArrowUpRight size={16} />
@@ -2471,7 +2508,10 @@ function App() {
               className="mobile-menu-cta"
               style={{ "--i": links.length + 1 }}
               href="/contact"
-              onClick={() => setMenu(false)}
+              onClick={(event) => {
+                setMenu(false);
+                openContactDialog(event);
+              }}
             >
               {arabic ? "أرسل تفاصيل مشروعك" : "Send your brief"}{" "}
               <ArrowUpRight size={18} />
@@ -2737,7 +2777,11 @@ function App() {
                     "Choose the drawings, models or schedules your team needs for its next milestone.",
                   )}
                 </p>
-                <a href="/contact" className="underline-link">
+                <a
+                  href="/contact"
+                  className="underline-link"
+                  onClick={openContactDialog}
+                >
                   {arabic ? "ناقش متطلباتك" : "Discuss your requirements"}{" "}
                   <ArrowUpRight size={17} />
                 </a>
@@ -2830,7 +2874,7 @@ function App() {
                       "Engage Empire for a specific drawing, modelling or estimating package with deliverables suited to your project.",
                     )}
                   </p>
-                  <a href="/contact">
+                  <a href="/contact" onClick={openContactDialog}>
                     {t("Discuss a project")}
                     <ArrowUpRight size={16} />
                   </a>
@@ -2842,7 +2886,7 @@ function App() {
                       "Build additional capacity with dedicated CAD drafters, BIM modellers or construction estimators.",
                     )}
                   </p>
-                  <a href="/contact">
+                  <a href="/contact" onClick={openContactDialog}>
                     {t("Explore dedicated support")}
                     <ArrowUpRight size={16} />
                   </a>
@@ -2907,7 +2951,7 @@ function App() {
                     <li>{t("Interior fit-out and joinery details")}</li>
                     <li>{t("BIM coordination and 3D visualisation")}</li>
                   </ul>
-                  <a href="/contact">
+                  <a href="/contact" onClick={openContactDialog}>
                     {t("Discuss your scope")}
                     <ArrowUpRight size={18} />
                   </a>
@@ -3197,17 +3241,8 @@ function App() {
               </p>
             </div>
             <div className="footer-actions">
-              <button
-                type="button"
-                onClick={() => {
-                  if (page === "contact")
-                    document
-                      .getElementById("enquiry")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  else setContactOpen(true);
-                }}
-              >
-                {arabic ? "تواصل معنا" : "Get in touch"}{" "}
+              <button type="button" onClick={() => openContactDialog()}>
+                {arabic ? "أرسل تفاصيل مشروعك" : "Send your brief"}{" "}
                 <ArrowUpRight size={17} />
               </button>
               <a
