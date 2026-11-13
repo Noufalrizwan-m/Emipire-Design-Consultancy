@@ -1,65 +1,88 @@
-# Empire Design Consultancy — Apache / cPanel configuration.
-# Replaces what vercel.json and Vercel's platform were doing.
-# Vite copies this file into dist/ on build, so it ships with the site.
+# Empire Design Consultancy — Apache / Hostinger configuration.
+#
+# The build writes a real index.html for every route (dist/services/cad-drafting/
+# index.html and so on), so Apache serves deep links on its own and there is no
+# SPA catch-all rewrite here. These rules only replace what Vercel handled for
+# us: the canonical host, the 404 page, caching and the security headers that
+# vercel.json sets.
 
-# ---------------------------------------------------------------- error pages
-# Vercel served dist/404.html automatically. Apache needs telling.
-ErrorDocument 404 /404.html
+Options -Indexes
+DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # The React form posts to /api/contact. Send it to the PHP handler.
+  # Without this, Apache 301s /services/cad-drafting to the trailing-slash form,
+  # which does not match the canonical tag on the page. The rewrite below serves
+  # the directory's index.html directly instead. It is deliberately inside this
+  # block: turning it off without that rewrite in place would break directory
+  # URLs on a host where mod_rewrite is unavailable.
+  <IfModule mod_dir.c>
+    DirectorySlash Off
+  </IfModule>
+
+  # One canonical origin: https://empiredesignae.com
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://empiredesignae.com%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTP_HOST} ^www\.empiredesignae\.com$ [NC]
+  RewriteRule ^ https://empiredesignae.com%{REQUEST_URI} [R=301,L]
+
+  # The enquiry form posts to /api/contact. On Vercel that path was served by
+  # api/contact.js; on PHP hosting the endpoint is the file api/contact.php,
+  # which Apache will not find under the extensionless path. Without this rule
+  # the form 404s and every enquiry is silently lost.
   RewriteRule ^api/contact/?$ /api/contact.php [L]
 
-  # Serve /services (no trailing slash) from /services/index.html directly,
-  # instead of letting mod_dir 301-redirect to /services/. Keeps the URL
-  # matching the <link rel="canonical"> in each prerendered page.
-  DirectorySlash Off
+  # Serve /services/cad-drafting from its index.html, no redirect.
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteCond %{REQUEST_FILENAME}/index.html -f
-  RewriteRule ^(.*[^/])$ /$1/index.html [L]
+  RewriteRule ^(.*[^/])$ $1/index.html [L]
 </IfModule>
 
-# ------------------------------------------------------------- security headers
-# Ported from vercel.json — these are lost the moment you leave Vercel.
+# api/contact-config.php holds the Resend API key. PHP normally executes it so
+# nothing is sent to the browser, but if PHP is ever disabled or misconfigured
+# Apache would serve it as plain text and publish the key. Deny it outright.
+<FilesMatch "^contact-config(\.sample)?\.php$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Anything unmatched gets the site's own 404 page, not Hostinger's.
+ErrorDocument 404 /404.html
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 
-  # Hashed bundles never change content — cache hard.
-  <FilesMatch "^index-.*\.(js|css)$">
+  # Hashed build output (everything Vite emits into /assets) never changes
+  # under the same filename, so it can be cached indefinitely.
+  <FilesMatch "\.(js|css|mjs)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
-
-  # Images: a month, revalidating in the background.
   <FilesMatch "\.(jpg|jpeg|png|webp|avif|svg|ico|woff2)$">
     Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
   </FilesMatch>
-
-  # HTML must never be cached hard or visitors get stale pages after a deploy.
+  # HTML is rewritten on every deploy, so it must revalidate.
   <FilesMatch "\.html$">
     Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 </IfModule>
 
-# -------------------------------------------------------------------- mime/webp
 <IfModule mod_mime.c>
-  AddType image/webp .webp
   AddType image/avif .avif
+  AddType image/webp .webp
   AddType font/woff2 .woff2
 </IfModule>
-
-# ------------------------------------------------------------------ compression
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml \
-    application/javascript application/json application/xml image/svg+xml
-</IfModule>
-
-# ---------------------------------------------------------------------- privacy
-# Don't expose the config file holding your destination address.
-<Files "contact-config.php">
-  Require all denied
-</Files>

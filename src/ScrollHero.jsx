@@ -56,6 +56,7 @@ export default function ScrollHero({ arabic = false }) {
       <div className="hero-message">
         <h1>
           {arabic ? "أفكار نصممها" : "Ideas made"}
+          {" "}
           <br />
           <em>{arabic ? "لتصبح واقعاً." : "buildable."}</em>
         </h1>

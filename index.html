@@ -16,11 +16,16 @@ html.logo-intro-active .site-header .brand img{visibility:hidden}
   var logo=loader.querySelector('.loader-logo');
   var start=Date.now(), finished=false, ready=false, animation;
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+  // The intro plays once per tab session. A visitor moving between pages has
+  // already seen it, so replaying it just stands between them and the content.
+  var seen=false;try{seen=sessionStorage.getItem('empire-intro')==='1'}catch(e){}
+  if(seen){loader.remove();window.empireSiteReady=function(){};return}
   document.documentElement.classList.add('logo-intro-active');
   function finish(){
     if(finished)return;
     finished=true;
     document.documentElement.classList.remove('logo-intro-active');
+    try{sessionStorage.setItem('empire-intro','1')}catch(e){}
     clearInterval(meter);loader.remove();document.removeEventListener('keydown',skip);
   }
   function skip(event){if(event.key==='Escape')finish()}
@@ -30,15 +35,15 @@ html.logo-intro-active .site-header .brand img{visibility:hidden}
   var shown=0,flying=false;
   var meter=setInterval(function(){
     var elapsed=Date.now()-start;
-    var target=ready?100:Math.min(92,elapsed/40);
-    shown+=(target-shown)*0.1+(ready?0.7:0.04);
+    var target=ready?100:Math.min(92,elapsed/22);
+    shown+=(target-shown)*0.28+(ready?2.2:0.04);
     if(shown>target)shown=target;
     bar.style.transform='scaleX('+(shown/100)+')';
     count.textContent=Math.round(shown)+'%';
     if(ready&&shown>=99.5&&!flying){
       flying=true;clearInterval(meter);
       bar.style.transform='scaleX(1)';count.textContent='100%';
-      setTimeout(fly,350);
+      setTimeout(fly,180);
     }
   },30);
   function fly(){
@@ -53,11 +58,11 @@ html.logo-intro-active .site-header .brand img{visibility:hidden}
     animation=logo.animate([
       {transform:'translate(-50%, -50%)'},
       {transform:'translate(calc(-50% + '+dx+'px), calc(-50% + '+dy+'px)) scale('+scale+')'}
-    ],{duration:1200,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
+    ],{duration:820,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
     animation.finished.then(finish).catch(finish);
-    setTimeout(finish,1400);
+    setTimeout(finish,960);
   }
   window.empireSiteReady=function(){ready=true};
-  setTimeout(window.empireSiteReady,6000);
+  setTimeout(window.empireSiteReady,3500);
 })();
 </script><div id="root"><!--SEO_CONTENT--></div><script type="module" src="/src/main.jsx"></script></body></html>

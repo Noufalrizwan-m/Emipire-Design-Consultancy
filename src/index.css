@@ -30,6 +30,10 @@ h3,
 .brand {
   font-family: "Space Grotesk", sans-serif;
 }
+/* Headings share one weight across every page (Tailwind preflight resets h1-h6 to inherit). */
+h1 {
+  font-weight: 700;
+}
 h2 {
   font-size: clamp(3rem, 5.6vw, 6.6rem);
   line-height: 1.02;
@@ -4101,7 +4105,9 @@ main > section.contact {
   color: #f4f1eb;
   font-size: 14px;
   line-height: 1.6;
-  overflow-wrap: anywhere;
+  /* break-word (not anywhere) so the address only wraps at the <wbr /> after
+     the @, instead of splitting mid-word as "support@empiredesigna / e.com". */
+  overflow-wrap: break-word;
 }
 .contact-details a:hover {
   color: #f4f1eb;
@@ -6706,6 +6712,35 @@ main
 .home-testimonials [class*="elfsight-app-"] {
   background: #faeadb !important;
 }
+/* The Elfsight widget renders inside a CLOSED shadow root, so nothing in this
+   stylesheet reaches its cards, buttons or type — those are changed only in the
+   Elfsight dashboard's appearance settings. What is styleable is the frame the
+   widget sits in, which is what these rules do: hold it to the same width,
+   border and rhythm as the site's own panels so it reads as part of the page. */
+.home-testimonials .reviews-container {
+  max-width: 980px;
+  margin-inline: auto;
+}
+.home-testimonials [class*="elfsight-app-"] {
+  border: 1px solid #14243a1f;
+  border-radius: 20px;
+  padding: clamp(14px, 2.2vw, 26px) clamp(14px, 2.2vw, 28px);
+  box-shadow: 0 18px 44px #0a152608;
+}
+.home-testimonials .reviews-fallback {
+  margin-top: 22px;
+  color: #cbd4df;
+  text-decoration-color: #b78352;
+  transition: color 0.2s;
+}
+.home-testimonials .reviews-fallback:hover {
+  color: #f4f1eb;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-testimonials .reviews-fallback {
+    transition: none;
+  }
+}
 .visual-page {
   background: #14243a;
   color: #f4f1eb;
@@ -8369,6 +8404,12 @@ body[data-page="home"]
 }
 
 /* Shared footer and accessible quick-contact shortcuts. */
+:root {
+  /* Height the fixed quick-contact stack occupies at the bottom-right of the
+     viewport: 2 buttons + the gap between them + the bottom offset. The footer
+     reserves this much space so its last row is not covered at full scroll. */
+  --quick-contact-reserve: 134px;
+}
 .quick-contact {
   position: fixed;
   right: max(18px, env(safe-area-inset-right));
@@ -8414,7 +8455,7 @@ body[data-page="home"]
 .site-footer {
   background: #101e32;
   color: #f8f3ed;
-  padding: 70px 0 24px;
+  padding: 70px 0 calc(24px + var(--quick-contact-reserve));
 }
 .site-footer .footer-lead {
   display: flex;
@@ -8485,7 +8526,7 @@ body[data-page="home"]
   color: #cbd4df;
   line-height: 1.6;
   margin: 0 0 10px;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 .footer-columns a:hover {
   color: white;
@@ -8500,8 +8541,12 @@ body[data-page="home"]
   font-size: 12px;
 }
 @media (max-width: 700px) {
+  :root {
+    /* Smaller buttons and offset on mobile: 2 x 46px + 10px gap + 14px. */
+    --quick-contact-reserve: 116px;
+  }
   .site-footer {
-    padding: 50px 0 90px;
+    padding: 50px 0 calc(20px + var(--quick-contact-reserve));
   }
   .site-footer .footer-lead {
     display: block;

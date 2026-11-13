@@ -644,6 +644,7 @@ function PageIntro() {
       <div className="page-intro-content">
         <h1>
           {t(content[0])}
+          {" "}
           <br />
           <em>{t(content[1])}</em>
         </h1>
@@ -847,6 +848,7 @@ function VisualisationPage() {
           <p>{t("3D VISUALISATION & BIM")}</p>
           <h1>
             {t("See the vision.")}
+            {" "}
             <br />
             <em>{t("Understand the detail.")}</em>
           </h1>
@@ -868,6 +870,7 @@ function VisualisationPage() {
             <p>{t("DESIGN IN THREE DIMENSIONS")}</p>
             <h2>
               {t("See it clearly.")}
+              {" "}
               <br />
               <em>{t("Plan it together.")}</em>
             </h2>
@@ -915,6 +918,7 @@ function VisualisationPage() {
         <div className="container">
           <h2>
             {t("Make the next")}
+            {" "}
             <br />
             <em>{t("decision clearer.")}</em>
           </h2>
@@ -1330,6 +1334,7 @@ function ProcessPage() {
           </p>
           <h1>
             {t("Good work starts")}
+            {" "}
             <br />
             <em>{t("with clarity.")}</em>
           </h1>
@@ -1351,6 +1356,7 @@ function ProcessPage() {
               <p className="process-kicker">{t("HOW WE WORK")}</p>
               <h2>
                 {t("Four steps.")}
+                {" "}
                 <br />
                 <em>{t("One clear direction.")}</em>
               </h2>
@@ -1384,6 +1390,7 @@ function ProcessPage() {
             <p className="process-kicker">{t("WORKING TOGETHER")}</p>
             <h2>
               {t("Your project.")}
+              {" "}
               <br />
               <em>{t("Our shared focus.")}</em>
             </h2>
@@ -1408,6 +1415,7 @@ function ProcessPage() {
             <p className="process-kicker">{t("READY WHEN YOU ARE")}</p>
             <h2>
               {t("Let’s make the")}
+              {" "}
               <br />
               <em>{t("next step clear.")}</em>
             </h2>
@@ -1540,6 +1548,7 @@ function HomeDetails() {
               </p>
               <h2>
                 {arabic ? "مساحات متنوعة." : "Different spaces."}
+                {" "}
                 <br />
                 <em>{arabic ? "طموح مشترك." : "Shared ambition."}</em>
               </h2>
@@ -1620,6 +1629,7 @@ function HomeDetails() {
             </p>
             <h2>
               {arabic ? "التفاصيل تكتمل" : "The detail lives"}
+              {" "}
               <br />
               <em>{arabic ? "عند التسليم." : "in the handover."}</em>
             </h2>
@@ -1657,6 +1667,7 @@ function HomeDetails() {
               </p>
               <h2>
                 {arabic ? "كلمات من" : "Words from"}
+                {" "}
                 <br />
                 <em>{arabic ? "عملائنا." : "our clients."}</em>
               </h2>
@@ -1686,10 +1697,13 @@ function AboutPage() {
           </p>
           <h1>
             {t("Built on")}
+            {" "}
             <br />
             <em>{t("experience.")}</em>
+            {" "}
             <br />
             {t("Focused on")}
+            {" "}
             <br />
             {t("your next step")}
             <span>.</span>
@@ -1728,6 +1742,7 @@ function AboutPage() {
             <p className="about-label">{t("WHO WE ARE")}</p>
             <h2>
               {t("Technical thinking.")}
+              {" "}
               <br />
               <em>{t("Practical outcomes.")}</em>
             </h2>
@@ -1756,6 +1771,7 @@ function AboutPage() {
           <p className="about-label">{t("OUR PURPOSE")}</p>
           <h2>
             {t("A clear vision.")}
+            {" "}
             <br />
             <em>{t("A shared mission.")}</em>
           </h2>
@@ -1788,6 +1804,7 @@ function AboutPage() {
               <p className="about-label">{t("OUR APPROACH")}</p>
               <h2>
                 {t("Good work is")}
+                {" "}
                 <br />
                 <em>{t("in the details.")}</em>
               </h2>
@@ -1846,6 +1863,7 @@ function AboutPage() {
             <p className="about-label">{t("WHERE WE WORK")}</p>
             <h2>
               {t("Local insight.")}
+              {" "}
               <br />
               <em>{t("Broad perspective.")}</em>
             </h2>
@@ -1879,6 +1897,7 @@ function AboutPage() {
             <p className="about-label">{t("LET’S WORK TOGETHER")}</p>
             <h2>
               {t("Bring us into")}
+              {" "}
               <br />
               <em>{t("the conversation.")}</em>
             </h2>
@@ -2500,12 +2519,14 @@ function App() {
                 {arabic ? (
                   <>
                     هذه الصفحة ليست
+                    {" "}
                     <br />
                     <em>ضمن المجموعة.</em>
                   </>
                 ) : (
                   <>
                     Not in the
+                    {" "}
                     <br />
                     <em>drawing set.</em>
                   </>
@@ -2648,6 +2669,7 @@ function App() {
               <div className="reveal">
                 <h2>
                   {t("More clarity")}
+                  {" "}
                   <br />
                   <em>{t("in every detail.")}</em>
                 </h2>
@@ -2679,6 +2701,7 @@ function App() {
                     ) : (
                       <>
                         {t("Technical expertise")}
+                        {" "}
                         <br />
                         <em>{t("for every stage.")}</em>
                       </>
@@ -2785,6 +2808,7 @@ function App() {
               <div className="visual-top reveal">
                 <h2>
                   {t("See the design.")}
+                  {" "}
                   <br />
                   <em>{t("Understand the detail.")}</em>
                 </h2>
@@ -2819,6 +2843,7 @@ function App() {
               <div className="reveal">
                 <h2>
                   {t("Made for the")}
+                  {" "}
                   <br />
                   <em>{t("next step.")}</em>
                 </h2>
@@ -2859,6 +2884,7 @@ function App() {
               <div className="process-intro">
                 <h2>
                   {arabic ? "مسار واضح" : "A clear path"}
+                  {" "}
                   <br />
                   <em>
                     {arabic
@@ -2913,6 +2939,7 @@ function App() {
             <div className="container">
               <h2 className="reveal">
                 {t("The right expertise,")}
+                {" "}
                 <br />
                 <em>{t("when you need it.")}</em>
               </h2>
@@ -2949,6 +2976,7 @@ function App() {
               <div className="reveal">
                 <h2>
                   {t("Built for")}
+                  {" "}
                   <br />
                   <em>{t("different ambitions.")}</em>
                 </h2>
@@ -2987,6 +3015,7 @@ function App() {
                   </p>
                   <h2>
                     {t("One team.")}
+                    {" "}
                     <br />
                     <em>{t("Many disciplines.")}</em>
                   </h2>
@@ -3062,6 +3091,7 @@ function App() {
                   <p className="about-label">{t("LET’S WORK TOGETHER")}</p>
                   <h2>
                     {t("Tell us what")}
+                    {" "}
                     <br />
                     <em>{t("you have in mind.")}</em>
                   </h2>
@@ -3163,6 +3193,7 @@ function App() {
               <div className="reveal">
                 <h2>
                   {t("Have a project")}
+                  {" "}
                   <br />
                   <em>{t("in mind?")}</em>
                 </h2>
@@ -3183,7 +3214,7 @@ function App() {
                 <div>
                   <span>{arabic ? "البريد الإلكتروني" : "EMAIL"}</span>
                   <a href="mailto:support@empiredesignae.com">
-                    <Mail size={18} /> support@empiredesignae.com
+                    <Mail size={18} /> support@<wbr />empiredesignae.com
                   </a>
                 </div>
                 <div>
@@ -3332,7 +3363,7 @@ function App() {
                 <bdi dir="ltr">+971 54 434 8797</bdi>
               </a>
               <a href="mailto:support@empiredesignae.com">
-                support@empiredesignae.com
+                support@<wbr />empiredesignae.com
               </a>
               <p>
                 {t("Burjuman Business Tower")}
