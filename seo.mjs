@@ -26,7 +26,7 @@ export const pages = {
   ],
   "/services/cad-drafting": [
     "CAD Drafting & Engineering Design | UAE",
-    "Architectural, structural, civil and MEP CAD drafting, plus PDF to DWG, image and paper to CAD conversion in DWG and DXF for project teams in the UAE, GCC and India.",
+    "Architectural, structural, civil and MEP CAD drafting, plus PDF, image and paper to CAD conversion in DWG and DXF, for project teams across the UAE.",
   ],
   "/services/bim-coordination": [
     "BIM Modelling & Coordination | UAE",
@@ -46,7 +46,7 @@ export const pages = {
   ],
   "/services/authority-approval-drawings": [
     "Authority Submission Drawings | Dubai & UAE",
-    "Architectural, structural, civil and MEP submission drawings for permits and approvals in Dubai and the UAE, including municipality, Civil Defence, utility, DDA and Trakhees.",
+    "Architectural, structural, civil and MEP submission drawings for Dubai and UAE permits — municipality, Civil Defence, DDA and Trakhees.",
   ],
 };
 export function metadata(path) {
