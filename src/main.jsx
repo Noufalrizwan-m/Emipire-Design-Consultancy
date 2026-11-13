@@ -27,7 +27,11 @@ import ResponsiveImage from "./ResponsiveImage";
 import ScrollHero from "./ScrollHero";
 import ProjectGallery from "./ProjectGallery";
 const ContactForm = React.lazy(() => import("./ContactForm"));
-import { serviceProjects, arabicProjectDescriptions } from "./serviceProjects";
+import {
+  serviceProjects,
+  arabicProjectDescriptions,
+  arabicProjectExtras,
+} from "./serviceProjects";
 import { metadata } from "../seo.mjs";
 gsap.registerPlugin(ScrollTrigger);
 // Reloads start at the top; section links keep their target.
@@ -157,18 +161,18 @@ const serviceDetails = {
   },
   "authority-approval-drawings": {
     title: "Authority submission drawings",
-    tag: "06 / SUBMISSION PACKAGES",
+    tag: "06 / UAE AUTHORITY SUBMISSIONS",
     intro:
-      "Drawing packages prepared in the formats Dubai authority submissions call for, so your registered consultant or contractor can submit without redrawing anything.",
+      "Empire Design Consultancy LLC prepares coordinated architectural, structural, civil and MEP authority submission drawings for building permits and regulatory reviews across the UAE. We support consultants, contractors, developers and property owners with editable AutoCAD packages prepared to project specifications and the relevant authority’s stated requirements. Where required, the registered consultant or contractor makes the formal submission.",
     scope: [
-      "Existing and proposed layouts for fit-out submissions",
-      "Ceiling, partition and MEP layouts",
-      "Demolition and construction plans",
-      "Authority-format sheets in DWG and PDF",
-      "Drawing revisions after authority comments",
+      "Municipality & Building Permit Drawings",
+      "Civil Defence & Utility Authority Drawings",
+      "DDA, Trakhees & Developer Approvals",
+      "Architectural, Structural, MEP & Fit-Out Submissions",
+      "Drawing Revisions After Authority Comments",
     ],
     outputs:
-      "Submission-ready drawing sets in DWG and PDF at the sheet sizes each authority expects.",
+      "Coordinated, editable DWG and PDF drawing sets formatted for the agreed review or submission stage, with revisions prepared from authority comments and project mark-ups.",
   },
   "estimating-takeoff": {
     title: "Estimating & takeoff",
@@ -279,18 +283,18 @@ const arabicDetails = {
   },
   "authority-approval-drawings": {
     title: arabicServices[5][0],
-    tag: "06 / حزم التقديم",
+    tag: "06 / اعتمادات الجهات في الإمارات",
     intro:
-      "حزم رسومات تُعد بالصيغ التي تتطلبها معاملات الجهات المختصة في دبي، ليتمكن الاستشاري أو المقاول المسجل لديكم من تقديمها دون إعادة رسم.",
+      "تُعد إمباير للاستشارات التصميمية رسومات معمارية وإنشائية ومدنية وMEP منسقة لمعاملات تصاريح البناء ومراجعات الجهات المختصة في الإمارات. ندعم الاستشاريين والمقاولين والمطورين وملاك العقارات بحزم AutoCAD قابلة للتحرير وفق متطلبات المشروع وصيغ الجهة المختصة. وعند اشتراط ذلك، يتولى الاستشاري أو المقاول المسجل تقديم المعاملة رسمياً.",
     scope: [
-      "مخططات الوضع القائم والمقترح لمعاملات التجهيز الداخلي",
-      "مخططات الأسقف والقواطع والأعمال الميكانيكية والكهربائية والصحية",
-      "مخططات الهدم والإنشاء",
-      "لوحات بصيغة الجهة المختصة بصيغتي DWG وPDF",
-      "تعديل الرسومات بعد ملاحظات الجهة المختصة",
+      "رسومات البلدية وتصاريح البناء",
+      "رسومات الدفاع المدني والجهات المزودة للخدمات",
+      "اعتمادات DDA وتراخيص والمطورين",
+      "تقديمات معمارية وإنشائية وMEP وتجهيز داخلي",
+      "تعديلات الرسومات بعد ملاحظات الجهات المختصة",
     ],
     outputs:
-      "مجموعات رسومات جاهزة للتقديم بصيغتي DWG وPDF وبمقاسات اللوحات التي تطلبها كل جهة.",
+      "حزم رسومات DWG وPDF منسقة وقابلة للتحرير لمرحلة المراجعة أو التقديم المتفق عليها، مع إعداد التعديلات وفق ملاحظات الجهة المختصة وملاحظات المشروع.",
   },
   "estimating-takeoff": {
     title: arabicServices[4][0],
@@ -312,6 +316,7 @@ const slugs = [
   "shop-drawings",
   "3d-visualisation",
   "estimating-takeoff",
+  "authority-approval-drawings",
 ];
 const arabic = /^\/ar(?:\/|$)/.test(location.pathname);
 document.documentElement.lang = arabic ? "ar" : "en";
@@ -473,8 +478,8 @@ const storyScenes = [
   {
     title: "Authority submission drawings",
     link: "Explore authority submission drawings",
-    copy: "Get the drawing package into the format the submission needs.",
-    image: "/services/authority-approval-drawings.png",
+    copy: "Authority submission drawings for permits and regulatory reviews across the UAE.",
+    image: "/services/authority-approval-drawings.jpg",
     href: "/services/authority-approval-drawings",
   },
   {
@@ -940,6 +945,22 @@ function ServiceDetail() {
     activeScope === null
       ? null
       : serviceProjects[`${serviceSlug}:${activeScope}`];
+  const projectArabic =
+    activeScope === null
+      ? null
+      : arabicProjectExtras[`${serviceSlug}:${activeScope}`];
+  const projectCopy = arabic
+    ? {
+        description:
+          projectArabic?.description ??
+          arabicProjectDescriptions[serviceSlug]?.[activeScope] ??
+          project?.description,
+        blocks: projectArabic?.blocks ?? project?.blocks,
+      }
+    : {
+        description: project?.description,
+        blocks: project?.blocks,
+      };
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -964,7 +985,9 @@ function ServiceDetail() {
       <section className="service-cover">
         <ResponsiveImage
           className="service-cover-image"
-          src={"/services/" + serviceSlug + ".png"}
+          src={serviceSlug === "authority-approval-drawings"
+            ? "/services/authority-approval-drawings.jpg"
+            : "/services/" + serviceSlug + ".png"}
           alt=""
         />
         <div className="service-cover-shade" />
@@ -1170,13 +1193,26 @@ function ServiceDetail() {
                 })}
               </div>
             ) : (
-              project?.description && (
-              <p className="scope-description">
-                {arabic
-                  ? arabicProjectDescriptions[serviceSlug]?.[activeScope]
-                  : project.description}
-              </p>
-            ))}
+              (projectCopy.description || projectCopy.blocks) && (
+                <>
+                  {projectCopy.description && (
+                    <p className="scope-description">
+                      {projectCopy.description}
+                    </p>
+                  )}
+                  {projectCopy.blocks?.map((block) => (
+                    <div className="scope-points-block" key={block.title}>
+                      <h3>{block.title}</h3>
+                      <ul className="scope-points">
+                        {block.points.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </>
+              )
+            )}
             {project?.images?.length > 0 && (
               <>
                 <div className="scope-gallery-heading">
@@ -1863,112 +1899,7 @@ function AboutPage() {
     </main>
   );
 }
-function useNavigationContrast() {
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const header = document.querySelector(".site-header");
-      if (!header) return;
-      const y = Math.min(
-        window.innerHeight - 1,
-        header.getBoundingClientRect().top + 35,
-      );
-      const element = document
-        .elementsFromPoint(window.innerWidth / 2, Math.max(0, y))
-        .find(
-          (item) =>
-            !header.contains(item) && item.closest("main section, footer"),
-        );
-      const section = element?.closest("main section, footer");
-      if (!section) return;
-      const photoCover =
-        section.matches(
-          ".service-cover, .process-cover, .about-cover, .visual-hero, .motion-story",
-        ) ||
-        (section.matches(".page-intro") &&
-          ["services", "contact"].includes(document.body.dataset.page));
-      const color = getComputedStyle(section)
-        .backgroundColor.match(/[\d.]+/g)
-        ?.map(Number);
-      const dark =
-        photoCover ||
-        (color &&
-          color.length >= 3 &&
-          (color[3] === undefined || color[3] > 0.5) &&
-          color[0] * 0.2126 + color[1] * 0.7152 + color[2] * 0.0722 < 140);
-      header.classList.toggle("header-on-dark", Boolean(dark));
-      // Sample behind each control: a light card may cover only part of a dark section.
-      header
-        .querySelectorAll(
-          ".brand, .nav-links > a, .nav-overview-link, .nav-drop-trigger, .language-switch, .menu-toggle",
-        )
-        .forEach((control) => {
-          const rect = control.getBoundingClientRect();
-          if (!rect.width || !rect.height) return;
-          const x = Math.max(
-            0,
-            Math.min(window.innerWidth - 1, rect.left + rect.width / 2),
-          );
-          const cy = Math.max(
-            0,
-            Math.min(window.innerHeight - 1, rect.top + rect.height / 2),
-          );
-          const stack = document
-            .elementsFromPoint(x, cy)
-            .filter(
-              (item) =>
-                !header.contains(item) && item.closest("main section, footer"),
-            );
-          let tone = null;
-          for (const item of stack) {
-            const style = getComputedStyle(item);
-            const rgba = style.backgroundColor.match(/[\d.]+/g)?.map(Number);
-            if (rgba?.length >= 3 && (rgba[3] === undefined || rgba[3] > 0.8)) {
-              tone =
-                rgba[0] * 0.2126 + rgba[1] * 0.7152 + rgba[2] * 0.0722 < 140;
-              break;
-            }
-            if (
-              item.matches(
-                ".service-cover, .process-cover, .about-cover, .visual-hero, .motion-story, .services-intro-image",
-              )
-            ) {
-              tone = true;
-              break;
-            }
-          }
-          const resolvedTone = photoCover ? true : (tone ?? Boolean(dark));
-          control.classList.toggle("nav-on-dark", resolvedTone);
-          control.classList.toggle("nav-on-light", !resolvedTone);
-        });
-    };
-    let lastRun = 0;
-    const schedule = () => {
-      if (frame) return;
-      // Sampling the DOM is costly; run it at most ~every 110ms while scrolling.
-      const wait = Math.max(0, 110 - (performance.now() - lastRun));
-      frame = window.setTimeout(() => {
-        frame = requestAnimationFrame(() => {
-          lastRun = performance.now();
-          update();
-        });
-      }, wait);
-    };
-    schedule();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      clearTimeout(frame);
-      cancelAnimationFrame(frame);
-    };
-  }, []);
-}
-
 function App() {
-  useNavigationContrast();
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -1980,6 +1911,42 @@ function App() {
   const [dropdown, setDropdown] = useState(null);
   const [contactOpen, setContactOpen] = useState(false);
   const contactDialog = useRef(null);
+  const serviceListRef = useRef(null);
+  const [serviceSlides, setServiceSlides] = useState([0]);
+  const [activeServiceSlide, setActiveServiceSlide] = useState(0);
+  useEffect(() => {
+    if (page !== "services") return;
+    const list = serviceListRef.current;
+    if (!list) return;
+    let offsets = [0];
+    const measure = () => {
+      const max = Math.max(0, list.scrollWidth - list.clientWidth);
+      const cards = [...list.children];
+      const firstCardOffset = cards[0]?.offsetLeft ?? 0;
+      offsets = cards
+        .map((card) => card.offsetLeft - firstCardOffset)
+        .filter((offset) => offset <= max + 2);
+      if (!offsets.length) offsets = [0];
+      setServiceSlides(offsets);
+      const current = offsets.reduce((best, offset, index) =>
+        Math.abs(offset - list.scrollLeft) < Math.abs(offsets[best] - list.scrollLeft) ? index : best, 0);
+      setActiveServiceSlide(current);
+    };
+    const onScroll = () => {
+      const current = offsets.reduce((best, offset, index) =>
+        Math.abs(offset - list.scrollLeft) < Math.abs(offsets[best] - list.scrollLeft) ? index : best, 0);
+      setActiveServiceSlide(current);
+    };
+    measure();
+    list.addEventListener("scroll", onScroll, { passive: true });
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    [...list.children].forEach((card) => observer.observe(card));
+    return () => {
+      list.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
+  }, [page]);
   useEffect(() => {
     if (contactOpen && contactDialog.current && !contactDialog.current.open)
       contactDialog.current.showModal();
@@ -2316,6 +2283,7 @@ function App() {
         {t("Skip to content")}
       </a>
       <header
+        id="site-header"
         className={
           "site-header" +
           (menu ? " menu-open" : "") +
@@ -2738,7 +2706,7 @@ function App() {
                         e.currentTarget
                           .closest(".container")
                           .querySelector(".service-list")
-                          .scrollBy({ left: -380, behavior: "smooth" })
+                          .scrollBy({ left: -e.currentTarget.closest(".container").querySelector(".service-list").clientWidth * 0.85, behavior: "smooth" })
                       }
                     >
                       ←
@@ -2750,7 +2718,7 @@ function App() {
                         e.currentTarget
                           .closest(".container")
                           .querySelector(".service-list")
-                          .scrollBy({ left: 380, behavior: "smooth" })
+                          .scrollBy({ left: e.currentTarget.closest(".container").querySelector(".service-list").clientWidth * 0.85, behavior: "smooth" })
                       }
                     >
                       →
@@ -2759,6 +2727,7 @@ function App() {
                 </div>
               )}
               <div
+                ref={page === "services" ? serviceListRef : undefined}
                 className="service-list"
                 tabIndex={page === "services" ? 0 : undefined}
                 aria-label={
@@ -2770,7 +2739,9 @@ function App() {
                     {(page === "home" || page === "services") && (
                       <ResponsiveImage
                         className="service-card-image"
-                        src={"/services/" + slugs[i] + ".png"}
+                        src={slugs[i] === "authority-approval-drawings"
+                          ? "/services/authority-approval-drawings.jpg"
+                          : "/services/" + slugs[i] + ".png"}
                         alt=""
                         loading="lazy"
                       />
@@ -2793,6 +2764,20 @@ function App() {
                   </article>
                 ))}
               </div>
+              {page === "services" && serviceSlides.length > 1 && (
+                <div className="service-pagination" role="group" aria-label={t("Services pages")}>
+                  {serviceSlides.map((offset, index) => (
+                    <button
+                      key={offset}
+                      type="button"
+                      className={index === activeServiceSlide ? "is-active" : ""}
+                      aria-label={`${t("Go to service page")} ${index + 1}`}
+                      aria-current={index === activeServiceSlide ? "true" : undefined}
+                      onClick={() => serviceListRef.current?.scrollTo({ left: offset, behavior: "smooth" })}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </section>
           <section id="visualisation" className="visualisation">

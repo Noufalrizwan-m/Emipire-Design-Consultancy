@@ -7152,6 +7152,47 @@ html {
   font-size: 16px;
   line-height: 1.7;
 }
+.scope-points-block {
+  max-width: 680px;
+  margin-top: 26px;
+}
+.scope-points-block h3 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.scope-points {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 26px;
+}
+.scope-points li {
+  position: relative;
+  padding: 9px 0 9px 20px;
+  border-bottom: 1px solid rgba(20, 36, 58, 0.12);
+  line-height: 1.5;
+  font-size: 15px;
+}
+.scope-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 17px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #b78352;
+}
+html[dir="rtl"] .scope-points li {
+  padding: 9px 20px 9px 0;
+}
+html[dir="rtl"] .scope-points li::before {
+  left: auto;
+  right: 0;
+}
 .scope-gallery-heading {
   display: flex;
   align-items: end;
@@ -9512,7 +9553,8 @@ html[dir="rtl"] .scope-sections li::before {
   color: #e3b587;
 }
 @media (max-width: 600px) {
-  .scope-sections ul {
+  .scope-sections ul,
+  .scope-points {
     grid-template-columns: 1fr;
   }
 }
@@ -10168,5 +10210,311 @@ main.process-page > section.process-contact:not(.still-hero):not(.story-hero):no
   .site-footer .footer-actions > button,
   .site-footer .footer-actions > a {
     width: min(100%, 256px);
+  }
+}
+
+/* Service carousel pagination, synced to the horizontal scroll position. */
+body[data-page="services"] .service-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0 0;
+}
+body[data-page="services"] .service-pagination button {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #14243a55;
+  cursor: pointer;
+  transition: background-color .2s ease, transform .2s ease;
+}
+body[data-page="services"] .service-pagination button.is-active {
+  background: #14243a;
+  transform: scale(1.25);
+}
+body[data-page="services"] .service-pagination button:focus-visible {
+  outline: 2px solid #b78352;
+  outline-offset: 3px;
+}
+
+/* Keep the scope dialog close button fixed while its content scrolls. */
+.scope-dialog {
+  overflow: hidden;
+}
+.scope-dialog-inner {
+  position: static;
+  box-sizing: border-box;
+  max-height: min(88dvh, 900px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.scope-close {
+  position: absolute;
+  z-index: 2;
+}
+
+/* ---------------------------------------------------------------------------
+   Constant header. One cream pill with navy lettering on every page and in
+   every state: scrolled, menu open, light section, dark section. This is the
+   only block that may set header colours; earlier per-page header overrides
+   are superseded by it.
+   --------------------------------------------------------------------------- */
+html body .site-header .nav-shell,
+html body .site-header.is-scrolled .nav-shell,
+html body .site-header.menu-open .nav-shell,
+html body .site-header.header-on-dark .nav-shell,
+html body .site-header.header-on-light .nav-shell {
+  background: #faeadb !important;
+  background-image: none !important;
+  border: 1px solid #faeadb !important;
+  border-radius: 100px !important;
+  box-shadow: 0 8px 28px rgba(20, 36, 58, 0.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: #14243a !important;
+  opacity: 1 !important;
+}
+html body .site-header .brand,
+html body .site-header .brand.nav-on-dark,
+html body .site-header .brand.nav-on-light,
+html body .site-header .nav-links > a,
+html body .site-header .nav-links > a.nav-on-dark,
+html body .site-header .nav-links > a.nav-on-light,
+html body .site-header .nav-links > a[aria-current="page"],
+html body .site-header .nav-overview-link,
+html body .site-header .nav-overview-link.nav-on-dark,
+html body .site-header .nav-overview-link.nav-on-light,
+html body .site-header .nav-overview-link[aria-current="page"],
+html body .site-header .nav-drop-trigger,
+html body .site-header .nav-drop-trigger.nav-on-dark,
+html body .site-header .nav-drop-trigger.nav-on-light,
+html body .site-header .language-switch,
+html body .site-header .language-switch.nav-on-dark,
+html body .site-header .language-switch.nav-on-light,
+html body .site-header .menu-toggle,
+html body .site-header .menu-toggle.nav-on-dark,
+html body .site-header .menu-toggle.nav-on-light {
+  color: #14243a !important;
+}
+html body .site-header .nav-links > a:hover,
+html body .site-header .nav-links > a:focus-visible,
+html body .site-header .nav-overview-link:hover,
+html body .site-header .nav-overview-link:focus-visible,
+html body .site-header .nav-drop-trigger:hover,
+html body .site-header .nav-drop-trigger:focus-visible,
+html body .site-header .language-switch:hover,
+html body .site-header .language-switch:focus-visible {
+  color: #b78352 !important;
+}
+html body .site-header .language-switch,
+html body .site-header .language-switch:hover,
+html body .site-header .language-switch:focus-visible {
+  border-color: #14243a !important;
+}
+html body .site-header .nav-links [aria-current="page"],
+html body .site-header .nav-overview-link[aria-current="page"] {
+  color: #14243a !important;
+  text-decoration-color: #14243a !important;
+}
+html body .site-header .brand img {
+  filter: none !important;
+}
+html body .site-header .nav-cta,
+html body .site-header .nav-cta:hover,
+html body .site-header .nav-cta:focus-visible {
+  background: #b78352 !important;
+  color: #14243a !important;
+}
+@media (max-width: 1023px) {
+  html body .site-header .nav-shell,
+  html body .site-header.menu-open .nav-shell {
+    background: #faeadb !important;
+    border-color: #faeadb !important;
+  }
+  html body .mobile-menu {
+    background: #faeadb !important;
+    color: #14243a !important;
+  }
+  html body .mobile-menu a,
+  html body .mobile-menu button {
+    color: #14243a !important;
+  }
+  html body .mobile-menu [aria-current="page"] {
+    color: #b78352 !important;
+  }
+}
+
+/* Final all-page header rule: transparent shell and stable navy controls. */
+html body .site-header .nav-shell,
+html body .site-header.is-scrolled .nav-shell,
+html body .site-header.is-scrolled.header-on-dark .nav-shell,
+html body .site-header.is-scrolled.header-on-light .nav-shell,
+html body .site-header.header-on-dark .nav-shell,
+html body .site-header.header-on-light .nav-shell,
+html body .site-header.menu-open .nav-shell {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+html body .site-header .brand,
+html body .site-header .brand.nav-on-dark,
+html body .site-header .brand.nav-on-light,
+html body .site-header .nav-links > a,
+html body .site-header .nav-links > a.nav-on-dark,
+html body .site-header .nav-links > a.nav-on-light,
+html body .site-header .nav-links > a[aria-current="page"],
+html body .site-header .nav-overview-link,
+html body .site-header .nav-overview-link.nav-on-dark,
+html body .site-header .nav-overview-link.nav-on-light,
+html body .site-header .nav-overview-link[aria-current="page"],
+html body .site-header .nav-drop-trigger,
+html body .site-header .nav-drop-trigger.nav-on-dark,
+html body .site-header .nav-drop-trigger.nav-on-light,
+html body .site-header .language-switch,
+html body .site-header .language-switch.nav-on-dark,
+html body .site-header .language-switch.nav-on-light,
+html body .site-header .menu-toggle,
+html body .site-header .menu-toggle.nav-on-dark,
+html body .site-header .menu-toggle.nav-on-light,
+html body .site-header .nav-links > a:hover,
+html body .site-header .nav-overview-link:hover,
+html body .site-header .nav-drop-trigger:hover,
+html body .site-header .language-switch:hover,
+html body .site-header .nav-links > a:focus-visible,
+html body .site-header .nav-overview-link:focus-visible,
+html body .site-header .nav-drop-trigger:focus-visible,
+html body .site-header .language-switch:focus-visible {
+  color: #14243a !important;
+}
+html body .site-header .nav-links > a[aria-current="page"],
+html body .site-header .nav-overview-link[aria-current="page"] {
+  text-decoration-color: #14243a !important;
+}
+html body .site-header .language-switch,
+html body .site-header .language-switch:hover,
+html body .site-header .language-switch:focus-visible {
+  border-color: #14243a !important;
+}
+html body .site-header .brand img {
+  filter: none !important;
+}
+
+/* Final header background: solid cream on every page and scroll state. */
+html body .site-header .nav-shell,
+html body .site-header.is-scrolled .nav-shell,
+html body .site-header.is-scrolled.header-on-dark .nav-shell,
+html body .site-header.is-scrolled.header-on-light .nav-shell,
+html body .site-header.header-on-dark .nav-shell,
+html body .site-header.header-on-light .nav-shell,
+html body .site-header.menu-open .nav-shell {
+  background: #faeadb !important;
+  background-color: #faeadb !important;
+  background-image: none !important;
+  border-color: #faeadb !important;
+  box-shadow: 0 8px 28px rgba(20, 36, 58, 0.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Keep the active header item navy, including while hovered on the home hero. */
+html body .site-header .nav-links > a[aria-current="page"],
+html body .site-header .nav-links > a[aria-current="page"]:hover,
+html body .site-header .nav-links > a[aria-current="page"]:focus-visible,
+html body .site-header.header-on-dark .nav-links > a[aria-current="page"],
+html body .site-header.header-on-dark .nav-links > a[aria-current="page"]:hover,
+html body .site-header.header-on-light .nav-links > a[aria-current="page"],
+html body .site-header.header-on-light .nav-links > a[aria-current="page"]:hover {
+  color: #14243a !important;
+  text-decoration-color: #14243a !important;
+}
+
+/* Solid cream fill anchored to the actual header across every page and state. */
+html body header#site-header.site-header .nav-shell,
+html body header#site-header.site-header.is-scrolled .nav-shell,
+html body header#site-header.site-header.is-scrolled.header-on-dark .nav-shell,
+html body header#site-header.site-header.is-scrolled.header-on-light .nav-shell,
+html body header#site-header.site-header.header-on-dark .nav-shell,
+html body header#site-header.site-header.header-on-light .nav-shell,
+html body header#site-header.site-header.menu-open .nav-shell {
+  background: #faeadb !important;
+  background-color: #faeadb !important;
+  background-image: none !important;
+  border-color: #faeadb !important;
+  box-shadow: 0 8px 28px rgba(20, 36, 58, 0.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Mobile header: keep every header control navy on the solid cream pill. */
+@media (max-width: 1023px) {
+  html body header#site-header.site-header .nav-shell,
+  html body header#site-header.site-header.is-scrolled .nav-shell,
+  html body header#site-header.site-header.menu-open .nav-shell,
+  html body header#site-header.site-header.header-on-dark .nav-shell {
+    background: #faeadb !important;
+    background-color: #faeadb !important;
+    background-image: none !important;
+    border: 1px solid #faeadb !important;
+    box-shadow: 0 8px 28px rgba(20, 36, 58, 0.12) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  html body header#site-header.site-header .brand,
+  html body header#site-header.site-header .brand strong,
+  html body header#site-header.site-header .brand small,
+  html body header#site-header.site-header.menu-open .brand,
+  html body header#site-header.site-header.menu-open .menu-toggle,
+  html body header#site-header.site-header.menu-open .language-switch,
+  html body header#site-header.site-header .menu-toggle,
+  html body header#site-header.site-header .language-switch,
+  html body header#site-header.site-header.header-on-dark .brand,
+  html body header#site-header.site-header.header-on-dark .menu-toggle,
+  html body header#site-header.site-header.header-on-dark .language-switch {
+    color: #14243a !important;
+  }
+  html body header#site-header.site-header .menu-icon svg {
+    color: #14243a !important;
+    stroke: #14243a !important;
+  }
+  html body header#site-header.site-header .brand img {
+    filter: none !important;
+  }
+  html body header#site-header.site-header .language-switch,
+  html body header#site-header.site-header.menu-open .language-switch {
+    border-color: #14243a !important;
+  }
+}
+
+/* Arabic/English switch must not inherit the old white menu-state text color. */
+html body header#site-header.site-header .nav-shell > button.language-switch,
+html body header#site-header.site-header.menu-open .nav-shell > button.language-switch,
+html body header#site-header.site-header.is-scrolled .nav-shell > button.language-switch,
+html body header#site-header.site-header.header-on-dark .nav-shell > button.language-switch {
+  color: #14243a !important;
+  -webkit-text-fill-color: #14243a !important;
+  border-color: #14243a !important;
+}
+
+/* Mobile wordmark copy: force the two text lines navy on the cream header. */
+@media (max-width: 1023px) {
+  html body header#site-header.site-header .nav-shell > a.brand > span,
+  html body header#site-header.site-header .nav-shell > a.brand > span strong,
+  html body header#site-header.site-header .nav-shell > a.brand > span small,
+  html body header#site-header.site-header.menu-open .nav-shell > a.brand > span,
+  html body header#site-header.site-header.menu-open .nav-shell > a.brand > span strong,
+  html body header#site-header.site-header.menu-open .nav-shell > a.brand > span small {
+    color: #14243a !important;
+    -webkit-text-fill-color: #14243a !important;
   }
 }
