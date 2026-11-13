@@ -98,6 +98,32 @@ function pageMetadata() {
           await writeFile(join(directory, "index.html"), html);
         }
       }
+
+      // Vercel serves dist/404.html for any unmatched path, with a real 404
+      // status. Build it from the same template as every other route so the
+      // app boots normally: React sees a path it does not know and renders
+      // the .not-found branch inside the usual header and footer, rather
+      // than the visitor landing on Vercel's own error page.
+      const notFoundTitle = "Page not found | Empire Design Consultancy";
+      const notFoundDescription =
+        "This page could not be found. Explore Empire Design Consultancy's CAD drafting, BIM coordination, shop drawing and estimating services in Dubai.";
+      const notFound = template
+        .replace('<html lang="en">', '<html lang="en" dir="ltr">')
+        .replace(
+          "<!--SEO_CONTENT-->",
+          `<main><h1>Page not found</h1><p>${notFoundDescription}</p><nav aria-label="Services and pages"><ul>${Object.entries(
+            pages,
+          )
+            .map(([p, data]) => `<li><a href="${p}">${data[0]}</a></li>`)
+            .join("")}</ul></nav></main>`,
+        )
+        .replace(/<title>.*?<\/title>/, `<title>${notFoundTitle}</title>`)
+        .replace(
+          /<meta name="description" content="[^"]*"\s*\/?\s*>/,
+          `<meta name="description" content="${notFoundDescription}"/>`,
+        )
+        .replace("</head>", '<meta name="robots" content="noindex, follow"/></head>');
+      await writeFile(join("dist", "404.html"), notFound);
     },
   };
 }

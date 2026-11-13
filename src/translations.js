@@ -192,6 +192,8 @@ export const arabicTranslations = {
     "دعم تصميمي وفني عملي للمشاريع في الإمارات ودول الخليج والهند.",
   Services: "الخدمات",
   "Engineering & CAD drafting": "التصميم الهندسي والرسم باستخدام CAD",
+  "Authority submission drawings": "رسومات تقديم الجهات المختصة",
+  "Process": "آلية العمل",
   "Shop drawings": "الرسومات التنفيذية",
   "BIM & coordination": "نمذجة معلومات المباني والتنسيق",
   "3D visualisation": "التصور ثلاثي الأبعاد",

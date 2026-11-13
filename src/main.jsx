@@ -386,7 +386,9 @@ const page =
           : path === "/contact"
             ? "contact"
             : "home";
-document.body.dataset.page = page;
+// Unknown paths must not inherit the homepage styling: 68 rules key off
+// body[data-page="home"], and `page` falls through to "home" above.
+document.body.dataset.page = knownPath ? page : "not-found";
 
 // Every contact CTA opens the one modal. Kept as real /contact links
 // so they still work without JS, keep their styling, and honour middle- or
@@ -2521,14 +2523,77 @@ function App() {
       </header>
       {!knownPath ? (
         <main className="not-found">
-          <div className="container">
-            <h1>{arabic ? "الصفحة غير موجودة" : "Page not found"}</h1>
-            <p>
-              {arabic
-                ? "تعذر العثور على الصفحة المطلوبة."
-                : "We could not find the page you requested."}
-            </p>
-            <a href="/">{arabic ? "العودة إلى الرئيسية" : "Return home"}</a>
+          <div className="container not-found-grid">
+            <div className="not-found-copy">
+              <p className="not-found-eyebrow">
+                {arabic ? "خطأ 404" : "Error 404"}
+              </p>
+              <h1>
+                {arabic ? (
+                  <>
+                    هذه الصفحة ليست
+                    <br />
+                    <em>ضمن المجموعة.</em>
+                  </>
+                ) : (
+                  <>
+                    Not in the
+                    <br />
+                    <em>drawing set.</em>
+                  </>
+                )}
+              </h1>
+              <p className="not-found-lead">
+                {arabic
+                  ? "الصفحة المطلوبة غير موجودة. ربما تم نقلها أو تغيير اسمها، أو أن الرابط غير مكتمل. بقية الصفحات في مكانها كما هي."
+                  : "The page you asked for isn't here. It may have been moved or renamed, or the link may be incomplete. Everything else is still where you left it."}
+              </p>
+              <div className="not-found-actions">
+                <a className="not-found-primary" href="/">
+                  {arabic ? "العودة إلى الرئيسية" : "Back to home"}
+                  <ArrowUpRight size={17} />
+                </a>
+                <a
+                  className="not-found-secondary"
+                  href="/contact"
+                  onClick={openContactDialog}
+                >
+                  {arabic ? "أرسل تفاصيل مشروعك" : "Send your brief"}
+                  <ArrowUpRight size={17} />
+                </a>
+              </div>
+            </div>
+
+            <aside className="not-found-sheet" aria-labelledby="nf-links">
+              <p className="not-found-code">
+                4<span>0</span>4
+              </p>
+              <p className="not-found-stamp">
+                {arabic ? "اللوحة غير موجودة" : "Sheet not found"}
+              </p>
+              <p className="not-found-links-title" id="nf-links">
+                {arabic ? "جرب إحدى هذه الصفحات" : "Try one of these"}
+              </p>
+              <ul className="not-found-links">
+                {[
+                  ["/services", t("Engineering & CAD drafting")],
+                  ["/visualisation", t("3D visualisation")],
+                  ["/services/shop-drawings", t("Shop drawings")],
+                  [
+                    "/services/authority-approval-drawings",
+                    t("Authority submission drawings"),
+                  ],
+                  ["/process", t("Process")],
+                ].map(([url, label]) => (
+                  <li key={url}>
+                    <a href={url}>
+                      {label}
+                      <ArrowUpRight size={15} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </aside>
           </div>
         </main>
       ) : servicePage ? (

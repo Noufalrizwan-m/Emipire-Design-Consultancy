@@ -8747,13 +8747,172 @@ main.visual-page > section.visual-finish a {
 }
 
 .not-found {
-  min-height: 60vh;
-  padding: 180px 0 90px;
+  min-height: 72vh;
+  padding: clamp(150px, 18vh, 210px) 0 clamp(70px, 10vw, 120px);
+  display: flex;
+  align-items: center;
 }
-.not-found a {
-  display: inline-block;
-  margin-top: 20px;
-  text-decoration: underline;
+.not-found-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(32px, 6vw, 76px);
+  align-items: center;
+}
+.not-found-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b78352;
+  margin-bottom: 18px;
+}
+.not-found h1 {
+  font-size: clamp(2.6rem, 5.6vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+  margin-bottom: 22px;
+}
+.not-found h1 em {
+  font-style: normal;
+  color: #b78352;
+}
+.not-found-lead {
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.6;
+  max-width: 46ch;
+  opacity: 0.86;
+  margin-bottom: 32px;
+}
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.not-found-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 26px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid transparent;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease;
+}
+.not-found-primary {
+  background: #b78352;
+  color: #fffaf5;
+}
+.not-found-primary:hover {
+  background: #14243a;
+}
+.not-found-secondary {
+  border-color: #14243a52;
+}
+.not-found-secondary:hover {
+  background: #14243a;
+  color: #faeadb;
+  border-color: #14243a;
+}
+
+/* The error code presented as a drawing sheet, to suit a drafting firm. */
+.not-found-sheet {
+  position: relative;
+  border: 1px solid #14243a42;
+  border-radius: 16px;
+  background: #fffaf5b8;
+  padding: clamp(22px, 3vw, 34px);
+  box-shadow: 0 24px 60px #14243a17;
+}
+.not-found-sheet::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px dashed #14243a33;
+  border-radius: 9px;
+  pointer-events: none;
+}
+.not-found-code {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(5rem, 13vw, 8.5rem);
+  line-height: 0.86;
+  font-weight: 600;
+  letter-spacing: -0.07em;
+  text-align: center;
+  margin: 4px 0 2px;
+}
+.not-found-code span {
+  color: #b78352;
+}
+.not-found-stamp,
+.not-found-links-title {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.not-found-stamp {
+  margin-bottom: 22px;
+}
+.not-found-links-title {
+  text-align: left;
+  letter-spacing: 0.16em;
+  border-top: 1px solid #14243a29;
+  padding-top: 18px;
+  margin-bottom: 12px;
+}
+[dir="rtl"] .not-found-links-title {
+  text-align: right;
+}
+.not-found-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+.not-found-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  margin: 0 -12px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.18s ease;
+}
+.not-found-links a:hover,
+.not-found-links a:focus-visible {
+  background: #14243a0f;
+}
+.not-found-links svg {
+  color: #b78352;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  flex: none;
+}
+.not-found-links a:hover svg,
+.not-found-links a:focus-visible svg {
+  opacity: 1;
+}
+@media (max-width: 880px) {
+  .not-found-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .not-found-sheet {
+    order: -1;
+  }
+  .not-found-code {
+    font-size: clamp(4.2rem, 24vw, 6.5rem);
+  }
 }
 
 /* Keep the navigation legible over the hero and match the language control to it. */
