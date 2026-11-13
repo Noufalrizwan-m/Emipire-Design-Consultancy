@@ -46,7 +46,7 @@ export const pages = {
   ],
   "/services/authority-approval-drawings": [
     "Authority Submission Drawings | Dubai & UAE",
-    "Architectural, structural, civil and MEP authority submission drawings for UAE building permits, municipality and Civil Defence approvals, utility authorities, DDA, Trakhees, developers, fit-outs and revisions after authority comments.",
+    "Architectural, structural, civil and MEP submission drawings for permits and approvals in Dubai and the UAE, including municipality, Civil Defence, utility, DDA and Trakhees.",
   ],
 };
 export function metadata(path) {
