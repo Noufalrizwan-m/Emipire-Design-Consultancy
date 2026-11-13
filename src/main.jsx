@@ -479,7 +479,7 @@ const storyScenes = [
     title: "Authority submission drawings",
     link: "Explore authority submission drawings",
     copy: "Authority submission drawings for permits and regulatory reviews across the UAE.",
-    image: "/services/authority-approval-drawings.jpg",
+    image: "/services/authority-approval-drawings.png",
     href: "/services/authority-approval-drawings",
   },
   {
@@ -986,7 +986,7 @@ function ServiceDetail() {
         <ResponsiveImage
           className="service-cover-image"
           src={serviceSlug === "authority-approval-drawings"
-            ? "/services/authority-approval-drawings.jpg"
+            ? "/services/authority-approval-drawings.png"
             : "/services/" + serviceSlug + ".png"}
           alt=""
         />
@@ -2740,7 +2740,7 @@ function App() {
                       <ResponsiveImage
                         className="service-card-image"
                         src={slugs[i] === "authority-approval-drawings"
-                          ? "/services/authority-approval-drawings.jpg"
+                          ? "/services/authority-approval-drawings.png"
                           : "/services/" + slugs[i] + ".png"}
                         alt=""
                         loading="lazy"

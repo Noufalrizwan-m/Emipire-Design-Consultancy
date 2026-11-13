@@ -45,7 +45,7 @@ export const pages = {
     "Quantity takeoffs, material estimates, bills of quantities and tender support for projects in the UAE, GCC and India.",
   ],
   "/services/authority-approval-drawings": [
-    "Authority Submission Drawing Services Across the UAE",
+    "Authority Submission Drawings | Dubai & UAE",
     "Architectural, structural, civil and MEP authority submission drawings for UAE building permits, municipality and Civil Defence approvals, utility authorities, DDA, Trakhees, developers, fit-outs and revisions after authority comments.",
   ],
 };
