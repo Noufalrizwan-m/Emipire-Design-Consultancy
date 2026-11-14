@@ -55,3 +55,6 @@ for src in "$SRC_DIR"/*.jpg; do
     $(( $(stat -f%z "$OUT_DIR/$name.webp" 2>/dev/null || stat -c%s "$OUT_DIR/$name.webp") / 1024 ))
 done
 echo "Done. Re-run after replacing a master in $SRC_DIR."
+echo
+echo "NOTE: bump GALLERY_VERSION in src/components/ProjectGallery.jsx so"
+echo "      returning visitors are not served the 30-day cached copies."

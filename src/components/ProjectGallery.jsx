@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from "react";
 
+// Gallery photos are cached for 30 days, and re-watermarking them does not
+// change their filenames — so without this, anyone who visited before the
+// change would keep the unwatermarked copies until the cache expired.
+// Bump this whenever the files in public/project-gallery/ are regenerated.
+const GALLERY_VERSION = 2;
+
 // Auto-drift made the gallery cut images at the edges and glitch while scrolling the page.
 // Manual drag, swipe, wheel and arrow navigation stay on.
 const AUTO_SCROLL = false;
@@ -232,7 +238,7 @@ export default function ProjectGallery({ arabic = false }) {
             return (
               <figure key={image + (clone ? "-clone" : "")} aria-hidden={clone || undefined}>
                 <img
-                  src={"/project-gallery/" + image + ".webp"}
+                  src={`/project-gallery/${image}.webp?v=${GALLERY_VERSION}`}
                   alt={clone ? "" : arabic ? arabicCaptions[i] : alt}
                   loading="lazy"
                   draggable="false"
