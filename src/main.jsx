@@ -69,13 +69,14 @@ import PageIntro from "./components/PageIntro.jsx";
 import PageExtras from "./components/PageExtras.jsx";
 import Reviews from "./components/Reviews.jsx";
 import HomeDetails from "./components/HomeDetails.jsx";
-// Only one of these ever renders, and which one is known from the URL before
-// React mounts. Loading them on demand keeps every other page's markup and
-// data out of the homepage bundle.
-const VisualisationPage = React.lazy(() => import("./pages/VisualisationPage.jsx"));
-const ServiceDetail = React.lazy(() => import("./pages/ServiceDetail.jsx"));
-const ProcessPage = React.lazy(() => import("./pages/ProcessPage.jsx"));
-const AboutPage = React.lazy(() => import("./pages/AboutPage.jsx"));
+// These are imported up front, not lazily. The scroll animations are wired up
+// when App mounts, and a page arriving a tick later misses them — leaving
+// headings stuck at opacity 0 and sections half-positioned. Saving ~100KB on
+// first load is not worth a hero that sometimes fails to appear.
+import VisualisationPage from "./pages/VisualisationPage.jsx";
+import ServiceDetail from "./pages/ServiceDetail.jsx";
+import ProcessPage from "./pages/ProcessPage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
 import Header from "./layout/Header.jsx";
 import Footer from "./layout/Footer.jsx";
 function App() {
@@ -547,21 +548,13 @@ function App() {
           </div>
         </main>
       ) : servicePage ? (
-        <React.Suspense fallback={null}>
-          <ServiceDetail />
-        </React.Suspense>
+        <ServiceDetail />
       ) : page === "process" ? (
-        <React.Suspense fallback={null}>
-          <ProcessPage />
-        </React.Suspense>
+        <ProcessPage />
       ) : page === "visualisation" ? (
-        <React.Suspense fallback={null}>
-          <VisualisationPage />
-        </React.Suspense>
+        <VisualisationPage />
       ) : page === "about" ? (
-        <React.Suspense fallback={null}>
-          <AboutPage />
-        </React.Suspense>
+        <AboutPage />
       ) : (
         <main id="home">
           {page === "home" ? (

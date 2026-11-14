@@ -73,9 +73,12 @@ export default function Reviews() {
         {reviews.map((review) => (
           <li key={review.name} className="review-card">
             <Stars rating={review.rating} />
-            <blockquote>{review.text}</blockquote>
+            {/* dir="auto" lets each review pick its own direction from its
+                first letter. Without it an English review inside the Arabic
+                RTL page renders its full stops at the start of the line. */}
+            <blockquote dir="auto">{review.text}</blockquote>
             <footer>
-              <cite>{review.name}</cite>
+              <cite dir="auto">{review.name}</cite>
               <span>{t(review.when)}</span>
             </footer>
           </li>

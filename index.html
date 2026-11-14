@@ -9,24 +9,45 @@
 @media(max-width:420px){.loader-tagline{font-size:10px;letter-spacing:.09em}.loader-meta{top:calc(45% + 82px)}}
 @media(max-aspect-ratio:4/5){.site-loader::after{background-image:url("/architectural-sketch-bg.webp");background-position:center;background-size:cover;opacity:.34}}
 html.logo-intro-active .site-header .brand img{visibility:hidden}
-html.intro-seen .site-loader{display:none}
+html.skip-intro .site-loader{display:none}
+html.skip-intro:not(.app-ready){background:#14243a}
+@view-transition{navigation:auto}
+/* The area behind the two page snapshots during a cross-fade. Without this it
+   shows the cream page background, which flashes light between dark pages. */
+::view-transition{background:#14243a}
+::view-transition-old(root){animation-duration:.28s}
+::view-transition-new(root){animation-duration:.28s}
+@media(prefers-reduced-motion:reduce){@view-transition{navigation:none}}
 @media(prefers-reduced-motion:reduce){.site-loader::before,.site-loader::after{transition:none}}
-</style><script>try{if(sessionStorage.getItem("empire-intro")==="1")document.documentElement.classList.add("intro-seen")}catch(e){}</script></head><body><div id="site-loader" class="site-loader" role="status" aria-label="Loading website"><img class="loader-logo" src="/logo.png" alt=""/><div class="loader-meta"><p class="loader-tagline">CAD, BIM &amp; Engineering Design &middot; UAE</p><div class="loader-bar"><span></span></div><p class="loader-count">0%</p></div></div><noscript><style>.site-loader{display:none}</style></noscript><script>
+</style><script>try{
+var nav=(performance.getEntriesByType("navigation")[0]||{}).type;
+var fromSite=false;
+try{fromSite=!!document.referrer&&new URL(document.referrer).origin===location.origin}catch(e){}
+var viaLogo=false;
+try{viaLogo=sessionStorage.getItem("empire-play-intro")==="1";if(viaLogo)sessionStorage.removeItem("empire-play-intro")}catch(e){}
+// The logo intro plays on a refresh, on a first arrival from outside the site,
+// and whenever the visitor clicks the company logo. Moving between pages with
+// the nav links uses the cross-fade instead.
+var playIntro = nav==="reload" || !fromSite || viaLogo;
+if(!playIntro)document.documentElement.classList.add("skip-intro");
+}catch(e){}</script></head><body><div id="site-loader" class="site-loader" role="status" aria-label="Loading website"><img class="loader-logo" src="/logo.png" alt=""/><div class="loader-meta"><p class="loader-tagline">CAD, BIM &amp; Engineering Design &middot; UAE</p><div class="loader-bar"><span></span></div><p class="loader-count">0%</p></div></div><noscript><style>.site-loader{display:none}</style></noscript><script>
 (function(){
   var loader=document.getElementById('site-loader');
   var logo=loader.querySelector('.loader-logo');
   var start=Date.now(), finished=false, ready=false, animation;
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
-  // The intro plays once per tab session. A visitor moving between pages has
-  // already seen it, so replaying it just stands between them and the content.
-  var seen=false;try{seen=sessionStorage.getItem('empire-intro')==='1'}catch(e){}
-  if(seen){loader.remove();window.empireSiteReady=function(){};return}
+  if(document.documentElement.classList.contains('skip-intro')){
+    loader.remove();
+    var done=function(){document.documentElement.classList.add('app-ready')};
+    window.empireSiteReady=done;
+    setTimeout(done,2000); // never leave the canvas dark if the app goes quiet
+    return;
+  }
   document.documentElement.classList.add('logo-intro-active');
   function finish(){
     if(finished)return;
     finished=true;
     document.documentElement.classList.remove('logo-intro-active');
-    try{sessionStorage.setItem('empire-intro','1')}catch(e){}
     clearInterval(meter);loader.remove();document.removeEventListener('keydown',skip);
   }
   function skip(event){if(event.key==='Escape')finish()}
@@ -36,15 +57,15 @@ html.intro-seen .site-loader{display:none}
   var shown=0,flying=false;
   var meter=setInterval(function(){
     var elapsed=Date.now()-start;
-    var target=ready?100:Math.min(92,elapsed/22);
-    shown+=(target-shown)*0.28+(ready?2.2:0.04);
+    var target=ready?100:Math.min(92,elapsed/40);
+    shown+=(target-shown)*0.1+(ready?0.7:0.04);
     if(shown>target)shown=target;
     bar.style.transform='scaleX('+(shown/100)+')';
     count.textContent=Math.round(shown)+'%';
     if(ready&&shown>=99.5&&!flying){
       flying=true;clearInterval(meter);
       bar.style.transform='scaleX(1)';count.textContent='100%';
-      setTimeout(fly,180);
+      setTimeout(fly,350);
     }
   },30);
   function fly(){
@@ -59,11 +80,17 @@ html.intro-seen .site-loader{display:none}
     animation=logo.animate([
       {transform:'translate(-50%, -50%)'},
       {transform:'translate(calc(-50% + '+dx+'px), calc(-50% + '+dy+'px)) scale('+scale+')'}
-    ],{duration:820,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
+    ],{duration:1200,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
     animation.finished.then(finish).catch(finish);
-    setTimeout(finish,960);
+    setTimeout(finish,1400);
   }
   window.empireSiteReady=function(){ready=true};
-  setTimeout(window.empireSiteReady,3500);
+  setTimeout(window.empireSiteReady,6000);
 })();
-</script><div id="root"><!--SEO_CONTENT--></div><script type="module" src="/src/main.jsx"></script></body></html>
+</script><div id="root"><!--SEO_CONTENT--></div><script type="module" src="/src/main.jsx"></script><script>
+addEventListener("click",function(e){
+  var a=e.target.closest&&e.target.closest("a.brand");
+  if(!a||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey)return;
+  try{sessionStorage.setItem("empire-play-intro","1")}catch(err){}
+},false);
+</script></body></html>
