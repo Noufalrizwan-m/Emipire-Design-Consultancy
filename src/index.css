@@ -10832,3 +10832,89 @@ html body main .home-testimonials ul.reviews-grid > li.review-card {
   html body main .home-testimonials ul.reviews-grid { scroll-behavior: auto; }
   html body main .home-testimonials .reviews-controls button { transition: none; }
 }
+
+/* The services and contact intros pin their text column with physical
+   margins (margin-left: 0; margin-right: auto), which holds it against the
+   left edge whatever the reading direction. In Arabic the heading then sits
+   opposite the navigation and reads against the flow of the page, so mirror
+   it to the right. */
+html[dir="rtl"] body[data-page="services"] .page-intro-content,
+html[dir="rtl"] body[data-page="contact"] .page-intro-content {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* The page-intro headings carry their own tight line-height from rules more
+   specific than the generic RTL override above, so they need naming directly. */
+html[dir="rtl"] body[data-page] .page-intro h1,
+html[dir="rtl"] body[data-page] .page-intro h2,
+html[dir="rtl"] body[data-page] .page-intro-content h1,
+html[dir="rtl"] body[data-page] .page-intro-content h2 {
+  line-height: 1.3;
+}
+
+/* The services and contact intros darken the photo from the left, because the
+   English heading sits there. In Arabic the heading is on the right, so the
+   wash has to follow it - otherwise 100px of white type lands on the brightest
+   part of the image. */
+html[dir="rtl"] body[data-page="services"] .page-intro .services-intro-image::after,
+html[dir="rtl"] body[data-page="contact"] .page-intro .services-intro-image::after {
+  background: linear-gradient(
+    270deg,
+    rgba(13, 26, 51, 0.94) 0%,
+    rgba(13, 26, 51, 0.75) 38%,
+    rgba(13, 26, 51, 0.2) 100%
+  );
+}
+
+/* Several cover headings set their line-height inside width-based media
+   queries, which beat the plain RTL rules above at desktop widths. The file
+   already uses !important for the Arabic hero for the same reason; these
+   follow that precedent so the spacing holds at every breakpoint. */
+html[dir="rtl"] .about-cover h1,
+html[dir="rtl"] .about-cover-inner h1,
+html[dir="rtl"] .process-cover h1,
+html[dir="rtl"] .process-cover-copy h1,
+html[dir="rtl"] .service-cover h1,
+html[dir="rtl"] .page-intro h1,
+html[dir="rtl"] .page-intro h2,
+html[dir="rtl"] .visual-hero h1,
+html[dir="rtl"] .visual-hero h2,
+html[dir="rtl"] .visual-page h1,
+html[dir="rtl"] .visual-page h2 {
+  line-height: 1.3 !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Arabic typography and mirrored hero artwork.
+
+   Arabic needs more leading than the Latin display face, which is set as tight
+   as 0.94 on some covers. Dozens of rules set their own values per section and
+   per breakpoint, so this has to be emphatic to hold everywhere.
+
+   The hero artwork is washed with physical left/right gradients, because the
+   English headings sit on the left. In Arabic the heading moves to the right,
+   so each wash is mirrored to follow it - otherwise large white type lands on
+   the brightest part of the photo.
+--------------------------------------------------------------------------- */
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3 {
+  line-height: 1.35 !important;
+}
+
+html[dir="rtl"] .about-cover-image:after {
+  background:
+    linear-gradient(270deg, #14243ae6 0%, #14243aa6 38%, transparent 64%),
+    linear-gradient(0deg, #14243a40, transparent 45%);
+}
+html[dir="rtl"] .service-cover-shade {
+  background:
+    linear-gradient(270deg, #14243aee 0%, #14243a99 45%, #14243a1a 100%),
+    linear-gradient(0deg, #14243a70, transparent 55%);
+}
+html[dir="rtl"] .process-cover-shade {
+  background:
+    linear-gradient(270deg, #14243af2 0%, #14243ac9 38%, #14243a20 100%),
+    linear-gradient(0deg, #14243a70, transparent 55%);
+}
