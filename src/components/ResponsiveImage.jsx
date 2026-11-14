@@ -43,11 +43,15 @@ const imageWidths = {
   "/services/shop-drawings.png": [960, 1672],
 };
 
-// Portrait compositions are selected by viewport rather than image resolution.
+// Purpose-built images are selected by viewport rather than image resolution.
+const tabletImages = {
+  "/services/authority-submission-hero.png":
+    "/services/authority-submission-tablet.jpg",
+};
 const portraitImages = {
   "/services/cad-drafting.png": "/mobile/portrait/cad-drafting.png",
-  "/services/authority-approval-drawings.png":
-    "/mobile/portrait/authority-approval-drawings.png",
+  "/services/authority-submission-hero.png":
+    "/services/authority-submission-mobile.jpg",
   "/services/bim-coordination.png": "/mobile/portrait/bim-coordination.png",
   "/services/shop-drawings.png": "/mobile/portrait/shop-drawings.png",
   "/services/3d-visualisation.png": "/mobile/portrait/3d-visualisation.png",
@@ -59,25 +63,34 @@ const portraitImages = {
   "/who-we-are.png": "/mobile/portrait/who-we-are.png",
 };
 const mobileQuery = window.matchMedia("(max-width: 700px)");
+const tabletQuery = window.matchMedia("(min-width: 701px) and (max-width: 1024px)");
 const subscribeMobile = (notify) => {
   mobileQuery.addEventListener("change", notify);
   return () => mobileQuery.removeEventListener("change", notify);
 };
+const subscribeTablet = (notify) => {
+  tabletQuery.addEventListener("change", notify);
+  return () => tabletQuery.removeEventListener("change", notify);
+};
 const isMobile = () => mobileQuery.matches;
+const isTablet = () => tabletQuery.matches;
 
 export default function ResponsiveImage({ src, sizes, ...props }) {
   const mobile = useSyncExternalStore(subscribeMobile, isMobile, () => false);
+  const tablet = useSyncExternalStore(subscribeTablet, isTablet, () => false);
   const portrait = mobile && portraitImages[src];
+  const tabletImage = !mobile && tablet && tabletImages[src];
+  const responsiveImage = portrait || tabletImage;
   const widths = imageWidths[src];
   const srcSet =
-    !portrait && widths
+    !responsiveImage && widths
       ? `${imageUrl(`/mobile${src}`)} ${widths[0]}w, ${imageUrl(src)} ${widths[1]}w`
       : undefined;
 
   return (
     <img
       decoding="async"
-      src={imageUrl(portrait || src)}
+      src={imageUrl(responsiveImage || src)}
       srcSet={srcSet}
       sizes={
         srcSet
