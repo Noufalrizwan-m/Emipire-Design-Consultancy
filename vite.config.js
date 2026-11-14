@@ -128,4 +128,20 @@ function pageMetadata() {
     },
   };
 }
-export default defineConfig({ plugins: [reactTailwind(), pageMetadata()] });
+export default defineConfig({
+  plugins: [reactTailwind(), pageMetadata()],
+  build: {
+    rollupOptions: {
+      output: {
+        // React and the animation libraries change only when we upgrade them,
+        // while the site's own code changes on most deploys. Splitting them
+        // apart lets a returning visitor reuse the cached vendor chunks
+        // instead of re-downloading everything after each publish.
+        manualChunks: {
+          react: ["react", "react-dom", "react-dom/client"],
+          motion: ["gsap", "gsap/ScrollTrigger", "lenis"],
+        },
+      },
+    },
+  },
+});

@@ -1,4 +1,12 @@
 export const arabicTranslations = {
+  "4 months ago": "قبل ٤ أشهر",
+
+  "Based on": "استنادًا إلى",
+  "Google reviews": "تقييمًا على خرائط جوجل",
+  "out of 5": "من ٥",
+  "a month ago": "قبل شهر",
+  "4 weeks ago": "قبل ٤ أسابيع",
+
   "Skip to content": "انتقل إلى المحتوى",
   "3D VISUALISATION & BIM": "التصور ثلاثي الأبعاد ونمذجة معلومات المباني",
   "See the vision.": "شاهد الرؤية.",

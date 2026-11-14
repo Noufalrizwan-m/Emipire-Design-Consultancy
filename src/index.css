@@ -5796,11 +5796,7 @@ body:has(.service-detail) .site-header .nav-shell {
 .google-reviews-link:hover {
   color: #b78352;
 }
-.home-testimonials [class*="elfsight-app-"] {
-  background: #faeadb;
-  border-radius: 20px;
-  padding: clamp(18px, 3vw, 36px);
-}
+
 /* Desktop navigation sits directly over the hero, as on the homepage. */
 @media (min-width: 1024px) {
   body[data-page]:not([data-page="home"]) .site-header .nav-shell,
@@ -6709,27 +6705,91 @@ main
   color: #14243a !important;
   border-color: #14243a !important;
 }
-.home-testimonials [class*="elfsight-app-"] {
-  background: #faeadb !important;
-}
-/* The Elfsight widget renders inside a CLOSED shadow root, so nothing in this
-   stylesheet reaches its cards, buttons or type — those are changed only in the
-   Elfsight dashboard's appearance settings. What is styleable is the frame the
-   widget sits in, which is what these rules do: hold it to the same width,
-   border and rhythm as the site's own panels so it reads as part of the page. */
+/* Client reviews, rendered from src/data/reviews.js. Ivory cards on the navy
+   section, sized so three sit in a row on a desktop and stack on a phone. */
 .home-testimonials .reviews-container {
-  max-width: 980px;
+  max-width: 1080px;
   margin-inline: auto;
 }
-.home-testimonials [class*="elfsight-app-"] {
-  border: 1px solid #14243a1f;
-  border-radius: 20px;
-  padding: clamp(14px, 2.2vw, 26px) clamp(14px, 2.2vw, 28px);
-  box-shadow: 0 18px 44px #0a152608;
+.reviews-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px 14px;
+  margin-bottom: 30px;
+}
+.reviews-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+.reviews-score strong {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  color: #f4f1eb;
+}
+.review-stars {
+  display: inline-flex;
+  gap: 2px;
+  color: #d8a567;
+}
+.reviews-count {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: #aebacb;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.review-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px 24px 22px;
+  border: 1px solid #ffffff1f;
+  border-radius: 18px;
+  background: #faeadb;
+  color: #14243a;
+}
+.review-card blockquote {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.review-card footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 12px;
+  margin-top: auto;
+  padding-top: 6px;
+  border-top: 1px solid #14243a1f;
+}
+.review-card cite {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+}
+.review-card footer span {
+  font-size: 12px;
+  color: #5c6a7e;
 }
 .home-testimonials .reviews-fallback {
-  margin-top: 22px;
+  display: inline-block;
+  margin-top: 26px;
   color: #cbd4df;
+  text-decoration: underline;
+  text-underline-offset: 4px;
   text-decoration-color: #b78352;
   transition: color 0.2s;
 }
@@ -6741,6 +6801,7 @@ main
     transition: none;
   }
 }
+
 .visual-page {
   background: #14243a;
   color: #f4f1eb;
@@ -10562,4 +10623,212 @@ html body header#site-header.site-header.header-on-dark .nav-shell > button.lang
     color: #14243a !important;
     -webkit-text-fill-color: #14243a !important;
   }
+}
+
+/* Refined homepage testimonials: clear rating summary and calm review cards. */
+.home-testimonials .reviews-container { display:grid; grid-template-columns:minmax(210px,.72fr) 2.28fr; gap:20px; align-items:stretch; }
+.home-testimonials .reviews-summary { display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:28px; border:1px solid #ffffff22; border-radius:20px; background:#ffffff08; }
+.home-testimonials .reviews-score { display:flex; align-items:center; gap:12px; margin:12px 0 0; }
+.home-testimonials .reviews-score strong { color:#f4f1eb; font-size:clamp(48px,5vw,66px); line-height:1; letter-spacing:-.06em; }
+.home-testimonials .review-stars { display:inline-flex; color:#d7a365; gap:2px; }
+.home-testimonials .reviews-count { margin:8px 0 0; color:#b5c0cf; font-size:14px; }
+.home-testimonials .reviews-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:0; padding:0; list-style:none; }
+.home-testimonials .review-card { display:flex; flex-direction:column; min-width:0; padding:21px 20px 18px; border:1px solid #ffffff40; border-radius:18px; background:#faeadb; color:#14243a; }
+.home-testimonials .review-card blockquote { flex:1; margin:15px 0 20px; font-size:clamp(13px,1vw,15px); line-height:1.65; }
+.home-testimonials .review-card footer { display:flex; flex-direction:column; gap:3px; padding-top:12px; border-top:1px solid #14243a1a; }
+.home-testimonials .review-card cite { font-size:12px; font-style:normal; font-weight:700; }
+.home-testimonials .review-card footer span { color:#667284; font-size:11px; }
+.home-testimonials .reviews-fallback { grid-column:2; justify-self:start; align-self:start; margin-top:-2px; color:#f4f1eb; }
+@media(max-width:900px) { .home-testimonials .reviews-container { grid-template-columns:1fr; } .home-testimonials .reviews-summary { padding:20px 24px; } .home-testimonials .reviews-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .home-testimonials .reviews-fallback { grid-column:1; } }
+@media(max-width:600px) { .home-testimonials .reviews-grid { grid-template-columns:1fr; } .home-testimonials .review-card { padding:20px; } .home-testimonials .review-card blockquote { font-size:15px; } }
+
+/* Architectural review cards: keep the sketch soft and the text clean. */
+.home-testimonials {
+  background-image: linear-gradient(rgba(20,36,58,.88), rgba(20,36,58,.92)), url("/process-architectural-bg.webp") !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+.home-testimonials .review-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 310px;
+  padding: 24px 24px 20px;
+  border: 1px solid rgba(183,131,82,.42);
+  border-radius: 18px;
+  background-color: #faeadb;
+  background-image: linear-gradient(rgba(250,234,219,.91), rgba(250,234,219,.95)), url("/architectural-sketch-bg.webp") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  box-shadow: 0 16px 34px rgba(5,14,28,.18);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.home-testimonials .review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 42px rgba(5,14,28,.25);
+}
+.home-testimonials .review-card > .review-stars {
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(20,36,58,.16);
+}
+.home-testimonials .review-card blockquote {
+  position: relative;
+  margin: 0;
+  padding-top: 30px;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: clamp(14px, 1.08vw, 16px);
+  line-height: 1.7;
+}
+.home-testimonials .review-card blockquote::before {
+  content: "“";
+  position: absolute;
+  top: -5px;
+  left: 0;
+  color: #b78352;
+  font-family: Georgia, serif;
+  font-size: 56px;
+  line-height: 1;
+  opacity: .8;
+}
+.home-testimonials .review-card footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding: 14px 0 0;
+  border-top: 1px solid rgba(20,36,58,.18);
+  border-radius: 0;
+  background: transparent !important;
+  background-image: none !important;
+  color: #14243a;
+}
+.home-testimonials .review-card cite { font-size: 13px; }
+.home-testimonials .review-card footer span { color: #687487; font-size: 12px; white-space: nowrap; }
+@media(max-width:600px) {
+  .home-testimonials .review-card { min-height: 0; }
+  .home-testimonials .review-card:hover { transform: none; }
+}
+@media(prefers-reduced-motion:reduce) { .home-testimonials .review-card { transition: none; } }
+
+/* Final review component overrides: the site's global footer texture must not
+   bleed into the small author rows inside each review. */
+html body main .home-testimonials ul.reviews-grid > li.review-card {
+  background: linear-gradient(rgba(250,234,219,.80), rgba(250,234,219,.88)), url("/architectural-sketch-bg.webp") center / cover no-repeat !important;
+}
+html body main .home-testimonials ul.reviews-grid > li.review-card > footer {
+  background: #14243a !important;
+  background-image: none !important;
+  color: #faeadb !important;
+  border-top: 1px solid rgba(20,36,58,.18) !important;
+  padding: 14px 0 0 !important;
+  margin-top: auto !important;
+}
+html body main .home-testimonials ul.reviews-grid > li.review-card > footer cite { color: #14243a !important; }
+html body main .home-testimonials ul.reviews-grid > li.review-card > footer span { color: #667284 !important; }
+html body main .home-testimonials ul.reviews-grid > li.review-card > footer {
+  background: rgba(250,234,219,.98) !important;
+  background-image: none !important;
+  color: #14243a !important;
+}
+
+/* Compact Google score badge; give the review cards the full content width. */
+html body main .home-testimonials .reviews-container {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+}
+html body main .home-testimonials .reviews-summary {
+  width: fit-content;
+  max-width: 100%;
+  min-height: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px 12px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 14px;
+  background: rgba(255,255,255,.055);
+}
+html body main .home-testimonials .reviews-score { gap: 7px; margin: 0; }
+html body main .home-testimonials .reviews-score strong { font-size: 30px; letter-spacing: -.04em; }
+html body main .home-testimonials .reviews-summary .review-stars { gap: 1px; }
+html body main .home-testimonials .reviews-summary .review-stars svg { width: 13px; height: 13px; }
+html body main .home-testimonials .reviews-count { margin: 0; font-size: 12px; }
+html body main .home-testimonials .reviews-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html body main .home-testimonials .reviews-fallback { grid-column: 1; margin-top: 0; }
+@media(max-width:900px) {
+  html body main .home-testimonials .reviews-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media(max-width:600px) {
+  html body main .home-testimonials .reviews-grid { grid-template-columns: 1fr; }
+  html body main .home-testimonials .reviews-summary { gap: 6px 10px; }
+}
+
+/* Horizontal client review slider: three cards visible on desktop, the rest swipe or advance. */
+html body main .home-testimonials .reviews-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+html body main .home-testimonials .reviews-summary { margin: 0; }
+html body main .home-testimonials .reviews-controls { display: flex; gap: 8px; }
+html body main .home-testimonials .reviews-controls button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(244,241,235,.35);
+  border-radius: 50%;
+  background: transparent;
+  color: #f4f1eb;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+html body main .home-testimonials .reviews-controls button:hover {
+  background: #b78352;
+  border-color: #b78352;
+  color: #14243a;
+}
+html body main .home-testimonials ul.reviews-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 32px) / 3);
+  grid-template-columns: none;
+  grid-template-rows: 1fr;
+  gap: 16px;
+  width: 100%;
+  margin: 0;
+  padding: 2px 2px 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(183,131,82,.75) transparent;
+}
+html body main .home-testimonials ul.reviews-grid > li.review-card {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  scroll-snap-align: start;
+}
+@media(max-width:900px) {
+  html body main .home-testimonials ul.reviews-grid { grid-auto-columns: calc((100% - 16px) / 2); }
+}
+@media(max-width:600px) {
+  html body main .home-testimonials .reviews-toolbar { align-items: flex-start; }
+  html body main .home-testimonials .reviews-controls button { width: 36px; height: 36px; }
+  html body main .home-testimonials ul.reviews-grid { grid-auto-columns: 88%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  html body main .home-testimonials ul.reviews-grid { scroll-behavior: auto; }
+  html body main .home-testimonials .reviews-controls button { transition: none; }
 }

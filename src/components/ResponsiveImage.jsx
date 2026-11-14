@@ -1,5 +1,5 @@
 import React, { useSyncExternalStore } from "react";
-import optimizedImages from "./optimizedImages.json";
+import optimizedImages from "../optimizedImages.json";
 const optimized = new Set(optimizedImages);
 // Optimised artwork ships as WebP (converted from the PNG masters in
 // design-assets/, so there is no double compression). There is no JPEG
