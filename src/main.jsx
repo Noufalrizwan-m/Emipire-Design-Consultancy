@@ -725,7 +725,7 @@ function App() {
                       <ResponsiveImage
                         className="service-card-image"
                         src={slugs[i] === "authority-approval-drawings"
-                          ? "/services/authority-approval-drawings.png"
+                          ? "/services/authority-submission-hero.png"
                           : "/services/" + slugs[i] + ".png"}
                         alt=""
                         loading="lazy"

@@ -63,7 +63,7 @@ export default function ServiceDetail() {
         <ResponsiveImage
           className="service-cover-image"
           src={serviceSlug === "authority-approval-drawings"
-            ? "/services/authority-approval-drawings.png"
+            ? "/services/authority-submission-hero.png"
             : "/services/" + serviceSlug + ".png"}
           alt=""
         />

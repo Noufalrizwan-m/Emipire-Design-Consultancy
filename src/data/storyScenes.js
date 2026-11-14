@@ -35,7 +35,7 @@ export const storyScenes = [
     title: "Authority submission drawings",
     link: "Explore authority submission drawings",
     copy: "Authority submission drawings for permits and regulatory reviews across the UAE.",
-    image: "/services/authority-approval-drawings.png",
+    image: "/services/authority-submission-hero.png",
     href: "/services/authority-approval-drawings",
   },
   {
