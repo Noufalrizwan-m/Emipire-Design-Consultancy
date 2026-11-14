@@ -9,8 +9,9 @@
 @media(max-width:420px){.loader-tagline{font-size:10px;letter-spacing:.09em}.loader-meta{top:calc(45% + 82px)}}
 @media(max-aspect-ratio:4/5){.site-loader::after{background-image:url("/architectural-sketch-bg.webp");background-position:center;background-size:cover;opacity:.34}}
 html.logo-intro-active .site-header .brand img{visibility:hidden}
+html.intro-seen .site-loader{display:none}
 @media(prefers-reduced-motion:reduce){.site-loader::before,.site-loader::after{transition:none}}
-</style></head><body><div id="site-loader" class="site-loader" role="status" aria-label="Loading website"><img class="loader-logo" src="/logo.png" alt=""/><div class="loader-meta"><p class="loader-tagline">CAD, BIM &amp; Engineering Design &middot; UAE</p><div class="loader-bar"><span></span></div><p class="loader-count">0%</p></div></div><noscript><style>.site-loader{display:none}</style></noscript><script>
+</style><script>try{if(sessionStorage.getItem("empire-intro")==="1")document.documentElement.classList.add("intro-seen")}catch(e){}</script></head><body><div id="site-loader" class="site-loader" role="status" aria-label="Loading website"><img class="loader-logo" src="/logo.png" alt=""/><div class="loader-meta"><p class="loader-tagline">CAD, BIM &amp; Engineering Design &middot; UAE</p><div class="loader-bar"><span></span></div><p class="loader-count">0%</p></div></div><noscript><style>.site-loader{display:none}</style></noscript><script>
 (function(){
   var loader=document.getElementById('site-loader');
   var logo=loader.querySelector('.loader-logo');
