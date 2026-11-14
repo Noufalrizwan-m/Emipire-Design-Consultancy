@@ -2,9 +2,11 @@ import React, { useSyncExternalStore } from "react";
 import optimizedImages from "./optimizedImages.json";
 const optimized = new Set(optimizedImages);
 // Optimised artwork ships as WebP (converted from the PNG masters in
-// design-assets/, so there is no double compression). The .jpg files stay on
-// disk as a fallback. Kept as a plain <img> rather than <picture> because the
-// stylesheet has direct-child selectors such as `.visual-hero > img`.
+// design-assets/, so there is no double compression). There is no JPEG
+// fallback: every browser in use supports WebP, and the unreferenced .jpg
+// copies were removed rather than shipped. Kept as a plain <img> rather than
+// <picture> because the stylesheet has direct-child selectors such as
+// `.visual-hero > img`.
 const imageUrl = (path) =>
   optimized.has(path) ? path.replace(/\.png$/, ".webp") : path;
 

@@ -39,7 +39,8 @@ function pageMetadata() {
     name: "page-metadata",
     apply: "build",
     async closeBundle() {
-      // Ship JPG only: drop PNG originals the app never requests, and the PHP mailer (replaced by /api/contact).
+      // Ship WebP only: drop the PNG originals the app never requests (ResponsiveImage
+      // resolves them to .webp), and the PHP mailer (replaced by /api/contact).
       for (const png of optimizedImages) await rm(join("dist", png), { force: true });
       await rm("dist/contact.php", { force: true });
       const template = await readFile("dist/index.html", "utf8");
